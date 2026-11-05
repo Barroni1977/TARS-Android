@@ -18,7 +18,7 @@ describe('TarsBootScreen', () => {
 
     expect(screen.getByTestId('tars-boot-screen')).toBeTruthy();
     expect(screen.getByText('TARS AI')).toBeTruthy();
-    expect(screen.getByText('HUMOUR  90%')).toBeTruthy();
+    expect(screen.getByText('HUMOUR 90%')).toBeTruthy();
     expect(screen.getByText('HONESTY 95%')).toBeTruthy();
     expect(screen.getByText('SARCASM 85%')).toBeTruthy();
     expect(screen.getByText('INITIALISING CORE')).toBeTruthy();
