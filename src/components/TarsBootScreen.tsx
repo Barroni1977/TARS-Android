@@ -143,7 +143,10 @@ export const TarsBootScreen: React.FC = React.memo(() => {
                           {
                             scaleY: breathe.interpolate({
                               inputRange: [0, 1],
-                              outputRange: [index % 2 === 0 ? 0.55 : 0.9, index % 2 === 0 ? 1 : 0.55],
+                              outputRange: [
+                                index % 2 === 0 ? 0.55 : 0.9,
+                                index % 2 === 0 ? 1 : 0.55,
+                              ],
                             }),
                           },
                         ],
