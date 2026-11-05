@@ -151,7 +151,6 @@ const App = observer(() => {
     <GestureHandlerRootView style={styles.root}>
       <StatusBar
         barStyle={showTarsBoot || theme.dark ? 'light-content' : 'dark-content'}
-        backgroundColor={showTarsBoot ? '#000000' : theme.colors.background}
       />
       {__E2E__ ? <AutomationBridge /> : null}
       <SafeAreaProvider>
