@@ -43,7 +43,10 @@ import {
   PlusHost,
 } from './src/components';
 import {MarkdownProvider} from './src/components/MarkdownView';
-import {TarsBootScreen, TARS_BOOT_DURATION_MS} from './src/components/TarsBootScreen';
+import {
+  TarsBootScreen,
+  TARS_BOOT_DURATION_MS,
+} from './src/components/TarsBootScreen';
 import {
   AutomationBridge,
   BenchmarkRunnerScreen,
@@ -115,7 +118,10 @@ const App = observer(() => {
     if (__E2E__) {
       return;
     }
-    const timeout = setTimeout(() => setShowTarsBoot(false), TARS_BOOT_DURATION_MS);
+    const timeout = setTimeout(
+      () => setShowTarsBoot(false),
+      TARS_BOOT_DURATION_MS,
+    );
     return () => clearTimeout(timeout);
   }, []);
 
