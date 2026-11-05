@@ -85,13 +85,10 @@ export const ChatEmptyPlaceholder = observer(
     return (
       <View
         testID="tars-command-deck"
-        style={[
-          styles.container,
-          {marginBottom: bottomComponentHeight + 24},
-        ]}>
+        style={[styles.container, {marginBottom: bottomComponentHeight + 24}]}>
         <View style={styles.console}>
           <View style={styles.topLine}>
-            <Text style={styles.eyebrow}>TARS AI  /  COMMAND DECK</Text>
+            <Text style={styles.eyebrow}>TARS AI / COMMAND DECK</Text>
             <View style={styles.revisionTag}>
               <Text style={styles.revisionText}>01 / CORE</Text>
             </View>
@@ -110,9 +107,7 @@ export const ChatEmptyPlaceholder = observer(
 
           <View style={styles.moduleHeader}>
             <Text style={styles.moduleLabel}>LOCAL MODEL STATUS</Text>
-            <View
-              accessibilityLabel={status}
-              style={styles.signalStatus}>
+            <View accessibilityLabel={status} style={styles.signalStatus}>
               <View
                 style={[
                   styles.signalDot,
@@ -140,7 +135,7 @@ export const ChatEmptyPlaceholder = observer(
           </View>
 
           <View style={styles.footerLine}>
-            <Text style={styles.footerText}>LOCAL INFERENCE  /  GGUF</Text>
+            <Text style={styles.footerText}>LOCAL INFERENCE / GGUF</Text>
             <Text style={styles.footerText}>SYSTEM UI 01</Text>
           </View>
         </View>
