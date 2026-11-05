@@ -31,10 +31,16 @@ application. The animation begins **after JS startup**, not before it.
 - `android/app/src/main/res/values/strings.xml` and `app.json` display
   the `TARS AI` app name.
 
-The underlying Android package ID is still `com.pocketpalai`; a separate
-installable app ID and custom launcher icon require a later change. Do not
-install a build of this fork over an existing PocketPal installation before
-app IDs are separated.
+Android now builds under the independent application ID
+`com.barroni1977.tarsai` (`com.barroni1977.tarsai.e2e` for tests).
+The original PocketPal installation uses `com.pocketpalai`, so the two apps
+have separate private storage and can coexist. The React Native namespace and
+native Kotlin package names remain unchanged intentionally; changing the
+application ID is sufficient to separate the installed Android packages.
+
+**Note:** Locally downloaded models in PocketPal do not automatically carry
+over to TARS AI. They will need to be downloaded or imported again. The
+custom launcher icon is still pending.
 
 ## Next steps
 
@@ -46,9 +52,9 @@ app IDs are separated.
 
 ## First device acceptance check
 
-After a successful CI build, install the APK on a test device **only after**
-assigning the app its own Android application ID. The current fork still uses
-the upstream PocketPal ID, so installing as-is can conflict with PocketPal.
+After a successful CI build, install the APK on a test device using the
+independent `com.barroni1977.tarsai` package ID. Keep PocketPal installed
+separately, so its model files and configuration stay intact.
 
 On the S26 Ultra, verify that:
 
