@@ -43,3 +43,20 @@ app IDs are separated.
 3. Replace the provisional vector steel panels with the approved artwork.
 4. Add optional real diagnostics after the underlying model-loading events
    are observable.
+
+## First device acceptance check
+
+After a successful CI build, install the APK on a test device **only after**
+assigning the app its own Android application ID. The current fork still uses
+the upstream PocketPal ID, so installing as-is can conflict with PocketPal.
+
+On the S26 Ultra, verify that:
+
+- The launch background stays black without a bright white flash.
+- The diagnostic log scrolls while the green status dot and waveform move.
+- The sequence exits into the working chat interface.
+- Reopening the app never requires an internet connection for the animation.
+- With reduced-motion preferences, decide whether a static alternative is needed.
+
+The boot sequence is deliberately visual: completion messages are not proof
+that the local model has loaded or that the microphone is active.
