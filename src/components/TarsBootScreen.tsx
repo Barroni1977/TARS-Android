@@ -202,7 +202,11 @@ export const TarsBootScreen: React.FC = React.memo(() => {
 
 const styles = StyleSheet.create({
   root: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
     backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',
