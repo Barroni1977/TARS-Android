@@ -28,7 +28,9 @@ export const createStyles = (theme: Theme, insets: EdgeInsets) =>
     },
     header: {
       padding: theme.spacing.default * 2,
-      backgroundColor: theme.dark ? '#1D272B' : theme.colors.surfaceContainerHighest,
+      backgroundColor: theme.dark
+        ? '#1D272B'
+        : theme.colors.surfaceContainerHighest,
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.surfaceVariant,
     },
