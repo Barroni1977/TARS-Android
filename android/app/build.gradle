@@ -87,7 +87,7 @@ android {
 
     namespace "com.pocketpal"
     defaultConfig {
-        applicationId "com.barroni1977.tarsai"
+        applicationId "com.barroni1977.tarsai.preview"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 159
@@ -151,7 +151,7 @@ android {
         releaseE2e {
             // E2E buildType: inherits 95% of release (Hermes, minify toggle,
             // proguard rules), then overrides:
-            //   1. debuggable=true so `adb shell run-as com.barroni1977.tarsai.e2e`
+            //   1. debuggable=true so `adb shell run-as com.barroni1977.tarsai.preview.e2e`
             //      works for the benchmark-matrix preseed workflow.
             //   2. Debug signing — E2E builds are never shipped to stores.
             //   3. matchingFallbacks so dependencies resolve to their release
@@ -174,12 +174,12 @@ android {
     productFlavors {
         prod {
             dimension "distribution"
-            // applicationId stays as defaultConfig: com.barroni1977.tarsai
+            // applicationId stays as defaultConfig: com.barroni1977.tarsai.preview
         }
         e2e {
             dimension "distribution"
             applicationIdSuffix ".e2e"
-            // Effective applicationId: com.barroni1977.tarsai.e2e
+            // Effective applicationId: com.barroni1977.tarsai.preview.e2e
             // Separate sandbox; installs side-by-side with prod.
         }
     }
