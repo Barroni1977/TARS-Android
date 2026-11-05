@@ -125,7 +125,7 @@ export const TarsBootScreen: React.FC = React.memo(() => {
           <View style={styles.hud}>
             <View style={styles.statusColumn}>
               <Animated.View style={[styles.statusLight, {opacity: glow}]} />
-              <Text style={styles.hudLabel}>HUMOUR  90%</Text>
+              <Text style={styles.hudLabel}>HUMOUR 90%</Text>
               <Text style={styles.hudLabel}>HONESTY 95%</Text>
               <Text style={styles.hudLabel}>SARCASM 85%</Text>
             </View>
