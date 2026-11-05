@@ -28,18 +28,45 @@ export const createStyles = (theme: Theme, insets: EdgeInsets) =>
     },
     header: {
       padding: theme.spacing.default * 2,
-      backgroundColor: theme.colors.surfaceContainerHighest,
+      backgroundColor: theme.dark
+        ? '#1D272B'
+        : theme.colors.surfaceContainerHighest,
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.surfaceVariant,
     },
     headerContent: {
       gap: theme.spacing.default,
     },
+    brandRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 16,
+    },
+    brandName: {
+      flex: 1,
+      gap: 4,
+    },
+    brandCaption: {
+      color: theme.dark ? '#8FDCB2' : theme.colors.onSurfaceVariant,
+      fontFamily: 'monospace',
+      fontSize: 10,
+      lineHeight: 14,
+      letterSpacing: 0.5,
+    },
+    legalDisclaimer: {
+      color: theme.colors.onSurfaceVariant,
+      fontSize: 12,
+      lineHeight: 18,
+      paddingHorizontal: 24,
+      paddingTop: 16,
+      textAlign: 'center',
+    },
+
     title: {
       ...theme.fonts.headlineLarge,
-      color: theme.colors.onSurface,
+      color: theme.dark ? '#F4AF5E' : theme.colors.onSurface,
       marginBottom: theme.spacing.default / 2,
-      letterSpacing: -0.5,
+      letterSpacing: 1,
     },
     description: {
       color: theme.colors.onSurfaceVariant,

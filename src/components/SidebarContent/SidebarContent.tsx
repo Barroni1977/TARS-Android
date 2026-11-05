@@ -6,6 +6,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import {TarsBrandMark} from '../TarsBrandMark/TarsBrandMark';
 import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
 import {PlusDrawerItem} from './PlusDrawerItem/PlusDrawerItem';
@@ -547,6 +548,16 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
     const ListHeaderComponent = React.useMemo(
       () => (
         <View>
+          <View style={styles.brandHeader}>
+            <TarsBrandMark size={48} />
+            <View style={styles.brandNameStack}>
+              <Text style={styles.brandTitle}>TARS AI</Text>
+              <Text style={styles.brandSubtitle}>
+                COMMAND SYSTEM / LOCAL-FIRST
+              </Text>
+            </View>
+          </View>
+          <View style={styles.brandRule} />
           <Drawer.Section showDivider={false}>
             <Drawer.Item
               label={l10n.components.sidebarContent.menuItems.chat}

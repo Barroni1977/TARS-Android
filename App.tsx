@@ -44,6 +44,10 @@ import {
 } from './src/components';
 import {MarkdownProvider} from './src/components/MarkdownView';
 import {
+  TarsBootScreen,
+  TARS_BOOT_DURATION_MS,
+} from './src/components/TarsBootScreen';
+import {
   AutomationBridge,
   BenchmarkRunnerScreen,
   PlusTestFeatureScreen,
@@ -106,6 +110,21 @@ const App = observer(() => {
   const styles = createStyles(theme);
   const currentL10n = l10n[uiStore.language];
 
+  // Keep the existing app mounted behind the native-like animated boot layer.
+  // Automated E2E journeys skip the animation; normal starts stay offline.
+  const [showTarsBoot, setShowTarsBoot] = React.useState(!__E2E__);
+
+  React.useEffect(() => {
+    if (__E2E__) {
+      return;
+    }
+    const timeout = setTimeout(
+      () => setShowTarsBoot(false),
+      TARS_BOOT_DURATION_MS,
+    );
+    return () => clearTimeout(timeout);
+  }, []);
+
   // Initialize locale with the current language
   React.useEffect(() => {
     initLocale(uiStore.language);
@@ -130,7 +149,9 @@ const App = observer(() => {
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+      <StatusBar
+        barStyle={showTarsBoot || theme.dark ? 'light-content' : 'dark-content'}
+      />
       {__E2E__ ? <AutomationBridge /> : null}
       <SafeAreaProvider>
         <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
@@ -272,6 +293,7 @@ const App = observer(() => {
           </PaperProvider>
         </KeyboardProvider>
       </SafeAreaProvider>
+      {showTarsBoot ? <TarsBootScreen /> : null}
     </GestureHandlerRootView>
   );
 });

@@ -125,7 +125,7 @@ describe('typography tokens', () => {
 
     it('resolveTokens("dark") returns darkColors bound', () => {
       const t = resolveTokens('dark');
-      expect(t.colors.background).toBe('#000000');
+      expect(t.colors.background).toBe('#080B0D');
     });
 
     it('typography binding is shared across modes (locale swap is in builder)', () => {
