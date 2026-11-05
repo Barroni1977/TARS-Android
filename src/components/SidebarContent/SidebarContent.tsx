@@ -552,7 +552,9 @@ export const SidebarContent: React.FC<DrawerContentComponentProps> = observer(
             <TarsBrandMark size={48} />
             <View style={styles.brandNameStack}>
               <Text style={styles.brandTitle}>TARS AI</Text>
-              <Text style={styles.brandSubtitle}>COMMAND SYSTEM  /  LOCAL-FIRST</Text>
+              <Text style={styles.brandSubtitle}>
+                COMMAND SYSTEM / LOCAL-FIRST
+              </Text>
             </View>
           </View>
           <View style={styles.brandRule} />
