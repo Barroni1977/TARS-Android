@@ -1,20 +1,27 @@
 import React, {useContext} from 'react';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {observer} from 'mobx-react';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
 import {modelStore, palStore} from '../../store';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '@react-navigation/native';
 import {L10nContext} from '../../utils';
+import {TarsBrandMark} from '../TarsBrandMark/TarsBrandMark';
 
 interface ChatEmptyPlaceholderProps {
   onSelectModel: () => void;
   bottomComponentHeight: number;
 }
 
+/**
+ * TARS command deck. This is the empty chat's real interactive state, not
+ * another splash screen. It never covers an ongoing conversation.
+ *
+ * Only modelStore-derived statuses are shown; the display does not fabricate
+ * CPU, microphone, network or inference telemetry.
+ */
 export const ChatEmptyPlaceholder = observer(
   ({onSelectModel, bottomComponentHeight}: ChatEmptyPlaceholderProps) => {
     const theme = useTheme();
@@ -24,33 +31,25 @@ export const ChatEmptyPlaceholder = observer(
 
     const hasAvailableModels = modelStore.availableModels.length > 0;
     const hasActiveModel = modelStore.activeModelId !== undefined;
-    // When the user lands here from onboarding-finish, the pal exists
-    // and its defaultModel is downloading. The DownloadOverlay banner is
-    // already showing progress at the top of the screen — the empty
-    // state's job is just to telegraph "your pal is on the way, no
-    // model picker needed."
+    const activeModelName = modelStore.activeModel?.name;
+
     const pendingPalDownload = modelStore.activeDownloads
-      .map(d =>
+      .map(download =>
         palStore.pals.find(
-          p =>
-            p.source === 'local' &&
-            p.defaultModel &&
-            p.defaultModel.id === d.modelId,
+          pal =>
+            pal.source === 'local' &&
+            pal.defaultModel &&
+            pal.defaultModel.id === download.modelId,
         ),
       )
-      .find(p => p !== undefined);
+      .find(pal => pal !== undefined);
 
     const getContent = () => {
-      if (pendingPalDownload) {
+      if (pendingPalDownload && !hasActiveModel) {
         return {
-          title:
-            l10n.components.chatEmptyPlaceholder.gettingReadyTitle?.replace(
-              '{{name}}',
-              pendingPalDownload.name,
-            ) ?? `${pendingPalDownload.name} is getting ready`,
           description:
             l10n.components.chatEmptyPlaceholder.gettingReadyDescription ??
-            'We’ll let you know the moment your pal can chat. Tap the banner up top to see how it’s going.',
+            'Your model is downloading. Check the banner above for progress.',
           buttonText: null,
           onPress: () => {},
         };
@@ -58,17 +57,13 @@ export const ChatEmptyPlaceholder = observer(
 
       if (!hasAvailableModels) {
         return {
-          title: l10n.components.chatEmptyPlaceholder.noModelsTitle,
           description: l10n.components.chatEmptyPlaceholder.noModelsDescription,
           buttonText: l10n.components.chatEmptyPlaceholder.noModelsButton,
-          onPress: () => {
-            navigation.navigate('Models');
-          },
+          onPress: () => navigation.navigate('Models'),
         };
       }
 
       return {
-        title: l10n.components.chatEmptyPlaceholder.activateModelTitle,
         description:
           l10n.components.chatEmptyPlaceholder.activateModelDescription,
         buttonText: l10n.components.chatEmptyPlaceholder.activateModelButton,
@@ -76,32 +71,91 @@ export const ChatEmptyPlaceholder = observer(
       };
     };
 
-    const {title, description, buttonText, onPress} = getContent();
+    const {description, buttonText, onPress} = getContent();
+    const isLoading = modelStore.isContextLoading;
+    const selected = hasActiveModel && !isLoading;
+    const status = isLoading
+      ? 'INITIALISING LOCAL CORE'
+      : hasActiveModel
+        ? 'MODEL SELECTED'
+        : pendingPalDownload
+          ? 'MODEL DOWNLOAD IN PROGRESS'
+          : 'AWAITING LOCAL MODEL';
 
-    if (hasActiveModel) {
-      return <View />;
-    }
     return (
       <View
-        style={[styles.container, {marginBottom: bottomComponentHeight + 100}]}>
-        <Image
-          source={require('../../assets/pocketpal-dark-v2.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-        <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>{description}</Text>
+        testID="tars-command-deck"
+        style={[
+          styles.container,
+          {marginBottom: bottomComponentHeight + 24},
+        ]}>
+        <View style={styles.console}>
+          <View style={styles.topLine}>
+            <Text style={styles.eyebrow}>TARS AI  /  COMMAND DECK</Text>
+            <View style={styles.revisionTag}>
+              <Text style={styles.revisionText}>01 / CORE</Text>
+            </View>
+          </View>
+
+          <View style={styles.brandRow}>
+            <TarsBrandMark size={84} />
+            <View style={styles.brandTitle}>
+              <Text style={styles.wordmark}>TARS</Text>
+              <Text style={styles.submark}>PERSONAL INTELLIGENCE</Text>
+              <Text style={styles.submark}>ON-DEVICE ASSISTANT</Text>
+            </View>
+          </View>
+
+          <View style={styles.separator} />
+
+          <View style={styles.moduleHeader}>
+            <Text style={styles.moduleLabel}>LOCAL MODEL STATUS</Text>
+            <View
+              accessibilityLabel={status}
+              style={styles.signalStatus}>
+              <View
+                style={[
+                  styles.signalDot,
+                  selected ? styles.signalSelected : styles.signalAwaiting,
+                ]}
+              />
+              <Text style={styles.signalText}>{status}</Text>
+            </View>
+          </View>
+
+          <View style={styles.modelWell}>
+            <Text style={styles.modelKey}>SELECTED CORE</Text>
+            <Text style={styles.modelName} numberOfLines={2}>
+              {activeModelName || 'NO MODEL SELECTED'}
+            </Text>
+          </View>
+
+          <View style={styles.instruction}>
+            <View style={styles.instructionRail} />
+            <Text style={styles.instructionText}>
+              {hasActiveModel
+                ? 'Your local model is selected. Enter a message below to begin.'
+                : description}
+            </Text>
+          </View>
+
+          <View style={styles.footerLine}>
+            <Text style={styles.footerText}>LOCAL INFERENCE  /  GGUF</Text>
+            <Text style={styles.footerText}>SYSTEM UI 01</Text>
+          </View>
         </View>
-        {buttonText ? (
+
+        {!hasActiveModel && buttonText ? (
           <Button
             mode="contained"
             onPress={onPress}
             style={styles.button}
-            loading={modelStore.isContextLoading}
-            disabled={hasActiveModel}>
-            {modelStore.isContextLoading
-              ? l10n.components?.chatEmptyPlaceholder?.loading
+            buttonColor={theme.colors.primary}
+            textColor={theme.colors.onPrimary}
+            loading={isLoading}
+            disabled={isLoading}>
+            {isLoading
+              ? l10n.components.chatEmptyPlaceholder.loading
               : buttonText}
           </Button>
         ) : null}
