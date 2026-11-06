@@ -1,43 +1,62 @@
 # TARS-AI — Full-screen animated boot
 
-## Exact approved artwork integration — 2026-11-06 (no build)
+## Clean approved startup artwork — 2026-11-06 (no APK build)
 
-**Artwork policy:** Preserve the exact approved portrait image. Do not regenerate,
-redraw, relabel, crop or recolour the metal panels, text or amber TARS AI logo.
-The image is 941 × 1672 pixels, SHA-256:
-`20354469f090bd470c0a37cf947ee527e3e7b6d689573ed5a7bef9823737877b`.
-
-This branch provides an Android drawable-based **image-backed boot** plus
-a separate animated overlay in `src/components/TarsApprovedArtOverlay.tsx`.
-The aspect ratio is preserved and the image is fully contained on the screen.
-
-To finish this integration, **upload the original, unmodified binary image** to:
+The exact clean artwork approved for animation is now **bundled** on the
+`feature/tars-approved-startup-art-no-build` branch as:
 
 `android/app/src/prod/res/drawable-nodpi/tars_boot_approved.png`
 
-That file is not included in this source-only commit, because the available
-GitHub code-writing connection cannot transfer the original image bytes.
-The reserved folder already exists. Until the image is uploaded, Android
-automatically falls back to the previously implemented boot artwork.
+- Dimensions: 941 × 1672 PNG (portrait, `drawable-nodpi` so Android does
+  not apply an additional density scaling).
+- Git blob SHA: `ceddbe5704fc1a3f63e5a78b3bc1d20fc3d90bb4`.
+- SHA-256: `0cc6b52856ec84f7a7de0a5a3dea55c542988d4facd34147ed1024ced0133e40`.
+- The image is intentionally **blank** inside the green diagnostic screen
+  and has an **empty**, outlined loading bar. The TARS AI amber brand mark,
+  metalwork, corners and panel borders are part of the PNG and remain untouched.
+- The uploaded GitHub temporary filename was corrected using the exact
+  existing Git blob; there was no re-encoding or change to image bytes.
 
-### Precisely positioned animations
+### Animated live overlays
 
-- Green display: a moving, subtle scanline across the existing diagnostics,
-  and a 10-bar oscillating waveform in the exact original waveform area.
-- Initialising: an independent 16-cell progress bar empties and refills over
-  the image's existing progress-track area, leaving the green outline intact.
-- All other artwork is drawn from the original bitmap, not reconstructed.
-- Both animations respect Android Reduce Motion and do not simulate model
-  readiness. The image's decorative text is not a live telemetry report.
-- The existing tap-to-skip control and 2.5-second startup remain unchanged.
+`src/components/TarsApprovedArtOverlay.tsx` renders *inside the artwork
+coordinates* and restores the decorative display content that was removed
+from the image:
 
-### Validation and change policy
+- HUMOUR 90%, HONESTY 95%, SARCASM 85%.
+- Green centre divider and LOCAL CORE / READY, VOICE SYSTEM / STANDBY,
+  MEMORY CHECK / NOMINAL.
+- Ten moving green waveform bars in the top-right of the display.
+- Subtle moving scanline limited to the green display.
+- INITIALISING text above the existing outlined loading bar.
+- A 16-segment bar that fills 0–100% inside the original image outline.
 
-No CI/APK build is triggered from this standalone branch; the workflow runs
-on pull requests to `main` or pushes to `main`, neither of which we performed.
-Do not open a pull request or trigger a build until the user says **build**.
-After bundling the bitmap, verify the full composition and overlay alignment
-on the user's Galaxy S26 Ultra; the proportions have not yet been device-tested.
+The annotated layout anchors are measured in the 941 × 1672 artwork:
+waveform `x=516,y=324,w=132,h=46`; loading-bar **interior**
+`x=267,y=1275,w=415,h=24`. In particular, do **not** place the fill
+at the previous y=1291 or y=1257, both of which were wrong for this PNG.
+
+All coordinates scale with the source image to avoid distortion and do not
+move relative to the graphic when the device changes width. The image is
+contained rather than cropped. The terminal readouts are **decorative**; they
+must not be interpreted as live AI readiness or health checks.
+
+`src/components/TarsBootScreen.tsx` retains the Android picture-loading
+fallback, the 2.5-second timed sequence, tap-to-skip and Reduce Motion
+handling. The original native view remains the fallback on iOS or if the
+Android image fails to load.
+
+### Verification and safety
+
+- `scripts/__tests__/tars-boot-approved-art.test.js` verifies the binary
+  file, size, dimensions and SHA-256.
+- `src/components/__tests__/TarsApprovedArtOverlay.test.tsx` verifies
+  diagnostic text and placement, including the corrected bar coordinates.
+- Android 17 Galaxy S26 Ultra **on-device alignment is still unverified**.
+  Run lint, TypeScript, Jest and Android visual checks *only when a build
+  is approved*. Do not claim device testing before it has happened.
+- This is a development-only branch with no PR to `main`, and no
+  GitHub Actions build has been requested.
 
 ## Updated 2026-11-06
 
@@ -71,15 +90,10 @@ does not create a pull request. An APK is built only after explicit approval.
 
 ### Visual artwork parity
 
-The approved portrait reference image is available in this conversation,
-but is **not** yet packaged as an image asset inside the GitHub repository.
-The newly committed React Native layout animates the approved composition
-using native gradient panels and text. It is not a pixel-identical raster
-reproduction. Adding the exact approved art as an offline bundled image and
-layering the live progress/waveform over it is still an outstanding artwork
-integration step.
-
-We must not claim exact image parity before that asset is shipped.
+The approved clean bitmap is now bundled and animated overlays use its
+measured coordinates. This replaces the earlier approximation built from
+React Native gradient panels. Final visual parity must still be checked
+on-device, particularly the waveform and the bar's border alignment.
 
 ### Brand cleanup
 
