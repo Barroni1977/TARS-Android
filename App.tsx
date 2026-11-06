@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Appearance,
   Dimensions,
+  Platform,
   StatusBar,
   StyleSheet,
   View,
@@ -320,14 +321,11 @@ const createStyles = (theme: Theme) =>
     },
   });
 
-// Neutral background-only hold, rendered until mobx-persist-store has
-// loaded UIStore from AsyncStorage. It is a single full-screen View whose
-// only meaningful property is backgroundColor, resolved from the system
-// color scheme. Deliberately carries NO branding, NO Text, NO
-// SafeAreaProvider, NO insets, and NO spinner: a flat colored View has
-// nothing to match against either native launch surface (iOS has a branded
-// storyboard, Android has no native launch screen), so it cannot diverge
-// from native on any axis and reads simply as "app launching".
+// Background-only hold until persisted UI preferences have hydrated.
+// Android's TARS native launch window is black regardless of the system
+// theme; match it to prevent a white flash before the black animated boot.
+// iOS retains its system-color hold because its native storyboard is separate.
+// The hold contains no branding, controls, text, spinner, or safe-area chrome.
 const splashStyles = StyleSheet.create({
   light: {flex: 1, backgroundColor: '#ffffff'},
   dark: {flex: 1, backgroundColor: '#000000'},
@@ -337,7 +335,7 @@ const HydrationHold = () => (
   <View
     testID="hydration-splash"
     style={
-      Appearance.getColorScheme() === 'dark'
+      Platform.OS === 'android' || Appearance.getColorScheme() === 'dark'
         ? splashStyles.dark
         : splashStyles.light
     }
