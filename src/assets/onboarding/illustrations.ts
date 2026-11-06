@@ -1,27 +1,7 @@
 /**
- * Onboarding illustration assets.
- *
- * Asset pipeline: Figma vector exports re-exported as SVGs and
- * consumed via `react-native-svg-transformer`. Each import is a React
- * component (default export) that accepts `width` / `height` / `fill`
- * / `stroke` props.
- *
- *  - `SplashMark`    — splash mark inner artwork (Figma `884:28352`).
- *  - `Screen1Hero`   — same flat SVG artwork as the splash mark,
- *                      sized to 112×112 on the welcome screen
- *                      (Figma `884:29310`).
- *  - `ShieldGlyph`   — privacy-shield vector used inside screen 4's
- *                      phone-outline composite (Figma `885:29695`).
- *  - `chipIcons`     — per-topic vector glyphs for screen 5 chips,
- *                      exported verbatim from Figma's iconify slots
- *                      (`fluent:chat-28-filled`, `typcn:code`,
- *                      `wpf:books`, `solar:mask-happly-bold`,
- *                      `fa6-solid:feather`).
- *  - `ArrowRightGlyph` / `HeadphonesGlyph` — flat SVGs used by the
- *                      Figma button instances; matched 1:1 to avoid
- *                      hand-drawing.
+ * Neutral SVG control icons and mission-chip symbols for TARS onboarding.
+ * The retired PocketPal splash mascot is neither imported nor exported.
  */
-import SplashMark from './splash-mark.svg';
 import ShieldGlyph from './shield.svg';
 import ArrowRightGlyph from './arrow-right.svg';
 import HeadphonesGlyph from './headphones.svg';
@@ -34,12 +14,7 @@ import CreativeWritingChip from './chip-icons/creative-writing.svg';
 
 import type {TopicKey} from '../../store/onboarding/types';
 
-export {SplashMark, ShieldGlyph, ArrowRightGlyph, HeadphonesGlyph};
-
-// Screen 1 hero is the same flat SVG as the splash mark — verified
-// against Figma node equality (`884:28352` interior matches
-// `884:29310` Visual).
-export const Screen1Hero = SplashMark;
+export {ShieldGlyph, ArrowRightGlyph, HeadphonesGlyph};
 
 type SvgComponent = React.ComponentType<{
   width?: number;
