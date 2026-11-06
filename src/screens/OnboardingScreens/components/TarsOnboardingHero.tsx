@@ -55,20 +55,23 @@ export const TarsOnboardingHero: React.FC<{
         </View>
         <View style={styles.screen}>
           <View style={styles.header}>
-            <Text style={styles.micro}>{cfg.heading}</Text>
+            <Text style={[styles.micro, compact && styles.compactMicro]}>{cfg.heading}</Text>
             <View style={styles.indicator} />
           </View>
           <View style={styles.divider} />
           {cfg.rows.map(row => (
-            <Text key={row} style={styles.data} numberOfLines={1}>
+            <Text
+              key={row}
+              style={[styles.data, compact && styles.compactData]}
+              numberOfLines={1}>
               {row}
             </Text>
           ))}
-          <Text style={styles.status}>{cfg.status}</Text>
+          <Text style={[styles.status, compact && styles.compactMicro]}>{cfg.status}</Text>
         </View>
         <View style={styles.brandStrip}>
           <View style={styles.amberRule} />
-          <Text style={styles.brand}>TARS AI</Text>
+          <Text style={[styles.brand, compact && styles.compactBrand]}>TARS AI</Text>
           <View style={styles.amberRule} />
         </View>
         <View style={styles.lowerRow}>
@@ -97,6 +100,17 @@ const styles = StyleSheet.create({
     width: 190,
     height: 151,
     alignSelf: 'center',
+  },
+  compactMicro: {
+    fontSize: 5.5,
+  },
+  compactData: {
+    fontSize: 6,
+    lineHeight: 11,
+  },
+  compactBrand: {
+    fontSize: 11,
+    letterSpacing: 1,
   },
   rail: {
     width: '15%',
