@@ -115,10 +115,8 @@
     "useHfTokenDescription": "הפעל שימוש בטוקן עבור בקשות API. השבת אם הטוקן גורם לבעיות אימות.",
     "cacheStorageTitle": "מטמון ואחסון",
     "clearPalCaches": "נקה מטמון קיצורי דרך",
-    "clearPalCachesDescription": "מנקה נתונים מהמטמון המשמשים להאצת קיצורי דרך. פעולה זו לא תשפיע על ה-Pals שלך או על היסטוריית הצ'אט.",
     "clearCachesButton": "נקה מטמון",
     "clearCachesConfirmTitle": "לנקות מטמון קיצורי דרך?",
-    "clearCachesConfirmMessage": "פעולה זו תמחק את כל נתוני הסשנים המאוחסנים במטמון ({{fileCount}} קבצים, {{size}}). קיצורי דרך עשויים להיות איטיים יותר בשימוש הראשון לאחר הניקוי. פעולה זו לא תשפיע על ה-Pals שלך או על היסטוריית הצ'אט.",
     "clearCachesSuccess": "ניקוי של {{count}} קבצי מטמון בוצע בהצלחה.",
     "clearCachesError": "ניקוי המטמון נכשל. אנא נסה שוב.",
     "noCachesToClear": "אין מטמון לניקוי.",
@@ -167,7 +165,6 @@
     "serverTypeHelp": "מזוהה אוטומטית; שנה אם זה לא נכון.",
     "internetSearch": {
       "title": "חיפוש באינטרנט",
-      "description": "אפשר ל-Pals לחפש ברשת באמצעות הכלים שלהם. השתמש במפתח API משלך — TARS-AI לעולם לא שומר את המפתחות שלך ולא מנתב את השאילתות שלך.",
       "providerLabel": "ספק חיפוש",
       "providerGated": "בקרוב",
       "keyLabel": "מפתח API",
@@ -183,7 +180,6 @@
       "resultCountLabel": "תוצאות לכל חיפוש",
       "resultCountDescription": "פחות תוצאות משאירות יותר מקום בהקשר של המודל.",
       "consentTitle": "החיפושים יוצאים מהמכשיר שלך",
-      "consentDescription": "כאשר Pal מחפש ברשת, השאילתה שלך נשלחת לספק שנבחר דרך האינטרנט. כאשר Pal קורא דף, ייתכן שכתובת ה-URL ותוכן הדף יישלחו במקום זאת לשירות קריאה כברירת מחדל (r.jina.ai) אם לספק שנבחר אין קורא מובנה. מפתחות ושאילתות לעולם אינם נשלחים ל-TARS-AI.",
       "consentAccept": "הבנתי",
       "consentRequired": "אשר את הגילוי הנאות שלמעלה כדי להגדיר מפתח ולהפעיל חיפוש.",
       "consentGivenTitle": "חיפוש ברשת מופעל",
@@ -632,8 +628,7 @@
       "activateModelDescription": "בחר את המודל והורד אותו. לאחר ההורדה, הקש על \"טען\" ליד המודל והתחל לשוחח בצ'אט.",
       "activateModelButton": "בחר מודל",
       "loading": "טוען...",
-      "gettingReadyTitle": "{{name}} מתכונן",
-      "gettingReadyDescription": "נודיע לך ברגע שה-pal שלך יהיה מוכן לשיחה. הקש על הבאנר למעלה כדי לראות איך מתקדם."
+      "gettingReadyTitle": "{{name}} מתכונן"
     },
     "chatInput": {
       "inputPlaceholder": "הודעה",
@@ -719,7 +714,6 @@
         "title": "הצליח",
         "message": "הגדרות אלו יוחלו על כל הסשנים העתידיים"
       },
-      "palSettings": "הגדרות Pal",
       "settingsSource": "מקור ההגדרות"
     },
     "palGenerationSettingsSheet": {
@@ -729,10 +723,8 @@
       "pleaseCorrect": "אנא תקן את הדברים הבאים:",
       "ok": "אישור",
       "error": "שגיאה",
-      "failedToSave": "שמירת הגדרות ה-Pal נכשלה",
       "resetToGlobal": "איפוס לברירות מחדל גלובליות",
       "resetToSystem": "איפוס לברירות מחדל של המערכת",
-      "clearPalSettings": "נקה הגדרות Pal",
       "customSettingsFor": "הגדרות מותאמות אישית עבור {{palName}}",
       "inheritedSettingsFor": "הגדרות שעברו בירושה עבור {{palName}}"
     },
@@ -744,15 +736,11 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "מודלים",
-      "palsTab": "Pals",
-      "noPal": "אין Pal",
-      "disablePal": "השבת Pal פעיל",
       "noDescription": "אין תיאור",
       "assistantType": "סייען",
       "roleplayType": "משחק תפקידים",
       "videoType": "וידיאו",
       "confirmationTitle": "אישור",
-      "modelSwitchMessage": "ל-Pal הזה יש מודל ברירת מחדל שונה ({{modelName}}). האם ברצונך לעבור למודל ברירת המחדל של ה-Pal?",
       "keepButton": "השאר",
       "switchButton": "החלף"
     },
@@ -853,13 +841,8 @@
       "confirmReset": "אישור איפוס"
     },
     "palSheet": {
-      "title": {
-        "edit": "ערוך Pal",
-        "newPal": "Pal חדש",
-        "newVideoPal": "Pal וידיאו חדש"
-      },
+      "title": {},
       "description": "תאור",
-      "descriptionPlaceholder": "הזן תיאור קצר של ה-Pal",
       "parameters": "פרמטרים",
       "generationSettings": "הגדרות יצירה",
       "configureGenerationSettings": "הגדרות תצורת יצירה",
@@ -886,7 +869,6 @@
       "greeting": {
         "sectionLabel": "ברכה",
         "textLabel": "הודעת ברכה",
-        "textPlaceholder": "מה ה-Pal הזה יאמר בצ'אט ריק?",
         "suggestedPromptsLabel": "הנחיות מוצעות",
         "addPromptButton": "הוסף הנחיה",
         "promptPlaceholder": "הנחיה קצרה עבור הצ'יפ",
@@ -894,11 +876,7 @@
       }
     },
     "assistantPalSheet": {
-      "title": {
-        "create": "צור Pal סייען",
-        "edit": "ערוך Pal סייען"
-      },
-      "palName": "שם Pal",
+      "title": {},
       "palNamePlaceholder": "שם",
       "defaultModel": "מודל ברירת המחדל",
       "defaultModelPlaceholder": "בחר מודל",
@@ -911,18 +889,13 @@
     "modelNotAvailable": {
       "noModelsDownloaded": "עדיין לא הורדת מודלים. אנא הורד מודל תחילה.",
       "downloadAModel": "הורד מודל",
-      "defaultModelNotDownloaded": "Pal זה ממליץ על מודל ספציפי שיש להוריד, או שבאפשרותך לבחור במודל אחר.",
       "modelNotDownloadedShort": "המודל לא הורד",
       "recommendedModel": "דגם מומלץ",
       "cancelDownload": "בטל הורדה",
       "download": "הורדה"
     },
     "roleplayPalSheet": {
-      "title": {
-        "create": "צור Pal משחק תפקידים",
-        "edit": "ערוך Pal משחק תפקידים"
-      },
-      "palName": "שם Pal",
+      "title": {},
       "palNamePlaceholder": "שם",
       "defaultModel": "מודל ברירת המחדל",
       "defaultModelPlaceholder": "בחר מודל",
@@ -948,12 +921,7 @@
       "create": "צור"
     },
     "lookiePalSheet": {
-      "title": {
-        "create": "יצירת Lookie Pal - סייען חזותי",
-        "edit": "ערוך Lookie Pal"
-      },
-      "palName": "שם Pal",
-      "palNamePlaceholder": "הזן שם ל-Lookie Pal שלך",
+      "title": {},
       "visionModel": "מודל ראייה",
       "visionModelPlaceholder": "בחר מודל ראייה",
       "requiredModelsSection": "נדרש מודל",
@@ -973,8 +941,7 @@
         "placeholder": "בחר מודל"
       },
       "generatingPrompt": {
-        "label": "מטרה והקשר",
-        "placeholder": "תאר את התפקיד, המטרה או התרחיש של pal זה..."
+        "label": "מטרה והקשר"
       },
       "buttons": {
         "loadingModel": "טוען מודל...",
@@ -997,7 +964,6 @@
       "menuItems": {
         "chat": "צ'אט",
         "models": "מודלים",
-        "pals": "Pals",
         "benchmark": "מבחן ביצועים",
         "settings": "הגדרות",
         "appInfo": "מידע על האפליקציה",
@@ -1054,12 +1020,7 @@
         "reportContent": "דווח על תוכן"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "ייצוא כל ה-Pals",
-      "importPals": "ייבוא Pals",
-      "importSuccess": "ייבוא של {{count}} Pals בוצע בהצלחה.",
-      "importError": "ייבוא ה-Pals נכשל. אנא בדוק את פורמט הקובץ."
-    },
+    "palHeaderRight": {},
     "bubble": {
       "msPerToken": "{{value}}מ.ש./טוקן",
       "tokensPerSec": "{{value}} טוקנים/שנ'",
@@ -1091,7 +1052,6 @@
   },
   "palsScreen": {
     "sectionTitles": {
-      "myPalsLocal": "ה-Pals שלי (מקומי)",
       "myLibrary": "הספרייה שלי (palshub.ai)",
       "discoverPals": "גלו את ה-Pals (palshub.ai)"
     },
@@ -1108,26 +1068,18 @@
     "assistant": "סייען",
     "roleplay": "משחק תפקידים",
     "video": "וידאו",
-    "deletePal": "מחק Pal",
-    "deletePalMessage": "האם אתה בטוח שאתה רוצה למחוק את ה-Pal הזה?",
     "missingModel": "חסר מודל",
-    "missingModelMessage": "מודל ברירת המחדל \"{{modelName}}\" עבור Pal זה אינו זמין. אנא הורד אותו בלשונית העריכה או בחר מודל אחר.",
     "search": "חיפוש",
-    "profile": "פרופיל",
     "signIn": "התחברות",
-    "addPal": "הוסף Pal",
     "signInToAccessLibrary": "התחבר כדי לגשת לספרייה שלך מ-palshub.ai",
     "signOut": "התנתקות",
     "signOutConfirmation": "האם אתה בטוח שאתה רוצה להתנתק?",
     "signOutError": "ההתנתקות נכשלה. אנא נסה שוב.",
     "account": "חשבון",
     "signInToPalsHub": "התחבר ל-PalsHub",
-    "signInDescription": "גש לספרייה שלך, צור Pals פרטיים וסנכרן בין מכשירים",
-    "searchAllPals": "חפש את כל ה-Pals...",
     "deletePalConfirmation": "האם אתה בטוח שברצונך למחוק את \"{{palName}}\"?",
     "filters": {
       "all": "הכל",
-      "myPals": "ה-Pals שלי",
       "local": "מקומי",
       "video": "וידאו",
       "free": "בחינם",
@@ -1159,10 +1111,7 @@
       "systemPrompt": "הנחיית מערכת",
       "downloaded": "הורדו",
       "success": "הצליח",
-      "palAddedToCollection": "Pal נוסף לאוסף שלך!",
       "error": "שגיאה",
-      "failedToLoadDetails": "טעינת פרטי ה-Pal נכשלה",
-      "failedToDownload": "הורדת Pal נכשלה",
       "notAvailable": "N/A"
     },
     "purchase": {
@@ -1173,16 +1122,13 @@
       "unlocking": "פותח נעילה",
       "retry": "נסה שוב",
       "supportCode": "קוד תמיכה: {{code}}",
-      "noLongerAvailable": "Pal זה אינו זמין יותר. אפשר {{refundLink}}.",
       "refundLink": "בקש החזר כספי מ-Apple",
       "notCompleted": "לא ניתן היה להשלים את הרכישה הזו. Google תשיב לך את הכסף.",
-      "withdrawnRefunding": "Pal זה הוסר מהמכירה. פנה לתמיכה לקבלת החזר כספי.",
       "invalid": "לא הצלחנו לאמת את הרכישה הזו.",
       "heldInvalid": "לא הצלחנו לשחרר את הרכישה הזו. פנה לתמיכה עם הקוד הזה.",
       "recommendedModel": "מודל מומלץ",
       "sampleExchange": "שיחה לדוגמה",
       "signInLine": "כבר יש לך? התחבר",
-      "licenseNotice": "אתה רוכש רישיון שימוש ב-Pal הזה.",
       "termsOfSale": "תנאי המכירה",
       "appleMediaTerms": "תנאי השימוש של Apple Media Services",
       "linkPrompt": "התחבר כדי להשתמש בו גם במכשירים האחרים שלך",
@@ -1201,9 +1147,7 @@
       "updateCancel": "ביטול",
       "modelStep": {
         "download": "הורדה · {{size}}",
-        "startChat": "פתח צ'אט",
-        "needsMemory": "Pal זה דורש מכשיר עם {{size}} זיכרון לפחות עבור המודל הקטן ביותר שלו.",
-        "noModelFits": "למכשיר הזה אין מספיק זיכרון עבור Pal זה."
+        "startChat": "פתח צ'אט"
       }
     }
   },
@@ -1253,14 +1197,12 @@
       "howToUse": "כיצד להשתמש:",
       "step1": "• ערוך את ההנחיה (אופציונלי) כדי להנחות את הניתוח",
       "step2": "• לחץ על כפתור המצלמה כדי להתחיל ניתוח וידאו חי",
-      "step3": "• כוונן את תדירות הצילום בזמן שהמצלמה פעילה",
-      "step4": "• עבור ל-Pal אחר עבור צ'אט טקסט רגיל"
+      "step3": "• כוונן את תדירות הצילום בזמן שהמצלמה פעילה"
     }
   },
   "screenTitles": {
     "chat": "צ'אט",
     "models": "מודלים",
-    "pals": "Pals (ניסיוני)",
     "benchmark": "מבחן ביצועים",
     "settings": "הגדרות",
     "appInfo": "מידע על האפליקציה",
@@ -1318,7 +1260,6 @@
     "increaseContextReloading": "טוען מחדש את המודל עם הקשר גדול יותר…",
     "increaseContextSuccess": "ההקשר הוגדל ל-{{target}} טוקנים.",
     "increaseContextFailure": "לא ניתן להגדיל את אורך ההקשר. ההגדרה הקודמת שלך שוחזרה.",
-    "palLoadHint": "ה-Pal הזה בדרך כלל זקוק ליותר מקום ממה שאורך ההקשר הנוכחי מאפשר.",
     "webSearch": {
       "searched": "חיפוש: {{query}}",
       "noResults": "אין תוצאות",
@@ -1364,7 +1305,6 @@
     "dialogs": {
       "advancedSettings": {
         "title": "הגדרות מתקדמות",
-        "testProfile": "פרופיל בדיקה",
         "customParameters": "פרמטרים מותאמים אישית",
         "description": "כוונן את פרמטרי מבחן הביצועים עבור תרחישי בדיקה ספציפיים."
       },
@@ -1588,61 +1528,8 @@
     "splash": {
       "brand": "TARS-AI"
     },
-    "screen1": {
-      "title": "הכירו את ה-pals שלכם.",
-      "titleAccent": "pals.",
-      "body": "חברים קטנים וחכמים שגרים בתוך הטלפון שלכם.\nבואו נסדר לכם הכל - זה ייקח רק רגע.",
-      "cta": "סיור קצר",
-      "eyebrow": "ברוכים הבאים ל-TARS-AI"
-    },
-    "screen2": {
-      "title": "בכל זמן,\nבכל מקום.",
-      "body": "ה-pals שלכם גרים בתוך הטלפון.\nבלי אינטרנט, בלי קליטה - הם עובדים במטוס, מחוץ לרשת, בכפרים מרוחקים.",
-      "highlight": "בלי אינטרנט, בלי קליטה",
-      "cta": "הבא",
-      "eyebrow": "הרעיון",
-      "titleAccent": "בכל זמן,"
-    },
-    "screen3": {
-      "title": "קטנים יותר,\nאבל שלכם.",
-      "titleAccent": "קטנים יותר,",
-      "body": "ה-pals בטלפון שלכם מהירים ופרטיים - אבל קלים יותר מ-AI בענן. תחשבו עליהם כחבר בכיס, לא כאורקל יודע-כל.",
-      "highlight": "מהירים ופרטיים",
-      "cta": "הבנתי",
-      "eyebrow": "שימו לב"
-    },
-    "screen4": {
-      "title": "שום דבר לא יוצא מהטלפון שלכם.",
-      "titleAccent": "יוצא",
-      "body": "בלי חשבונות. בלי ענן. בלי מעקב. השיחות שלכם נשארות שלכם.",
-      "highlight": "בלי חשבונות. בלי ענן. בלי מעקב.",
-      "cta": "בואו נתחיל",
-      "eyebrow": "פרטיות מובטחת"
-    },
-    "screen5": {
-      "title": "לְמה ה-pal שלכם?",
-      "body": "בחרו על מה תרצו לדבר - נתאים לכם pal שמתאים לטלפון שלכם.",
-      "topic": {
-        "smartchat": "צ'אט חכם",
-        "coding": "תכנות",
-        "education": "לימודים",
-        "roleplay": "משחק תפקידים",
-        "creative_writing": "כתיבה יצירתית",
-        "else": "מחפשים משהו אחר?"
-      },
-      "topicDescription": {
-        "smartchat": "חבר ידידותי ליום-יום",
-        "coding": "כתיבת קוד, ניפוי באגים, הסברים",
-        "education": "ללמוד, להסביר, להיבחן",
-        "roleplay": "דמויות ותרחישים",
-        "creative_writing": "סיפורים, רעיונות, טיוטות",
-        "else": "עיינו בכל ה-pals מאוחר יותר באפליקציה"
-      }
-    },
+    "screen5": {},
     "screen6": {
-      "cta": "הורד את {{name}}",
-      "ctaTemplate": "הורד את {{name}} ({{size}})",
-      "useTemplate": "השתמש ב-{{name}}",
       "deviceRamSuffix": "GB RAM",
       "deviceFreeSuffix": "GB פנוי",
       "recommended": "מומלץ",
@@ -1651,24 +1538,6 @@
         "quick": "מהיר",
         "balanced": "מאוזן",
         "best": "הטוב ביותר"
-      },
-      "subtitleTemplate": "{{name}} חושב בעזרת מודל AI קטן בטלפון שלכם - בחרו אחד שמתאים.",
-      "pal": {
-        "pip": {
-          "body": "מצאנו לכם pal מושלם - חבר ידידותי לכל יום. חכם מספיק לרוב הדברים, קל מספיק לכל טלפון."
-        },
-        "codie": {
-          "body": "הכירו את Codie — שותף התכנות המקומי שלכם. קורא קוד, כותב קוד ומסביר את החלקים המסובכים, בלי לצאת מהטלפון."
-        },
-        "sage": {
-          "body": "Sage סבלני, סקרן ומלווה אתכם דרך רעיונות צעד אחר צעד. שותף ללימודים שתמיד בכיס."
-        },
-        "echo": {
-          "body": "Echo הוא בן לוויה מגוון למשחקי תפקידים — נשאר בדמות, מצייר סצנות והולך לכל מקום שהסיפור שלכם מוביל אליו."
-        },
-        "muse": {
-          "body": "Muse עוזר לכם לכתוב. מציע ניסוחים, מוצא את הקצב ושומר על הסגנון שלכם."
-        }
       }
     }
   },
