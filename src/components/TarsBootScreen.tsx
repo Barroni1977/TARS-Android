@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Animated,
   Easing,
+  Pressable,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -9,196 +10,220 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-// A React Native animation, not a video or an internet-hosted image.
-// It starts once the JavaScript runtime is ready and requires no connection.
-export const TARS_BOOT_DURATION_MS = 3300;
+// Startup is a timed visual sequence, not a report that model inference,
+// microphone capture or any network service has actually been started.
+export const TARS_BOOT_DURATION_MS = 2500;
 
-const DIAGNOSTICS = [
-  'CPU  LOCAL /  READY',
-  'LLM  QWEN  /  LOADING',
-  'MEM  SECURE /  OK',
-  'VOICE BUS   /  STANDBY',
-  'NET  OFFLINE /  LOCKED',
-  'PROCESSING  /  LOCAL',
-  'SENSOR GRID /  READY',
-  'CORE STATUS /  NOMINAL',
-];
+const METAL = ['#707479', '#3A3E43', '#14191D', '#40464C'];
+const DARK_METAL = ['#3E454A', '#171C20', '#080C0F', '#343C41'];
+const WAVE_HEIGHTS = [11, 21, 29, 13, 37, 18, 31, 15, 26, 12];
 
-const BOOT_PHASES = [
-  'INITIALISING CORE',
-  'LOADING LOCAL SYSTEMS',
-  'VOICE SYSTEM STANDBY',
-  'TARS AI  /  SYSTEM ONLINE',
-];
-
-const METAL = ['#66696b', '#393b3e', '#202225', '#44464a'];
-const WAVE_HEIGHTS = [7, 12, 17, 10, 24, 12, 19, 8, 13];
-
-const MetalPanel = ({style}: {style?: object}) => (
+const MetalPanel = ({
+  style,
+  dark = false,
+}: {
+  style?: object;
+  dark?: boolean;
+}) => (
   <LinearGradient
-    colors={METAL}
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 0.65}}
-    style={[styles.metal, style]}
-  />
+    colors={dark ? DARK_METAL : METAL}
+    start={{x: 0, y: 0.13}}
+    end={{x: 1, y: 0.83}}
+    style={[styles.metal, style]}>
+    <View style={styles.metalTopHighlight} />
+    <View style={styles.metalBottomShadow} />
+  </LinearGradient>
 );
 
 /**
- * Fan-made modular robot boot screen, inspired by a cinematic monolith.
- * The green diagnostics really scroll and the waveform really animates.
- * No microphone is used: the waveform represents a system self-test.
+ * A TARS-inspired full-screen boot display.
  *
- * Only rendered on app startup; the Android native launch surface is still
- * static because React Native cannot animate before the JS runtime starts.
+ * This uses an original, articulated metal console; the approved image is
+ * the visual direction for the boot artwork. We keep all diagnostics visible,
+ * use horizontal TARS AI lettering, and keep the boot skippable and offline.
+ *
+ * The green waveform, model labels and loading bar are explicitly an
+ * animation, never a claim that the local LLM is actually ready.
  */
-export const TarsBootScreen: React.FC = React.memo(() => {
-  const {width, height} = useWindowDimensions();
-  const scroll = React.useRef(new Animated.Value(0)).current;
-  const breathe = React.useRef(new Animated.Value(0)).current;
-  const [phase, setPhase] = React.useState(0);
+export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
+  ({onSkip}) => {
+    const {width, height} = useWindowDimensions();
+    const progress = React.useRef(new Animated.Value(0)).current;
+    const reveal = React.useRef(new Animated.Value(0)).current;
+    const pulse = React.useRef(new Animated.Value(0.3)).current;
+    const [phase, setPhase] = React.useState(0);
 
-  React.useEffect(() => {
-    const scrolling = Animated.loop(
-      Animated.timing(scroll, {
+    React.useEffect(() => {
+      const intro = Animated.timing(reveal, {
         toValue: 1,
-        duration: 2500,
-        easing: Easing.linear,
+        duration: 450,
+        easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
-      }),
-    );
-    const breathing = Animated.loop(
-      Animated.sequence([
-        Animated.timing(breathe, {
-          toValue: 1,
-          duration: 430,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(breathe, {
-          toValue: 0,
-          duration: 430,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
-    scrolling.start();
-    breathing.start();
+      });
+      const loading = Animated.timing(progress, {
+        toValue: 1,
+        duration: TARS_BOOT_DURATION_MS - 150,
+        easing: Easing.inOut(Easing.quad),
+        useNativeDriver: false,
+      });
+      const light = Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulse, {
+            toValue: 1,
+            duration: 410,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.timing(pulse, {
+            toValue: 0.35,
+            duration: 410,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+      intro.start();
+      loading.start();
+      light.start();
 
-    // Advance through authentic-looking diagnostic states. Nothing here
-    // claims that a background service or model has actually finished loading.
-    const interval = setInterval(() => {
-      setPhase(previous => Math.min(previous + 1, BOOT_PHASES.length - 1));
-    }, 800);
-    return () => {
-      clearInterval(interval);
-      scrolling.stop();
-      breathing.stop();
-    };
-  }, [scroll, breathe]);
+      const phaseInterval = setInterval(() => {
+        setPhase(previous => Math.min(previous + 1, 3));
+      }, 600);
 
-  const scrollY = scroll.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, -DIAGNOSTICS.length * 18],
-  });
-  const glow = breathe.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.5, 1],
-  });
+      return () => {
+        clearInterval(phaseInterval);
+        intro.stop();
+        loading.stop();
+        light.stop();
+      };
+    }, [progress, pulse, reveal]);
 
-  const robotWidth = Math.min(width * 0.84, 410);
-  const robotHeight = Math.min(height * 0.72, 660);
+    const robotWidth = Math.min(width * 0.96, height * 0.62);
+    const robotHeight = Math.min(height * 0.97, robotWidth * 2.28);
+    const progressWidth = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0%', '100%'],
+    });
 
-  return (
-    <View
-      testID="tars-boot-screen"
-      accessibilityLabel="TARS AI launching"
-      style={styles.root}>
-      <View style={[styles.robot, {width: robotWidth, height: robotHeight}]}>
-        <MetalPanel style={styles.outerLeg} />
-        <View style={styles.inner}>
-          <View style={styles.topPair}>
-            <MetalPanel style={styles.flexPanel} />
-            <MetalPanel style={styles.flexPanel} />
+    return (
+      <Pressable
+        testID="tars-boot-screen"
+        accessibilityRole="button"
+        accessibilityLabel="TARS-AI initialising. Double tap to skip startup animation."
+        onPress={onSkip}
+        style={styles.root}>
+        <Animated.View
+          style={[
+            styles.robot,
+            {width: robotWidth, height: robotHeight, opacity: reveal},
+          ]}>
+          <View style={styles.outerRail}>
+            <MetalPanel style={styles.railUpper} />
+            <MetalPanel style={styles.railJoint} dark />
+            <MetalPanel style={styles.railLower} />
           </View>
 
-          <View style={styles.hud}>
-            <View style={styles.statusColumn}>
-              <Animated.View style={[styles.statusLight, {opacity: glow}]} />
-              <Text style={styles.hudLabel}>HUMOUR 90%</Text>
-              <Text style={styles.hudLabel}>HONESTY 95%</Text>
-              <Text style={styles.hudLabel}>SARCASM 85%</Text>
+          <View style={styles.centerColumn}>
+            <View style={styles.topModules}>
+              <MetalPanel style={styles.module} />
+              <MetalPanel style={styles.module} />
             </View>
-            <View style={styles.diagnosticColumn}>
-              <View style={styles.waveform}>
-                {WAVE_HEIGHTS.map((barHeight, index) => (
-                  <Animated.View
-                    key={index}
-                    style={[
-                      styles.waveBar,
-                      {
-                        height: barHeight,
-                        opacity: glow,
-                        transform: [
+
+            <View style={styles.terminal}>
+              <View style={styles.terminalUpperLine}>
+                <Text style={styles.smallGreen}>TARS-AI</Text>
+                <Animated.View
+                  style={[styles.signalDot, {opacity: pulse}]}
+                />
+              </View>
+              <View style={styles.terminalColumns}>
+                <View style={styles.readoutColumn}>
+                  <Text style={styles.terminalText}>HUMOUR 90%</Text>
+                  <Text style={styles.terminalText}>HONESTY 95%</Text>
+                  <Text style={styles.terminalText}>SARCASM 85%</Text>
+                  <View style={styles.waveform}>
+                    {WAVE_HEIGHTS.map((bar, index) => (
+                      <Animated.View
+                        key={index}
+                        style={[
+                          styles.waveBar,
                           {
-                            scaleY: breathe.interpolate({
-                              inputRange: [0, 1],
-                              outputRange: [
-                                index % 2 === 0 ? 0.55 : 0.9,
-                                index % 2 === 0 ? 1 : 0.55,
-                              ],
-                            }),
+                            height: bar,
+                            opacity: pulse,
+                            transform: [
+                              {
+                                scaleY: progress.interpolate({
+                                  inputRange: [0, 1],
+                                  outputRange: [
+                                    index % 2 === 0 ? 0.6 : 0.9,
+                                    index % 2 === 0 ? 1.1 : 0.7,
+                                  ],
+                                }),
+                              },
+                            ],
                           },
-                        ],
-                      },
-                    ]}
-                  />
-                ))}
+                        ]}
+                      />
+                    ))}
+                  </View>
+                </View>
+                <View style={styles.readoutColumn}>
+                  <Text style={styles.terminalText}>LOCAL CORE</Text>
+                  <Text style={styles.terminalValue}>STANDBY</Text>
+                  <Text style={styles.terminalText}>VOICE SYSTEM</Text>
+                  <Text style={styles.terminalValue}>STANDBY</Text>
+                  <Text style={styles.terminalText}>MEMORY CHECK</Text>
+                  <Text style={styles.terminalValue}>NOMINAL</Text>
+                </View>
               </View>
-              <View style={styles.diagnosticClip}>
-                <Animated.View style={{transform: [{translateY: scrollY}]}}>
-                  {[...DIAGNOSTICS, ...DIAGNOSTICS].map((line, index) => (
-                    <Text key={index} style={styles.diagnosticLine}>
-                      {line}
-                    </Text>
+              <View style={styles.scanline} />
+            </View>
+
+            <View style={styles.middleModules}>
+              <MetalPanel style={styles.module} dark />
+              <MetalPanel style={styles.module} />
+            </View>
+
+            <View style={styles.identityPanel}>
+              <Text style={styles.brand} numberOfLines={1}>
+                TARS AI
+              </Text>
+              <View style={styles.brandUnderline} />
+            </View>
+
+            <View style={styles.progressPanel}>
+              <Text testID="tars-boot-phase" style={styles.progressLabel}>
+                {phase < 3 ? 'INITIALISING' : 'SYSTEM READY'}
+              </Text>
+              <View style={styles.progressTrack}>
+                <Animated.View
+                  testID="tars-boot-progress"
+                  style={[styles.progressFill, {width: progressWidth}]}
+                />
+                <View style={styles.progressSegments}>
+                  {Array.from({length: 13}).map((_, index) => (
+                    <View key={index} style={styles.progressDivider} />
                   ))}
-                </Animated.View>
+                </View>
               </View>
+            </View>
+
+            <View style={styles.bottomModules}>
+              <MetalPanel style={styles.module} />
+              <MetalPanel style={styles.module} dark />
             </View>
           </View>
 
-          <View style={styles.middlePair}>
-            <LinearGradient
-              colors={METAL}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0.65}}
-              style={[styles.metal, styles.verticalBrandPanel]}>
-              <Text style={styles.verticalBrand}>TARS</Text>
-            </LinearGradient>
-            <MetalPanel style={styles.flexPanel} />
+          <View style={styles.outerRail}>
+            <MetalPanel style={styles.railUpper} />
+            <MetalPanel style={styles.railJoint} dark />
+            <MetalPanel style={styles.railLower} />
           </View>
-
-          <View style={styles.startupStrip}>
-            <Text style={styles.appName}>TARS AI</Text>
-            <Text
-              accessibilityLiveRegion="polite"
-              testID="tars-boot-phase"
-              style={styles.phaseText}>
-              {BOOT_PHASES[phase]}
-            </Text>
-          </View>
-
-          <View style={styles.bottomPair}>
-            <MetalPanel style={styles.flexPanel} />
-            <MetalPanel style={styles.flexPanel} />
-          </View>
-        </View>
-        <MetalPanel style={styles.outerLeg} />
-      </View>
-      <Text style={styles.footer}>OFFLINE CO-PILOT</Text>
-    </View>
-  );
-});
+        </Animated.View>
+      </Pressable>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   root: {
@@ -215,78 +240,114 @@ const styles = StyleSheet.create({
   },
   robot: {
     flexDirection: 'row',
-    gap: 7,
+    gap: 6,
+    paddingHorizontal: 2,
+    paddingVertical: 6,
   },
-  outerLeg: {
-    flex: 0.8,
-    borderRadius: 2,
+  outerRail: {
+    flex: 0.76,
+    gap: 5,
   },
-  inner: {
-    flex: 1.6,
-    gap: 7,
+  railUpper: {
+    flex: 1.35,
   },
-  metal: {
-    borderColor: '#55585a',
-    borderWidth: StyleSheet.hairlineWidth,
-    backgroundColor: '#2c2e30',
-    borderRadius: 2,
+  railJoint: {
+    flex: 0.12,
   },
-  flexPanel: {
+  railLower: {
     flex: 1,
   },
-  topPair: {
-    height: '16%',
+  centerColumn: {
+    flex: 1.55,
+    gap: 6,
+  },
+  metal: {
+    overflow: 'hidden',
+    borderColor: '#4B5356',
+    borderWidth: 1,
+    borderRadius: 2,
+  },
+  metalTopHighlight: {
+    position: 'absolute',
+    top: 2,
+    left: 3,
+    right: 3,
+    height: 2,
+    backgroundColor: 'rgba(207,217,216,0.14)',
+  },
+  metalBottomShadow: {
+    position: 'absolute',
+    bottom: 3,
+    left: 3,
+    right: 3,
+    height: 2,
+    backgroundColor: 'rgba(0,0,0,0.38)',
+  },
+  module: {
+    flex: 1,
+  },
+  topModules: {
+    flex: 0.47,
+    flexDirection: 'row',
+    gap: 6,
+    minHeight: 36,
+  },
+  terminal: {
+    flex: 0.95,
+    minHeight: 152,
+    paddingHorizontal: 8,
+    paddingVertical: 9,
+    backgroundColor: '#020D0C',
+    borderWidth: 1,
+    borderColor: '#245245',
+    overflow: 'hidden',
+    gap: 8,
+  },
+  terminalUpperLine: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#23694E',
+    paddingBottom: 5,
+  },
+  smallGreen: {
+    color: '#65CFA8',
+    fontSize: 9,
+    fontFamily: 'JetBrainsMono-Regular',
+    letterSpacing: 1,
+  },
+  signalDot: {
+    height: 6,
+    width: 6,
+    backgroundColor: '#66F6B8',
+    borderRadius: 3,
+  },
+  terminalColumns: {
+    flex: 1,
     flexDirection: 'row',
     gap: 7,
   },
-  hud: {
-    height: 116,
-    backgroundColor: '#020504',
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: '#111e18',
-    paddingVertical: 7,
-    paddingHorizontal: 5,
-    gap: 4,
-    overflow: 'hidden',
-  },
-  statusColumn: {
+  readoutColumn: {
     flex: 1,
     justifyContent: 'space-around',
     overflow: 'hidden',
+    gap: 4,
   },
-  statusLight: {
-    width: 6,
-    height: 6,
-    borderRadius: 4,
-    backgroundColor: '#43f3c4',
-    marginLeft: 3,
-  },
-  hudLabel: {
+  terminalText: {
     fontFamily: 'JetBrainsMono-Regular',
+    color: '#67D6AC',
     fontSize: 8,
-    color: '#4ad9ac',
+    lineHeight: 13,
   },
-  diagnosticColumn: {
-    flex: 1,
-    overflow: 'hidden',
-    borderLeftWidth: StyleSheet.hairlineWidth,
-    borderColor: '#16483a',
-    paddingLeft: 5,
-  },
-  diagnosticClip: {
-    height: 70,
-    overflow: 'hidden',
-  },
-  diagnosticLine: {
+  terminalValue: {
     fontFamily: 'JetBrainsMono-Regular',
-    fontSize: 6,
-    color: '#36a988',
-    height: 18,
-    includeFontPadding: false,
+    color: '#3EAA87',
+    fontSize: 8,
+    lineHeight: 12,
   },
   waveform: {
-    height: 24,
+    minHeight: 37,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 2,
@@ -294,58 +355,90 @@ const styles = StyleSheet.create({
   },
   waveBar: {
     width: 2,
-    backgroundColor: '#31dcb0',
-    borderRadius: 2,
+    backgroundColor: '#79E5B9',
   },
-  middlePair: {
-    flex: 1,
-    minHeight: 80,
+  scanline: {
+    backgroundColor: '#24684D',
+    height: 1,
+    opacity: 0.5,
+  },
+  middleModules: {
+    flex: 1.36,
     flexDirection: 'row',
-    gap: 7,
+    minHeight: 60,
+    gap: 6,
   },
-  verticalBrandPanel: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-  },
-  verticalBrand: {
-    transform: [{rotate: '-90deg'}],
-    color: '#ff9a16',
-    fontSize: 30,
-    letterSpacing: 4,
-    fontWeight: '700',
-  },
-  startupStrip: {
-    height: 65,
+  identityPanel: {
+    flex: 0.55,
+    minHeight: 65,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#020304',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#2b2d2e',
+    padding: 4,
+    gap: 8,
+    backgroundColor: '#070B0D',
+    borderWidth: 1,
+    borderColor: '#6C522A',
   },
-  appName: {
-    fontSize: 22,
-    color: '#ff9a16',
-    fontWeight: '700',
-    letterSpacing: 3,
-  },
-  phaseText: {
-    color: '#4be7b2',
-    fontSize: 8,
-    letterSpacing: 1,
-    marginTop: 4,
+  brand: {
+    color: '#F5A532',
+    fontWeight: '900',
+    fontSize: 29,
+    letterSpacing: 1.3,
     textAlign: 'center',
+    textShadowColor: 'rgba(246,149,36,0.56)',
+    textShadowRadius: 12,
   },
-  bottomPair: {
-    height: '10%',
-    flexDirection: 'row',
-    gap: 7,
+  brandUnderline: {
+    width: '75%',
+    height: 1,
+    backgroundColor: '#764B1E',
   },
-  footer: {
-    color: '#747474',
+  progressPanel: {
+    flex: 0.4,
+    minHeight: 60,
+    justifyContent: 'center',
+    paddingHorizontal: 13,
+    gap: 12,
+    backgroundColor: '#030807',
+    borderColor: '#254C3B',
+    borderWidth: 1,
+  },
+  progressLabel: {
+    color: '#7DF6B9',
+    fontFamily: 'JetBrainsMono-Regular',
+    textAlign: 'center',
     fontSize: 10,
-    letterSpacing: 4,
-    marginTop: 18,
+    letterSpacing: 1.8,
+  },
+  progressTrack: {
+    height: 9,
+    backgroundColor: '#153529',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#466C55',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#6DEFAD',
+  },
+  progressSegments: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  progressDivider: {
+    width: 2,
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.74)',
+  },
+  bottomModules: {
+    flex: 0.65,
+    flexDirection: 'row',
+    minHeight: 48,
+    gap: 6,
   },
 });
