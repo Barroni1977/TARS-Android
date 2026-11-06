@@ -15,7 +15,12 @@ describe('TARS-AI first-run onboarding debrand', () => {
       onboarding.screen4,
     ];
     const visibleCopy = introductoryScreens
-      .flatMap(screen => [screen.eyebrow, screen.title, screen.body, screen.cta])
+      .flatMap(screen => [
+        screen.eyebrow,
+        screen.title,
+        screen.body,
+        screen.cta,
+      ])
       .join(' ');
 
     expect(visibleCopy).toContain('TARS-AI');
@@ -43,7 +48,9 @@ describe('TARS-AI first-run onboarding debrand', () => {
   });
 
   it('keeps the onboarding model setup and skip/navigation behaviour intact', () => {
-    const handlers = read('src/screens/OnboardingScreens/useOnboardingHandlers.ts');
+    const handlers = read(
+      'src/screens/OnboardingScreens/useOnboardingHandlers.ts',
+    );
     expect(handlers).toContain('checkSpaceAndDownload');
     expect(handlers).toContain('completeOnboarding');
     expect(handlers).toContain('setOnboardingTopic');

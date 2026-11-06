@@ -28,7 +28,7 @@ export const OnboardingStack: React.FC = () => {
   const [chromeStep, setChromeStep] = useState<OnboardingChromeStep>('splash');
   return (
     <View style={{flex: 1}}>
-      <StatusBar barStyle="light-content" backgroundColor="#090F12" />
+      <StatusBar barStyle="light-content" />
       <Stack.Navigator
         screenOptions={{headerShown: false, gestureEnabled: false}}
         initialRouteName={ROUTES.ONBOARDING.SPLASH}

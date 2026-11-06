@@ -3,31 +3,54 @@ import {StyleSheet, Text, View} from 'react-native';
 
 type Variant = 1 | 2 | 3 | 4 | 'model';
 
-const CODES: Record<Variant, {heading: string; status: string; rows: string[]}> = {
+const CODES: Record<
+  Variant,
+  {heading: string; status: string; rows: string[]}
+> = {
   1: {
     heading: 'TARS // STARTUP',
     status: 'LOCAL CORE',
-    rows: ['HUMOUR          90%', 'HONESTY          95%', 'SARCASM          85%'],
+    rows: [
+      'HUMOUR          90%',
+      'HONESTY          95%',
+      'SARCASM          85%',
+    ],
   },
   2: {
     heading: 'TARS // OFFLINE',
     status: 'LOCAL INFERENCE',
-    rows: ['MODEL       ON DEVICE', 'NETWORK      OPTIONAL', 'STATUS         STANDBY'],
+    rows: [
+      'MODEL       ON DEVICE',
+      'NETWORK      OPTIONAL',
+      'STATUS         STANDBY',
+    ],
   },
   3: {
     heading: 'TARS // MODELS',
     status: 'CORE SELECTION',
-    rows: ['QUICK          LIGHT', 'BALANCED       READY', 'BEST         CAPABLE'],
+    rows: [
+      'QUICK          LIGHT',
+      'BALANCED       READY',
+      'BEST         CAPABLE',
+    ],
   },
   4: {
     heading: 'TARS // CONTROL',
     status: 'USER CONTROL',
-    rows: ['TEXT CHAT       LOCAL', 'WEB TOOLS      OPT-IN', 'MODEL DATA   ON DEVICE'],
+    rows: [
+      'TEXT CHAT       LOCAL',
+      'WEB TOOLS      OPT-IN',
+      'MODEL DATA   ON DEVICE',
+    ],
   },
   model: {
     heading: 'TARS // AI CORE',
     status: 'SELECT A MODEL',
-    rows: ['DEVICE MEMORY   CHECK', 'MODEL SIZE     CHECK', 'DOWNLOAD    OPTIONAL'],
+    rows: [
+      'DEVICE MEMORY   CHECK',
+      'MODEL SIZE     CHECK',
+      'DOWNLOAD    OPTIONAL',
+    ],
   },
 };
 
