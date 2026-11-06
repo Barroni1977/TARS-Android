@@ -23,7 +23,7 @@ export const TARS_ARTWORK_REGIONS = {
   voice: {x: 513, y: 455, width: 162},
   memory: {x: 513, y: 521, width: 162},
   caption: {x: 263, y: 1208, width: 414, height: 43},
-  progress: {x: 264, y: 1257, width: 408, height: 24},
+  progress: {x: 267, y: 1275, width: 415, height: 24},
 } as const;
 
 const WAVE_HEIGHTS = [9, 17, 25, 34, 43, 35, 27, 19, 13, 8];
