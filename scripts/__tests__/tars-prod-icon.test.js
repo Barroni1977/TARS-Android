@@ -38,9 +38,9 @@ describe('TARS AI prod launcher icon', () => {
     // Android resource linking rejects fillColor="none", even though SVG
     // accepts it. A transparent 8-digit ARGB value retains stroke-only paths.
     expect(monochrome).not.toMatch(/android:fillColor="none"/);
-    expect((monochrome.match(/android:fillColor="#00000000"/g) || []).length).toBe(
-      3,
-    );
+    expect(
+      (monochrome.match(/android:fillColor="#00000000"/g) || []).length,
+    ).toBe(3);
   });
 
   it('uses original monolith/amber design rather than old PocketPal artwork', () => {
