@@ -24,7 +24,7 @@ interface ChatEmptyPlaceholderProps {
  * CPU, microphone, network or inference telemetry.
  */
 export const ChatEmptyPlaceholder = observer(
-  ({onSelectModel}: ChatEmptyPlaceholderProps) => {
+  ({onSelectModel, bottomComponentHeight}: ChatEmptyPlaceholderProps) => {
     const theme = useTheme();
     const navigation = useNavigation<NavigationProp<any>>();
     const l10n = useContext(L10nContext);
@@ -144,7 +144,7 @@ export const ChatEmptyPlaceholder = observer(
     return (
       <View
         testID="tars-command-deck"
-        style={styles.container}>
+        style={[styles.container, {marginBottom: bottomComponentHeight + 24}]}>
         <Animated.View
           style={[
             styles.console,
@@ -199,27 +199,26 @@ export const ChatEmptyPlaceholder = observer(
             </Text>
           </View>
 
-          {!hasActiveModel && buttonText ? (
-            <Button
-              testID="tars-choose-model"
-              mode="contained"
-              onPress={onPress}
-              style={styles.button}
-              buttonColor={theme.colors.primary}
-              textColor={theme.colors.onPrimary}
-              loading={isLoading}
-              disabled={isLoading}>
-              {isLoading
-                ? l10n.components.chatEmptyPlaceholder.loading
-                : buttonText}
-            </Button>
-          ) : null}
-
           <View style={styles.footerLine}>
             <Text style={styles.footerText}>LOCAL INFERENCE / GGUF</Text>
             <Text style={styles.footerText}>SYSTEM UI 01</Text>
           </View>
         </Animated.View>
+
+        {!hasActiveModel && buttonText ? (
+          <Button
+            mode="contained"
+            onPress={onPress}
+            style={styles.button}
+            buttonColor={theme.colors.primary}
+            textColor={theme.colors.onPrimary}
+            loading={isLoading}
+            disabled={isLoading}>
+            {isLoading
+              ? l10n.components.chatEmptyPlaceholder.loading
+              : buttonText}
+          </Button>
+        ) : null}
       </View>
     );
   },
