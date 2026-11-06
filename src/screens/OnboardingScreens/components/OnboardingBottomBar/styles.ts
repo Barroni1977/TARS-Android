@@ -38,6 +38,13 @@ export const createStyles = (theme: Theme, elevated: boolean) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
+    backGlyph: {
+      fontSize: 27,
+      lineHeight: 31,
+      fontFamily: 'Inter-Regular',
+      color: '#D9E9E4',
+      textAlign: 'center',
+    },
     primaryBtn: {
       // Figma I888:33571: dark pill, radius ml=16, height 48,
       // padding m/sm, gap xs. We approximate the Figma vertical
