@@ -21,6 +21,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Audit legacy asset usage in source
+        if: always()
+        run: |
+          echo "Legacy image/source references in tracked files:"
+          git grep -n -i -E 'pocketpal-dark|pocketpal-light|pocketpal[.]gif|screen-3-cards|splash-mark|Screen1Hero|SplashMark|PocketPal-512x512|Token_in_pocketpal|Pals-AI_generates_system_prompt' -- . || true
+          echo "Possible PocketPal brand strings in source (internal and legal refs require review):"
+          git grep -n -E 'PocketPal|pocketpal[.]dev|Meet your pals' -- src | head -n 120 || true
+          echo "Do not delete an image simply because it is present in repository history."
+
       - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
@@ -51,11 +60,3 @@ jobs:
       - name: Unit tests (no native build)
         run: yarn test --runInBand
 
-      - name: Audit legacy asset usage in source
-        if: always()
-        run: |
-          echo "Legacy image/source references in tracked files:"
-          git grep -n -i -E 'pocketpal-dark|pocketpal-light|pocketpal[.]gif|screen-3-cards|splash-mark|Screen1Hero|SplashMark|PocketPal-512x512|Token_in_pocketpal|Pals-AI_generates_system_prompt' -- . || true
-          echo "Possible PocketPal brand strings in source (internal and legal refs require review):"
-          git grep -n -E 'PocketPal|pocketpal[.]dev|Meet your pals' -- src | head -n 120 || true
-          echo "Do not delete an image simply because it is present in repository history."
