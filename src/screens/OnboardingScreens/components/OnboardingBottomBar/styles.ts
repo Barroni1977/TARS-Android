@@ -8,7 +8,7 @@ export const createStyles = (theme: Theme, elevated: boolean) =>
       paddingTop: theme.spacing.s,
       paddingHorizontal: theme.spacing.m,
       gap: theme.spacing.sm,
-      backgroundColor: elevated ? theme.colors.background : 'transparent',
+      backgroundColor: elevated ? '#101D1E' : 'transparent',
       borderTopLeftRadius: elevated ? theme.radius.l : 0,
       borderTopRightRadius: elevated ? theme.radius.l : 0,
       // Elevation/shadow only when floating over screen 6 content.
@@ -33,8 +33,8 @@ export const createStyles = (theme: Theme, elevated: boolean) =>
       height: 48,
       borderRadius: theme.radius.ml,
       borderWidth: theme.stroke.sm,
-      borderColor: theme.colors.mutedLight,
-      backgroundColor: theme.colors.secondaryDefault,
+      borderColor: '#32524A',
+      backgroundColor: '#172425',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -54,19 +54,20 @@ export const createStyles = (theme: Theme, elevated: boolean) =>
       paddingVertical: theme.spacing.sm,
       borderRadius: theme.radius.ml,
       borderWidth: theme.stroke.sm,
-      borderColor: theme.colors.outline,
-      backgroundColor: theme.colors.onBackground,
+      borderColor: '#C77C24',
+      backgroundColor: '#E6A144',
     },
     primaryBtnDisabled: {
-      backgroundColor: theme.colors.surfaceContainerLow,
+      backgroundColor: '#263533',
       borderColor: theme.colors.outline,
     },
     primaryLabel: {
-      ...theme.typography.titleS,
-      color: theme.colors.background,
+      fontFamily: 'JetBrainsMono-Medium',
+      fontSize: 14,
+      color: '#101413',
     },
     primaryLabelDisabled: {
-      color: theme.colors.onSurfaceVariant,
+      color: '#86958F',
     },
     // Figma `I888:33571;746:26871`: trailing icon container is 20×20;
     // the glyph itself sits inset ~17.84% on all sides. Centering a
