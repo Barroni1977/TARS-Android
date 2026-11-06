@@ -122,12 +122,12 @@ describe('status bar', () => {
     (useTheme as jest.Mock).mockReturnValue(themeFixtures.lightTheme);
   });
 
-  it('hides the system status bar during the TARS boot sequence', () => {
+  it('respects the E2E boot bypass for the system status bar', () => {
     const result = render(<App />);
 
     expect(result.UNSAFE_getByType(StatusBar).props).toMatchObject({
-      hidden: true,
-      barStyle: 'light-content',
+      hidden: !__E2E__,
+      barStyle: __E2E__ ? 'dark-content' : 'light-content',
     });
   });
 
