@@ -1066,7 +1066,12 @@
         "total": "Total: ",
         "usage": "Usage: "
       },
-      "byteSizes": ["Bytes", "KB", "MB", "GB"]
+      "byteSizes": [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+      ]
     },
     "chatView": {
       "menuItems": {
@@ -1691,85 +1696,85 @@
       "brand": "TARS-AI"
     },
     "screen1": {
-      "title": "Meet your pals.",
-      "titleAccent": "pals.",
-      "body": "Smart little friends that live inside your phone.\nLet’s get you set up - it’ll take a minute.",
-      "cta": "Show me Around",
-      "eyebrow": "Welcome to TARS-AI"
+      "title": "Your onboard AI.",
+      "titleAccent": "onboard AI.",
+      "body": "A local assistant with adjustable personality. Download a model, then use text chat offline without a cloud AI service.",
+      "cta": "INITIALISE",
+      "eyebrow": "TARS-AI // SYSTEM SETUP"
     },
     "screen2": {
-      "title": "Anytime,\nAnywhere.",
-      "body": "Your pals live inside your phone.\nNo internet, no signal - they work on planes, off-grid, in remote villages.",
-      "highlight": "No internet, no signal",
-      "cta": "Next",
-      "eyebrow": "The idea",
-      "titleAccent": "Anytime,"
+      "title": "Your phone.\nYour intelligence.",
+      "body": "After downloading a model, ordinary text chat runs on this device without an internet connection. Optional online features require connectivity.",
+      "highlight": "without an internet connection",
+      "cta": "CONTINUE",
+      "eyebrow": "01 // LOCAL CORE",
+      "titleAccent": "Your intelligence."
     },
     "screen3": {
-      "title": "Smaller,\nbut yours.",
-      "titleAccent": "Smaller,",
-      "body": "Pals on your phone are quick and private - but lighter than Cloud AI. Think pocket companion, not all-knowing oracle.",
-      "highlight": "quick and private",
-      "cta": "Got it",
-      "eyebrow": "A heads-up"
+      "title": "Choose your\nAI core.",
+      "titleAccent": "AI core.",
+      "body": "Select a model for speed or capability. Larger models use more memory and storage. Like any AI, they can still make mistakes.",
+      "highlight": "Larger models",
+      "cta": "UNDERSTOOD",
+      "eyebrow": "02 // MODEL CONTROL"
     },
     "screen4": {
-      "title": "Nothing leaves your phone.",
-      "titleAccent": "leaves",
-      "body": "No accounts. No cloud. No tracking. Your conversations stay yours.",
-      "highlight": "No accounts. No cloud. No tracking.",
-      "cta": "Get Started",
-      "eyebrow": "Privacy promised"
+      "title": "Local first.\nYou decide.",
+      "titleAccent": "Local first.",
+      "body": "Offline text chat can stay on-device. Model downloads and optional online tools, accounts or cloud services use a connection when enabled.",
+      "highlight": "Offline text chat can stay on-device",
+      "cta": "CONFIGURE TARS",
+      "eyebrow": "03 // USER CONTROL"
     },
     "screen5": {
-      "title": "What’s your pal for?",
-      "body": "Pick what you’d like to discuss - we’ll match a pal that fits your phone.",
+      "title": "CHOOSE YOUR MISSION",
+      "body": "Choose what you'd like to do first with TARS-AI. You can change your setup later.",
       "topic": {
-        "smartchat": "Smart Chat",
+        "smartchat": "General Chat",
         "coding": "Coding",
-        "education": "Education",
-        "roleplay": "Roleplay",
-        "creative_writing": "Creative Writing",
-        "else": "Looking for something else?"
+        "education": "Learning",
+        "roleplay": "Characters",
+        "creative_writing": "Writing",
+        "else": "Other tasks"
       },
       "topicDescription": {
-        "smartchat": "Friendly everyday companion",
-        "coding": "Code, debug, explain",
-        "education": "Learn, explain, quiz",
-        "roleplay": "Characters, scenarios",
-        "creative_writing": "Stories, ideas, drafts",
-        "else": "Browse all pals later in the app"
+        "smartchat": "Everyday questions",
+        "coding": "Build and debug",
+        "education": "Explain and explore",
+        "roleplay": "Creative scenarios",
+        "creative_writing": "Ideas and drafting",
+        "else": "More options inside the app"
       }
     },
     "screen6": {
-      "cta": "Download {{name}}",
-      "ctaTemplate": "Download {{name}} ({{size}})",
-      "useTemplate": "Use {{name}}",
+      "cta": "Download AI model",
+      "ctaTemplate": "Download AI model ({{size}})",
+      "useTemplate": "Use installed model",
       "deviceRamSuffix": "GB RAM",
       "deviceFreeSuffix": "GB free",
-      "recommended": "Recommended",
+      "recommended": "Suggested",
       "downloaded": "Downloaded",
       "modelTier": {
         "quick": "Quick",
         "balanced": "Balanced",
         "best": "Best"
       },
-      "subtitleTemplate": "{{name}} thinks using a small AI model on your phone - pick one that fits.",
+      "subtitleTemplate": "Choose an offline AI model. Larger models may need more memory and storage.",
       "pal": {
         "pip": {
-          "body": "We found a perfect pal for you - a friendly everyday companion. Smart enough for most things, light enough for any phone."
+          "body": "TARS-AI can handle everyday questions, ideas and tasks using a language model running on your phone."
         },
         "codie": {
-          "body": "Meet Codie — your local pair-programmer. Reads code, writes code, explains tricky bits without ever leaving your phone."
+          "body": "Give TARS-AI a coding focus: help with code, debugging and technical explanations."
         },
         "sage": {
-          "body": "Sage is patient, curious, and walks you through ideas step by step. A study buddy you keep in your pocket."
+          "body": "Use TARS-AI for explanations, study support and learning new things."
         },
         "echo": {
-          "body": "Echo is a versatile roleplay companion — stays in character, paints scenes, follows wherever your story leads."
+          "body": "Use TARS-AI for fictional scenarios, character dialogue and creative roleplay."
         },
         "muse": {
-          "body": "Muse helps you write. Suggests phrasing, finds the rhythm, and keeps your tone intact."
+          "body": "Use TARS-AI for writing, brainstorming, rewriting and story development."
         }
       }
     }
