@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View} from 'react-native';
+import {Animated, Easing, View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {observer} from 'mobx-react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
@@ -9,6 +9,7 @@ import {createStyles} from './styles';
 import {modelStore, palStore} from '../../store';
 import {L10nContext} from '../../utils';
 import {TarsBrandMark} from '../TarsBrandMark/TarsBrandMark';
+import {useTarsReducedMotion} from '../../hooks/useTarsReducedMotion';
 
 interface ChatEmptyPlaceholderProps {
   onSelectModel: () => void;
@@ -73,6 +74,64 @@ export const ChatEmptyPlaceholder = observer(
 
     const {description, buttonText, onPress} = getContent();
     const isLoading = modelStore.isContextLoading;
+    const reducedMotion = useTarsReducedMotion();
+    const reveal = React.useRef(new Animated.Value(0)).current;
+    const rise = React.useRef(new Animated.Value(12)).current;
+    const corePulse = React.useRef(new Animated.Value(1)).current;
+
+    // A short entrance gives the command deck a real interface transition,
+    // without animating messages, controls or the local inference process.
+    React.useEffect(() => {
+      if (reducedMotion) {
+        reveal.setValue(1);
+        rise.setValue(0);
+        return;
+      }
+      const entrance = Animated.parallel([
+        Animated.timing(reveal, {
+          toValue: 1,
+          duration: 550,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(rise, {
+          toValue: 0,
+          duration: 550,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+      ]);
+      entrance.start();
+      return () => entrance.stop();
+    }, [reducedMotion, reveal, rise]);
+
+    // Pulse only while the real local model context is loading.
+    React.useEffect(() => {
+      corePulse.stopAnimation();
+      if (reducedMotion || !isLoading) {
+        corePulse.setValue(1);
+        return;
+      }
+      const activity = Animated.loop(
+        Animated.sequence([
+          Animated.timing(corePulse, {
+            toValue: 0.4,
+            duration: 450,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+          Animated.timing(corePulse, {
+            toValue: 1,
+            duration: 450,
+            easing: Easing.inOut(Easing.quad),
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+      activity.start();
+      return () => activity.stop();
+    }, [isLoading, reducedMotion, corePulse]);
+
     const selected = hasActiveModel && !isLoading;
     const status = isLoading
       ? 'INITIALISING LOCAL CORE'
@@ -86,7 +145,11 @@ export const ChatEmptyPlaceholder = observer(
       <View
         testID="tars-command-deck"
         style={[styles.container, {marginBottom: bottomComponentHeight + 24}]}>
-        <View style={styles.console}>
+        <Animated.View
+          style={[
+            styles.console,
+            {opacity: reveal, transform: [{translateY: rise}]},
+          ]}>
           <View style={styles.topLine}>
             <Text style={styles.eyebrow}>TARS AI / COMMAND DECK</Text>
             <View style={styles.revisionTag}>
@@ -108,10 +171,12 @@ export const ChatEmptyPlaceholder = observer(
           <View style={styles.moduleHeader}>
             <Text style={styles.moduleLabel}>LOCAL MODEL STATUS</Text>
             <View accessibilityLabel={status} style={styles.signalStatus}>
-              <View
+              <Animated.View
+                testID="tars-model-signal"
                 style={[
                   styles.signalDot,
                   selected ? styles.signalSelected : styles.signalAwaiting,
+                  {opacity: corePulse},
                 ]}
               />
               <Text style={styles.signalText}>{status}</Text>
@@ -138,7 +203,7 @@ export const ChatEmptyPlaceholder = observer(
             <Text style={styles.footerText}>LOCAL INFERENCE / GGUF</Text>
             <Text style={styles.footerText}>SYSTEM UI 01</Text>
           </View>
-        </View>
+        </Animated.View>
 
         {!hasActiveModel && buttonText ? (
           <Button
