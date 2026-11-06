@@ -819,7 +819,7 @@ class PalStore {
 
       // Check if Lookie already exists
       const lookiePal = this.pals.find(
-        p => p.capabilities?.video === true && p.name === 'Lookie',
+        p => p.capabilities?.video === true && p.name === 'TARS / VISION',
       );
 
       if (!lookiePal) {
@@ -831,11 +831,11 @@ class PalStore {
         // Create the Lookie pal with all the original properties
         const palData: Omit<Pal, 'id' | 'created_at' | 'updated_at'> = {
           type: 'local',
-          name: 'Lookie',
+          name: 'TARS / VISION',
           description:
-            'Real-time video analysis assistant that provides concise descriptions of your camera feed.',
+            'TARS-AI local video analysis profile.',
           systemPrompt:
-            'You are Lookie, an AI assistant giving real-time, concise descriptions of a video feed. Use few words. If unsure, say so clearly.',
+            'You are TARS-AI in vision mode. Describe what is visible in the camera feed concisely and admit uncertainty.',
           isSystemPromptChanged: false,
           useAIPrompt: false,
           defaultModel: defaultModel, // Set the default model so users know what to download
@@ -916,6 +916,25 @@ class PalStore {
                 },
               }
             : {}),
+        });
+      }
+      const legacyVision = this.pals.find(
+        p =>
+          p.name === 'Lookie' &&
+          p.source === 'local' &&
+          p.capabilities?.video === true &&
+          !p.isSystemPromptChanged &&
+          p.systemPrompt.startsWith('You are Lookie,'),
+      );
+      if (
+        legacyVision &&
+        !this.pals.some(p => p.name === 'TARS / VISION')
+      ) {
+        await this.updatePal(legacyVision.id, {
+          name: 'TARS / VISION',
+          description: 'TARS-AI local video analysis profile.',
+          systemPrompt:
+            'You are TARS-AI in vision mode. Describe what is visible in the camera feed concisely and admit uncertainty.',
         });
       }
       await AsyncStorage.setItem(migrationKey, 'true');
