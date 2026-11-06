@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useTarsReducedMotion} from '../hooks/useTarsReducedMotion';
 
 // Startup is a timed visual sequence, not a report that model inference,
 // microphone capture or any network service has actually been started.
@@ -51,9 +52,22 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
     const progress = React.useRef(new Animated.Value(0)).current;
     const reveal = React.useRef(new Animated.Value(0)).current;
     const pulse = React.useRef(new Animated.Value(0.3)).current;
+    const waveform = React.useRef(new Animated.Value(0)).current;
+    const scan = React.useRef(new Animated.Value(0)).current;
+    const reduceMotion = useTarsReducedMotion();
     const [phase, setPhase] = React.useState(0);
 
     React.useEffect(() => {
+      if (reduceMotion) {
+        reveal.setValue(1);
+        progress.setValue(1);
+        pulse.setValue(1);
+        waveform.setValue(0.5);
+        scan.setValue(0);
+        setPhase(3);
+        return;
+      }
+
       const intro = Animated.timing(reveal, {
         toValue: 1,
         duration: 450,
@@ -82,9 +96,37 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
           }),
         ]),
       );
+      // Continuously animate the boot waveform and a clipped CRT-style scan.
+      // These are purely decorative, not simulated model or audio activity.
+      const waveMotion = Animated.loop(
+        Animated.sequence([
+          Animated.timing(waveform, {
+            toValue: 1,
+            duration: 390,
+            easing: Easing.inOut(Easing.sin),
+            useNativeDriver: true,
+          }),
+          Animated.timing(waveform, {
+            toValue: 0,
+            duration: 390,
+            easing: Easing.inOut(Easing.sin),
+            useNativeDriver: true,
+          }),
+        ]),
+      );
+      const scanMotion = Animated.loop(
+        Animated.timing(scan, {
+          toValue: 1,
+          duration: 1800,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      );
       intro.start();
       loading.start();
       light.start();
+      waveMotion.start();
+      scanMotion.start();
 
       const phaseInterval = setInterval(() => {
         setPhase(previous => Math.min(previous + 1, 3));
@@ -95,8 +137,10 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
         intro.stop();
         loading.stop();
         light.stop();
+        waveMotion.stop();
+        scanMotion.stop();
       };
-    }, [progress, pulse, reveal]);
+    }, [progress, pulse, reveal, waveform, scan, reduceMotion]);
 
     const robotWidth = Math.min(width * 0.96, height * 0.62);
     const robotHeight = Math.min(height * 0.97, robotWidth * 2.28);
@@ -152,11 +196,11 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
                             opacity: pulse,
                             transform: [
                               {
-                                scaleY: progress.interpolate({
+                                scaleY: waveform.interpolate({
                                   inputRange: [0, 1],
                                   outputRange: [
-                                    index % 2 === 0 ? 0.6 : 0.9,
-                                    index % 2 === 0 ? 1.1 : 0.7,
+                                    index % 2 === 0 ? 0.55 : 1.05,
+                                    index % 2 === 0 ? 1.15 : 0.55,
                                   ],
                                 }),
                               },
@@ -176,7 +220,22 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
                   <Text style={styles.terminalValue}>NOMINAL</Text>
                 </View>
               </View>
-              <View style={styles.scanline} />
+              <Animated.View
+                pointerEvents="none"
+                style={[
+                  styles.scanline,
+                  {
+                    transform: [
+                      {
+                        translateY: scan.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, 175],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
+              />
             </View>
 
             <View style={styles.middleModules}>
@@ -193,7 +252,7 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
 
             <View style={styles.progressPanel}>
               <Text testID="tars-boot-phase" style={styles.progressLabel}>
-                {phase < 3 ? 'INITIALISING' : 'SYSTEM READY'}
+                {phase < 3 ? 'INITIALISING' : 'INTERFACE INITIALISED'}
               </Text>
               <View style={styles.progressTrack}>
                 <Animated.View
@@ -358,6 +417,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#79E5B9',
   },
   scanline: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
     backgroundColor: '#24684D',
     height: 1,
     opacity: 0.5,
