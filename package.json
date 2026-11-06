@@ -3,6 +3,7 @@
   "version": "1.22.1",
   "private": true,
   "scripts": {
+    "audit:branding": "node scripts/audit-tars-branding.js",
     "prepare": "husky",
     "postinstall": "./scripts/postinstall.sh",
     "android": "react-native run-android --mode=prodDebug",
