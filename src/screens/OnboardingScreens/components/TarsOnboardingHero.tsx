@@ -55,7 +55,9 @@ export const TarsOnboardingHero: React.FC<{
         </View>
         <View style={styles.screen}>
           <View style={styles.header}>
-            <Text style={[styles.micro, compact && styles.compactMicro]}>{cfg.heading}</Text>
+            <Text style={[styles.micro, compact && styles.compactMicro]}>
+              {cfg.heading}
+            </Text>
             <View style={styles.indicator} />
           </View>
           <View style={styles.divider} />
