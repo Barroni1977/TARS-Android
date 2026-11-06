@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original, all-vector TARS AI launcher emblem, with Android adaptive safe area.
+     No PocketPal shapes, film frames, screenshots, network or bitmap dependencies. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Four brushed-metal vertical modules -->
+    <path android:fillColor="#40494F" android:pathData="M24,19 L39,19 L39,89 L24,89 Z"/>
+    <path android:fillColor="#68747B" android:pathData="M25,20 L27,20 L27,88 L25,88 Z"/>
+    <path android:fillColor="#192126" android:pathData="M37,20 L39,20 L39,88 L37,88 Z"/>
+    <path android:fillColor="#3C4449" android:pathData="M70,19 L85,19 L85,89 L70,89 Z"/>
+    <path android:fillColor="#657078" android:pathData="M71,20 L73,20 L73,88 L71,88 Z"/>
+    <path android:fillColor="#151A1E" android:pathData="M83,20 L85,20 L85,88 L83,88 Z"/>
+
+    <!-- Upper alloy pair -->
+    <path android:fillColor="#323A40" android:pathData="M42,19 L53,19 L53,35 L42,35 Z"/>
+    <path android:fillColor="#59666B" android:pathData="M42,19 L53,19 L53,21 L42,21 Z"/>
+    <path android:fillColor="#323A40" android:pathData="M56,19 L67,19 L67,35 L56,35 Z"/>
+    <path android:fillColor="#59666B" android:pathData="M56,19 L67,19 L67,21 L56,21 Z"/>
+
+    <!-- Diagnostic screen -->
+    <path android:fillColor="#081512" android:pathData="M42,38 L67,38 L67,59 L42,59 Z"/>
+    <path android:fillColor="none" android:strokeColor="#45CBA5"
+        android:strokeWidth="1.1" android:pathData="M43,39 L66,39 L66,58 L43,58 Z"/>
+    <path android:fillColor="#63E8B5" android:pathData="M46,44 L49,44 L49,50 L46,50 Z"/>
+    <path android:fillColor="#63E8B5" android:pathData="M51,42 L54,42 L54,52 L51,52 Z"/>
+    <path android:fillColor="#63E8B5" android:pathData="M56,45 L59,45 L59,49 L56,49 Z"/>
+    <path android:fillColor="#63E8B5" android:pathData="M61,43 L63,43 L63,51 L61,51 Z"/>
+    <path android:fillColor="#298F73" android:pathData="M46,55 L63,55 L63,56 L46,56 Z"/>
+
+    <!-- Amber identity plaque with actual vector T-A-R-S strokes -->
+    <path android:fillColor="#101417" android:pathData="M41,62 L68,62 L68,76 L41,76 Z"/>
+    <path android:fillColor="none" android:strokeColor="#F4AF5E"
+        android:strokeWidth="0.8" android:pathData="M41.5,62.5 L67.5,62.5 L67.5,75.5 L41.5,75.5 Z"/>
+    <path android:fillColor="none" android:strokeColor="#FFA52D"
+        android:strokeWidth="1.4" android:strokeLineCap="square"
+        android:pathData="M44,66 L49,66 M46.5,66 L46.5,73
+                          M50,73 L52.5,66 L55,73 M51,70.5 L54,70.5
+                          M56.5,73 L56.5,66 L60,66 L60,69.5 L56.5,69.5
+                          M58.5,69.5 L60.5,73
+                          M65,66 L62,66 L62,69.5 L65,69.5 L65,73 L62,73"/>
+
+    <!-- Lower pair -->
+    <path android:fillColor="#2B343A" android:pathData="M42,79 L53,79 L53,89 L42,89 Z"/>
+    <path android:fillColor="#576268" android:pathData="M42,79 L53,79 L53,80 L42,80 Z"/>
+    <path android:fillColor="#2B343A" android:pathData="M56,79 L67,79 L67,89 L56,89 Z"/>
+    <path android:fillColor="#576268" android:pathData="M56,79 L67,79 L67,80 L56,80 Z"/>
+</vector>
