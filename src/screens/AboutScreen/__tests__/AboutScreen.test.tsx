@@ -1,109 +1,100 @@
 import React from 'react';
-import {Alert, Linking, Platform} from 'react-native';
-import {
-  render as baseRender,
-  fireEvent,
-  act,
-} from '../../../../jest/test-utils';
+import {Alert, Linking} from 'react-native';
+import {act, fireEvent, render as baseRender} from '../../../../jest/test-utils';
+
 import {AboutScreen} from '../AboutScreen';
-import {submitFeedback} from '../../../api/feedback';
 import {l10n} from '../../../locales';
 
 const render = (ui: React.ReactElement, options: any = {}) =>
   baseRender(ui, {withBottomSheetProvider: true, ...options});
 
-// Mock DeviceInfo
 jest.mock('react-native-device-info', () => ({
   getVersion: jest.fn().mockReturnValue('1.0.0'),
   getBuildNumber: jest.fn().mockReturnValue('100'),
 }));
 
-// Mock Clipboard
 jest.mock('@react-native-clipboard/clipboard', () => ({
   setString: jest.fn(),
 }));
 
-// Mock Linking - need to spy on the actual Linking object
-const mockOpenURL = jest.fn().mockImplementation(() => Promise.resolve());
+const mockOpenURL = jest.fn().mockResolvedValue(undefined);
 jest.spyOn(Linking, 'openURL').mockImplementation(mockOpenURL);
 
-// Mock feedback API
 jest.mock('../../../api/feedback', () => ({
   submitFeedback: jest.fn().mockResolvedValue(undefined),
 }));
 
 jest.spyOn(Alert, 'alert');
 
-describe('AboutScreen', () => {
+describe('TARS-AI About screen', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('renders correctly', () => {
+  it('shows TARS-AI identity and version', () => {
     const {getByText} = render(<AboutScreen />);
-
     expect(getByText('TARS AI')).toBeTruthy();
     expect(getByText('v1.0.0 (100)')).toBeTruthy();
-    expect(getByText(l10n.en.about.supportProject)).toBeTruthy();
     expect(getByText(l10n.en.about.githubButton)).toBeTruthy();
   });
 
-  it('copies version to clipboard when version button is pressed', () => {
+  it('copies the app version', () => {
     const {getByText} = render(<AboutScreen />);
-
     fireEvent.press(getByText('v1.0.0 (100)'));
-
     expect(Alert.alert).toHaveBeenCalledWith(
       l10n.en.about.versionCopiedTitle,
       l10n.en.about.versionCopiedDescription,
     );
   });
 
-  it('opens the bundled open-source notices in a sheet without a network link', () => {
+  it('shows open-source notices locally', () => {
     const {getByTestId, getByText} = render(<AboutScreen />);
-
     fireEvent.press(getByTestId('about-open-source-notices'));
-
     expect(getByTestId('about-open-source-notices-sheet')).toBeTruthy();
     expect(getByText(l10n.en.about.phononNoticesCredit)).toBeTruthy();
-    expect(getByText(/^## Licenses used/)).toBeTruthy();
     expect(Linking.openURL).not.toHaveBeenCalled();
   });
 
-  it('gives each legal link a 44pt tap target with its role', () => {
+  it('gives a truthful TARS-AI data explanation rather than linking upstream privacy terms', () => {
     const {getByRole} = render(<AboutScreen />);
-
-    const privacy = getByRole('link', {name: l10n.en.about.privacyPolicy});
-    const terms = getByRole('link', {name: l10n.en.about.termsOfService});
+    const privacy = getByRole('button', {
+      name: l10n.en.about.privacyPolicy,
+    });
+    const upstream = getByRole('link', {
+      name: l10n.en.about.termsOfService,
+    });
     const notices = getByRole('button', {
       name: l10n.en.about.openSourceNotices,
     });
-    for (const target of [privacy, terms, notices]) {
+
+    for (const target of [privacy, upstream, notices]) {
       expect(target).toHaveStyle({minHeight: 44});
     }
-
     fireEvent.press(privacy);
-    fireEvent.press(terms);
-    expect(Linking.openURL).toHaveBeenCalledWith(
-      'https://pocketpal.dev/privacy-policy',
+    expect(Alert.alert).toHaveBeenCalledWith(
+      'TARS-AI data handling',
+      expect.stringContaining('Local text chat'),
     );
-    expect(Linking.openURL).toHaveBeenCalledWith('https://pocketpal.dev/terms');
-    expect(notices.props.testID).toBe('about-open-source-notices');
+    fireEvent.press(upstream);
+    expect(Linking.openURL).toHaveBeenCalledWith(
+      'https://github.com/a-ghorbani/pocketpal-ai',
+    );
+    expect(Linking.openURL).not.toHaveBeenCalledWith(
+      'https://pocketpal.dev/terms',
+    );
   });
 
-  it('hides the separator before a legal link that wraps to the next line', () => {
+  it('maintains separator alignment when a legal link wraps', () => {
     const {getByTestId, getAllByText} = render(<AboutScreen />);
     const layoutAt = (i: number, y: number) =>
       fireEvent(getByTestId(`about-legal-item-${i}`), 'layout', {
         nativeEvent: {layout: {x: 0, y, width: 100, height: 16}},
       });
-
     act(() => {
       layoutAt(0, 0);
       layoutAt(1, 0);
       layoutAt(2, 20);
     });
-
     const [first, second] = getAllByText('·', {
       includeHiddenElements: true,
     });
@@ -111,142 +102,19 @@ describe('AboutScreen', () => {
     expect(second).toHaveStyle({opacity: 0});
   });
 
-  it('opens GitHub URL when GitHub button is pressed', () => {
+  it('opens this TARS-AI repository instead of upstream store links', () => {
     const {getByText} = render(<AboutScreen />);
-
-    fireEvent.press(getByText('Star on GitHub'));
-
+    fireEvent.press(getByText(l10n.en.about.githubButton));
     expect(Linking.openURL).toHaveBeenCalledWith(
       'https://github.com/Barroni1977/TARS-Android',
     );
   });
 
-  describe.each(['android', 'ios'] as const)('on %s', os => {
-    const originalOS = Platform.OS;
-
-    beforeEach(() => {
-      Platform.OS = os;
-    });
-
-    afterEach(() => {
-      Platform.OS = originalOS;
-    });
-
-    it('shows no sponsorship option in the support section', () => {
-      const {queryByText, getByText} = render(<AboutScreen />);
-
-      expect(queryByText('Become a Sponsor')).toBeNull();
-      expect(queryByText('or')).toBeNull();
-      expect(getByText(l10n.en.about.githubButton)).toBeTruthy();
-      expect(getByText(l10n.en.about.orBy)).toBeTruthy();
-      expect(getByText(l10n.en.feedback.shareThoughtsButton)).toBeTruthy();
-    });
-  });
-
-  it('opens feedback form when share thoughts button is pressed', async () => {
-    const {getByText, findByText} = render(<AboutScreen />);
-
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    expect(await findByText(l10n.en.feedback.useCase.label)).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.featureRequests.label),
-    ).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.generalFeedback.label),
-    ).toBeTruthy();
-    expect(
-      await findByText(l10n.en.feedback.usageFrequency.label),
-    ).toBeTruthy();
-  });
-
-  it('submits feedback successfully', async () => {
-    const {findByText, getByText, findByPlaceholderText} = render(
-      <AboutScreen />,
+  it('opens TARS-AI issue reporting instead of inherited feedback submission', () => {
+    const {getByText} = render(<AboutScreen />);
+    fireEvent.press(getByText('Send TARS-AI feedback'));
+    expect(Linking.openURL).toHaveBeenCalledWith(
+      'https://github.com/Barroni1977/TARS-Android/issues/new/choose',
     );
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    const useCaseInput = await findByPlaceholderText(
-      l10n.en.feedback.useCase.placeholder,
-    );
-    fireEvent.changeText(useCaseInput, 'Test use case');
-
-    const featureRequestsInput = await findByPlaceholderText(
-      l10n.en.feedback.featureRequests.placeholder,
-    );
-    fireEvent.changeText(featureRequestsInput, 'Test feature request');
-
-    const generalFeedbackInput = await findByPlaceholderText(
-      l10n.en.feedback.generalFeedback.placeholder,
-    );
-    fireEvent.changeText(generalFeedbackInput, 'Test feedback');
-
-    const dailyButton = await findByText(
-      l10n.en.feedback.usageFrequency.options.daily,
-    );
-    fireEvent.press(dailyButton);
-
-    // Submit form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(submitFeedback).toHaveBeenCalledWith({
-      useCase: 'Test use case',
-      featureRequests: 'Test feature request',
-      generalFeedback: 'Test feedback',
-      usageFrequency: 'daily',
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith(
-      'Success',
-      'Thank you for your feedback!',
-    );
-  });
-
-  it('shows validation error when submitting empty feedback', async () => {
-    const {getByText, findByText} = render(<AboutScreen />);
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    // Submit empty form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith(
-      l10n.en.feedback.validation.required,
-    );
-    expect(submitFeedback).not.toHaveBeenCalled();
-  });
-
-  it('handles feedback submission error', async () => {
-    (submitFeedback as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
-
-    const {getByText, findByText, findByPlaceholderText} = render(
-      <AboutScreen />,
-    );
-
-    // Open feedback form
-    fireEvent.press(getByText(l10n.en.feedback.shareThoughtsButton));
-
-    // Fill out form
-    fireEvent.changeText(
-      await findByPlaceholderText(l10n.en.feedback.useCase.placeholder),
-      'Test use case',
-    );
-
-    // Submit form
-    const submitButton = await findByText(l10n.en.feedback.submit);
-    await act(async () => {
-      fireEvent.press(submitButton);
-    });
-
-    expect(Alert.alert).toHaveBeenCalledWith('Error', 'API Error');
   });
 });
