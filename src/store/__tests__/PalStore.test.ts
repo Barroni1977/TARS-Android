@@ -222,7 +222,7 @@ describe('PalStore', () => {
     it('seeds Pip when absent', async () => {
       await callInitializePipPal();
       const pip = palStore.pals.find(
-        p => p.name === 'Pip' && p.source === 'local',
+        p => p.name === 'TARS' && p.source === 'local',
       );
       expect(pip).toBeDefined();
       expect(pip?.type).toBe('local');
@@ -235,7 +235,7 @@ describe('PalStore', () => {
       (palRepository.createPal as jest.Mock).mockClear();
       await callInitializePipPal();
       const pipCount = palStore.pals.filter(
-        p => p.name === 'Pip' && p.source === 'local',
+        p => p.name === 'TARS' && p.source === 'local',
       ).length;
       expect(pipCount).toBe(1);
       expect(palRepository.createPal).not.toHaveBeenCalled();
@@ -249,7 +249,7 @@ describe('PalStore', () => {
       const existingPip: Pal = {
         ...mockPal,
         id: 'pip-existing',
-        name: 'Pip',
+        name: 'TARS',
         source: 'local',
         type: 'local',
         defaultModel: boundModel,
@@ -261,7 +261,7 @@ describe('PalStore', () => {
       await callInitializePipPal();
 
       const pip = palStore.pals.find(
-        p => p.name === 'Pip' && p.source === 'local',
+        p => p.name === 'TARS' && p.source === 'local',
       );
       expect(pip).toBeDefined();
       expect(pip?.id).toBe('pip-existing');
@@ -289,13 +289,13 @@ describe('PalStore', () => {
       await callInitializePipPal();
 
       const names = palStore.pals.map(p => p.name).sort();
-      expect(names).toEqual(['Lookie', 'Pip']);
+      expect(names).toEqual(['Lookie', 'TARS']);
     });
   });
 
   describe.each([
     ['Lookie', 'initializeLookiePal'],
-    ['Pip', 'initializePipPal'],
+    ['TARS', 'initializePipPal'],
   ])('%s seed persistence', (name, initializer) => {
     const seed = () => (palStore as any)[initializer]();
 
