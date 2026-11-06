@@ -9,8 +9,12 @@ describe('TARS AI prod launcher icon', () => {
   it('overrides only the prod app identity, never shared or E2E icon resources', () => {
     const manifest = read('AndroidManifest.xml');
     expect(manifest).toContain('android:icon="@mipmap/tars_launcher"');
-    expect(manifest).toContain('android:roundIcon="@mipmap/tars_launcher_round"');
-    expect(manifest).toContain('tools:replace="android:icon,android:roundIcon"');
+    expect(manifest).toContain(
+      'android:roundIcon="@mipmap/tars_launcher_round"',
+    );
+    expect(manifest).toContain(
+      'tools:replace="android:icon,android:roundIcon"',
+    );
   });
 
   it('has custom adaptive, monochrome and legacy-compatible launcher variants', () => {
