@@ -1,32 +1,27 @@
 import {StyleSheet} from 'react-native';
-
 import type {Theme} from '../../../utils/types';
-import {FONT_FAMILIES} from '../../../theme/tokens/typography';
 
-export const createStyles = (theme: Theme) => {
-  const isFraunces =
-    theme.typography.headlineH1.fontFamily === FONT_FAMILIES.FRAUNCES_MEDIUM;
-  return StyleSheet.create({
+export const createStyles = (theme: Theme) =>
+  StyleSheet.create({
     header: {
-      width: 369,
+      width: '100%',
+      maxWidth: 350,
       alignItems: 'center',
       gap: theme.spacing.sm,
     },
     title: {
-      // Figma `Headline/H2` — Fraunces Medium 24/28, centered.
-      fontFamily: isFraunces
-        ? FONT_FAMILIES.FRAUNCES_MEDIUM
-        : FONT_FAMILIES.INTER_MEDIUM,
-      fontSize: 24,
-      lineHeight: 28,
-      color: theme.colors.onBackground,
+      fontFamily: 'JetBrainsMono-Medium',
+      fontSize: 22,
+      lineHeight: 29,
+      color: '#4AE6A6',
+      letterSpacing: 0.8,
       textAlign: 'center',
-      width: 279,
     },
     body: {
-      ...theme.typography.bodyS,
-      color: theme.colors.onSurfaceVariant,
+      fontFamily: 'Inter-Regular',
+      fontSize: 15,
+      lineHeight: 23,
+      color: '#B3C3BF',
       textAlign: 'center',
     },
   });
-};
