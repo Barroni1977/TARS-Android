@@ -34,6 +34,7 @@ import {defaultCompletionParams} from '../utils/completionSettingsVersions';
 import {parsePalsHubTemplate} from '../utils/palshub-template-parser';
 import {getDisplayNameFromFilename} from '../utils/formatters';
 
+import {ONBOARDING_PALS} from './onboarding/onboardingPals';
 import type {Pal, PalUpdate, ParameterDefinition} from '../types/pal';
 import type {CreatorField} from '../services/iap/creatorContent';
 import type {
@@ -155,6 +156,10 @@ class PalStore {
 
       // Load pals from database
       await this.loadPalsFromDatabase();
+
+      // Rename untouched first-party mascot profiles without changing their
+      // persistent IDs, chat sessions, downloaded models or user edits.
+      await this.migrateLegacyMascotProfiles();
 
       // Initialize Lookie pal after database is loaded
       await this.initializeLookiePal();
@@ -869,6 +874,57 @@ class PalStore {
    * `defaultModel` bound from a prior session (e.g. by the onboarding
    * recommended-pal picker) survives subsequent app starts.
    */
+  /**
+   * One-time, conservative branding migration. Existing IDs and models are
+   * preserved. Custom system prompts and user-renamed profiles are ignored.
+   * Keep the legacy storage keys as-is for backwards compatibility.
+   */
+  private async migrateLegacyMascotProfiles(): Promise<void> {
+    const migrationKey = 'TarsAI.migration.legacyProfiles.v1';
+    try {
+      if ((await AsyncStorage.getItem(migrationKey)) === 'true') {
+        return;
+      }
+      const oldNames: Record<string, string> = {
+        pip: 'Pip',
+        codie: 'Codie',
+        sage: 'Sage',
+        echo: 'Echo',
+        muse: 'Muse',
+      };
+      for (const def of ONBOARDING_PALS) {
+        const oldName = oldNames[def.key];
+        const legacy = this.pals.find(
+          p =>
+            p.name === oldName &&
+            p.source === 'local' &&
+            !p.isSystemPromptChanged &&
+            p.systemPrompt.startsWith(`You are ${oldName}`),
+        );
+        if (!legacy || this.pals.some(p => p.name === def.name)) {
+          continue;
+        }
+        await this.updatePal(legacy.id, {
+          name: def.name,
+          description: def.description,
+          systemPrompt: def.systemPrompt,
+          ...(def.greeting
+            ? {
+                greeting: {
+                  text: def.greeting.text,
+                  suggestedPrompts: [...def.greeting.suggestedPrompts],
+                },
+              }
+            : {}),
+        });
+      }
+      await AsyncStorage.setItem(migrationKey, 'true');
+    } catch (error) {
+      // Do not prevent local inference or app startup if migration fails.
+      console.warn('TARS-AI profile branding migration deferred:', error);
+    }
+  }
+
   private async initializePipPal(): Promise<void> {
     try {
       if ((await AsyncStorage.getItem(PIP_SEEDED_KEY)) === 'true') {
@@ -876,7 +932,7 @@ class PalStore {
       }
 
       const existing = this.pals.find(
-        p => p.name === 'Pip' && p.source === 'local',
+        p => p.name === 'TARS' && p.source === 'local',
       );
       if (existing) {
         await AsyncStorage.setItem(PIP_SEEDED_KEY, 'true');
@@ -885,11 +941,11 @@ class PalStore {
 
       const palData: Omit<Pal, 'id' | 'created_at' | 'updated_at'> = {
         type: 'local',
-        name: 'Pip',
+        name: 'TARS',
         description:
-          'A friendly general-purpose pal that runs entirely on your phone.',
+          'TARS-AI local on-device assistant.',
         systemPrompt:
-          'You are Pip, a friendly and helpful assistant who runs locally on the user’s phone. Keep replies concise and warm.',
+          'You are TARS-AI, a concise on-device assistant. Be helpful, accurate, and direct. Admit uncertainty.',
         isSystemPromptChanged: false,
         useAIPrompt: false,
         defaultModel: undefined,
