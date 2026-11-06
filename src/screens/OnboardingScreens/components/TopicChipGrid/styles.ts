@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-
 import type {Theme} from '../../../../utils/types';
 
 export const createStyles = (theme: Theme) =>
@@ -7,43 +6,48 @@ export const createStyles = (theme: Theme) =>
     grid: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      width: 362,
+      width: '100%',
+      maxWidth: 354,
       gap: theme.spacing.s,
+      justifyContent: 'center',
     },
     cell: {
-      // Figma chips: 177×160 exactly. 362-width grid with 8px gap →
-      // (362-8)/2 = 177 per cell.
-      width: 177,
-      height: 160,
+      width: '47%',
+      height: 128,
     },
     chip: {
       flex: 1,
       borderRadius: theme.radius.s,
-      backgroundColor: theme.colors.background,
-      paddingHorizontal: theme.spacing.sm,
-      paddingVertical: theme.spacing.ml,
+      backgroundColor: '#152124',
+      borderWidth: 1,
+      borderColor: '#304641',
+      paddingHorizontal: theme.spacing.s,
+      paddingVertical: theme.spacing.s,
       alignItems: 'center',
       justifyContent: 'center',
-      gap: theme.spacing.sm,
+      gap: theme.spacing.s,
     },
     chipElse: {
       backgroundColor: 'transparent',
-      borderWidth: theme.stroke.sm,
-      borderColor: theme.colors.outline,
+      borderColor: '#436A57',
     },
     chipSelected: {
-      backgroundColor: theme.colors.secondaryContainer,
+      backgroundColor: '#163B31',
+      borderColor: '#49DC9D',
     },
     label: {
-      ...theme.typography.titleS,
-      color: theme.colors.onBackground,
+      fontFamily: 'JetBrainsMono-Medium',
+      fontSize: 13,
+      lineHeight: 18,
+      color: '#F1F5F4',
       textAlign: 'center',
       width: '100%',
     },
     description: {
-      ...theme.typography.bodyS,
-      color: theme.colors.onBackground,
-      opacity: 0.7,
+      fontFamily: 'Inter-Regular',
+      fontSize: 12,
+      lineHeight: 16,
+      color: '#B3C3BF',
       textAlign: 'center',
       width: '100%',
     },
