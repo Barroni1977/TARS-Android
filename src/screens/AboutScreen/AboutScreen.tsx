@@ -21,6 +21,7 @@ import {REPO_URL} from '../../config/urls';
 import {CopyIcon, GithubIcon, ChevronRightIcon} from '../../assets/icons';
 
 import {Sheet, TextInput} from '../../components';
+import {TarsBrandMark} from '../../components/TarsBrandMark/TarsBrandMark';
 import {useTheme} from '../../hooks';
 import {createStyles} from './styles';
 import {L10nContext} from '../../utils';
@@ -140,11 +141,21 @@ export const AboutScreen: React.FC = () => {
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.headerContent}>
-              <Text variant="titleLarge" style={styles.title}>
-                PocketPal AI
-              </Text>
+              <View style={styles.brandRow}>
+                <TarsBrandMark size={72} />
+                <View style={styles.brandName}>
+                  <Text variant="titleLarge" style={styles.title}>
+                    TARS AI
+                  </Text>
+                  <Text style={styles.brandCaption}>
+                    PERSONAL / LOCAL-FIRST INTELLIGENCE
+                  </Text>
+                </View>
+              </View>
               <Text variant="bodyMedium" style={styles.description}>
-                {l10n.about.description}
+                An independent assistant built on PocketPal AI (MIT licensed).
+                GGUF model inference runs locally on your device. Optional
+                connected features require an internet connection.
               </Text>
               <View style={styles.versionContainer}>
                 <TouchableOpacity
@@ -204,6 +215,10 @@ export const AboutScreen: React.FC = () => {
             </Button>
           </View>
 
+          <Text style={styles.legalDisclaimer}>
+            Privacy and terms links below belong to the upstream PocketPal
+            project. They are not TARS AI policies.
+          </Text>
           <View style={styles.legalRow}>
             {legalLinks.map((link, i) => (
               <View

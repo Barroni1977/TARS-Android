@@ -32,7 +32,7 @@ export const config: Options.Testrunner = {
       'appium:udid': DEVICE_UDID,
       'appium:automationName': 'UiAutomator2',
       'appium:app': APP_PATH,
-      'appium:appPackage': 'com.pocketpalai.e2e',
+      'appium:appPackage': 'com.barroni1977.tarsai.preview.e2e',
       'appium:appActivity': 'com.pocketpal.MainActivity',
       'appium:noReset': false,
       'appium:fullReset': true,
