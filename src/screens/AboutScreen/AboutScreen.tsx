@@ -58,14 +58,19 @@ export const AboutScreen: React.FC = () => {
     {
       id: 'privacy',
       label: l10n.about.privacyPolicy,
-      role: 'link',
-      onPress: () => Linking.openURL('https://pocketpal.dev/privacy-policy'),
+      role: 'button',
+      onPress: () =>
+        Alert.alert(
+          'TARS-AI data handling',
+          'Local text chat with a downloaded model runs on this device. Model downloads, marketplace or account features, optional web tools, remote inference and some voices may use external services. Check which features you enable.',
+        ),
     },
     {
       id: 'terms',
       label: l10n.about.termsOfService,
       role: 'link',
-      onPress: () => Linking.openURL('https://pocketpal.dev/terms'),
+      onPress: () =>
+        Linking.openURL('https://github.com/a-ghorbani/pocketpal-ai'),
     },
     {
       id: 'notices',
@@ -218,8 +223,8 @@ export const AboutScreen: React.FC = () => {
           </View>
 
           <Text style={styles.legalDisclaimer}>
-            Privacy and terms links below belong to the original upstream
-            project. They are not TARS-AI policies.
+            TARS-AI is an independent open-source fork. Upstream attribution
+            is preserved; the original project's terms are not TARS-AI terms.
           </Text>
           <View style={styles.legalRow}>
             {legalLinks.map((link, i) => (
