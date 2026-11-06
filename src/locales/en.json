@@ -747,7 +747,7 @@
         "title": "Success",
         "message": "These settings will be applied to all future sessions"
       },
-      "palSettings": "Pal Settings",
+      "palSettings": "Profile Settings",
       "settingsSource": "Settings Source"
     },
     "palGenerationSettingsSheet": {
@@ -757,10 +757,10 @@
       "pleaseCorrect": "Please correct the following:",
       "ok": "OK",
       "error": "Error",
-      "failedToSave": "Failed to save pal settings",
+      "failedToSave": "Failed to save profile settings",
       "resetToGlobal": "Reset to Global Defaults",
       "resetToSystem": "Reset to System Defaults",
-      "clearPalSettings": "Clear Pal Settings",
+      "clearPalSettings": "Clear Profile Settings",
       "customSettingsFor": "Custom settings for {{palName}}",
       "inheritedSettingsFor": "Inherited settings for {{palName}}"
     },
@@ -772,7 +772,7 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "Models",
-      "palsTab": "Pals",
+      "palsTab": "Profiles",
       "noPal": "No Pal",
       "disablePal": "Disable active pal",
       "noDescription": "No description",
@@ -1025,7 +1025,7 @@
       "menuItems": {
         "chat": "Chat",
         "models": "Models",
-        "pals": "Pals",
+        "pals": "AI Profiles",
         "benchmark": "Benchmark",
         "settings": "Settings",
         "appInfo": "App Info",
@@ -1083,17 +1083,17 @@
       }
     },
     "palHeaderRight": {
-      "exportAllPals": "Export all pals",
-      "importPals": "Import pals",
+      "exportAllPals": "Export all profiles",
+      "importPals": "Import profiles",
       "importSuccess": "Successfully imported {{count}} pal(s).",
       "importError": "Failed to import pals. Please check the file format."
     }
   },
   "palsScreen": {
     "sectionTitles": {
-      "myPalsLocal": "My Pals (local)",
-      "myLibrary": "My Library (palshub.ai)",
-      "discoverPals": "Discover Pals (palshub.ai)"
+      "myPalsLocal": "My Local Profiles",
+      "myLibrary": "External PalsHub Library",
+      "discoverPals": "Explore PalsHub (external)"
     },
     "systemPrompt": "System Prompt",
     "videoAnalysis": "Video Analysis",
@@ -1123,11 +1123,11 @@
     "account": "Account",
     "signInToPalsHub": "Sign In to PalsHub",
     "signInDescription": "Access your library, create private Pals, and sync across devices",
-    "searchAllPals": "Search all Pals...",
+    "searchAllPals": "Search profiles...",
     "deletePalConfirmation": "Are you sure you want to delete \"{{palName}}\"?",
     "filters": {
       "all": "All",
-      "myPals": "My Pals",
+      "myPals": "My Profiles",
       "local": "Local",
       "video": "Video",
       "free": "Free",
@@ -1260,7 +1260,7 @@
   "screenTitles": {
     "chat": "Chat",
     "models": "Models",
-    "pals": "Pals (experimental)",
+    "pals": "AI Profiles (experimental)",
     "benchmark": "Benchmark",
     "settings": "Settings",
     "appInfo": "App Info",
