@@ -217,13 +217,13 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
               <MetalPanel style={styles.railJoint} dark />
               <MetalPanel style={styles.railLower} />
             </View>
-  
+
             <View style={styles.centerColumn}>
               <View style={styles.topModules}>
                 <MetalPanel style={styles.module} />
                 <MetalPanel style={styles.module} />
               </View>
-  
+
               <View style={styles.terminal}>
                 <View style={styles.terminalUpperLine}>
                   <Text style={styles.smallGreen}>TARS-AI</Text>
@@ -286,19 +286,19 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
                   ]}
                 />
               </View>
-  
+
               <View style={styles.middleModules}>
                 <MetalPanel style={styles.module} dark />
                 <MetalPanel style={styles.module} />
               </View>
-  
+
               <View style={styles.identityPanel}>
                 <Text style={styles.brand} numberOfLines={1}>
                   TARS AI
                 </Text>
                 <View style={styles.brandUnderline} />
               </View>
-  
+
               <View style={styles.progressPanel}>
                 <Text testID="tars-boot-phase" style={styles.progressLabel}>
                   {phase < 3 ? 'INITIALISING' : 'INTERFACE INITIALISED'}
@@ -315,13 +315,13 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
                   </View>
                 </View>
               </View>
-  
+
               <View style={styles.bottomModules}>
                 <MetalPanel style={styles.module} />
                 <MetalPanel style={styles.module} dark />
               </View>
             </View>
-  
+
             <View style={styles.outerRail}>
               <MetalPanel style={styles.railUpper} />
               <MetalPanel style={styles.railJoint} dark />
