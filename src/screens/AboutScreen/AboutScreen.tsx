@@ -153,9 +153,9 @@ export const AboutScreen: React.FC = () => {
                 </View>
               </View>
               <Text variant="bodyMedium" style={styles.description}>
-                An independent assistant based on MIT-licensed open-source software.
-                GGUF model inference runs locally on your device. Optional
-                connected features require an internet connection.
+                An independent assistant based on MIT-licensed open-source
+                software. GGUF model inference runs locally on your device.
+                Optional connected features require an internet connection.
               </Text>
               <View style={styles.versionContainer}>
                 <TouchableOpacity
