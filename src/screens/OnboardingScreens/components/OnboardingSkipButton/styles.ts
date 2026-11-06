@@ -16,7 +16,8 @@ export const createStyles = (theme: Theme) =>
       justifyContent: 'center',
     },
     label: {
-      ...theme.typography.titleS,
-      color: theme.colors.onBackground,
+      fontFamily: 'JetBrainsMono-Medium',
+      fontSize: 14,
+      color: '#D0E1DA',
     },
   });
