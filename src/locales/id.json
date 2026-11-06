@@ -167,7 +167,7 @@
     "serverTypeHelp": "Terdeteksi otomatis; ubah jika keliru.",
     "internetSearch": {
       "title": "Pencarian Internet",
-      "description": "Izinkan Pal mencari di web dengan alat mereka sendiri. Bawa kunci API Anda sendiri — PocketPal tidak pernah menyimpan kunci Anda atau merutekan kueri Anda.",
+      "description": "Izinkan Pal mencari di web dengan alat mereka sendiri. Bawa kunci API Anda sendiri — TARS-AI tidak pernah menyimpan kunci Anda atau merutekan kueri Anda.",
       "providerLabel": "Penyedia pencarian",
       "providerGated": "Segera hadir",
       "keyLabel": "Kunci API",
@@ -183,7 +183,7 @@
       "resultCountLabel": "Hasil per pencarian",
       "resultCountDescription": "Lebih sedikit hasil menyisakan lebih banyak ruang dalam konteks model.",
       "consentTitle": "Pencarian meninggalkan perangkat Anda",
-      "consentDescription": "Saat Pal mencari di web, kueri Anda dikirim ke penyedia yang dipilih melalui internet. Saat Pal membaca halaman, URL dan konten halaman dapat dikirim ke layanan pembaca default (r.jina.ai) jika penyedia yang dipilih tidak memiliki pembaca bawaan. Kunci dan kueri tidak pernah dikirim ke PocketPal.",
+      "consentDescription": "Saat Pal mencari di web, kueri Anda dikirim ke penyedia yang dipilih melalui internet. Saat Pal membaca halaman, URL dan konten halaman dapat dikirim ke layanan pembaca default (r.jina.ai) jika penyedia yang dipilih tidak memiliki pembaca bawaan. Kunci dan kueri tidak pernah dikirim ke TARS-AI.",
       "consentAccept": "Saya mengerti",
       "consentRequired": "Terima pengungkapan di atas untuk mengatur kunci dan mengaktifkan pencarian.",
       "consentGivenTitle": "Pencarian web diaktifkan",
@@ -546,7 +546,7 @@
     "screenTitle": "Info Aplikasi",
     "description": "Aplikasi yang membawa model bahasa langsung ke ponsel Anda. Dibangun di atas llama.cpp dan llama.rn.",
     "supportProject": "Dukung Proyek Ini",
-    "supportProjectDescription": "Jika Anda menikmati menggunakan PocketPal AI, pertimbangkan untuk mendukung proyek ini dengan:",
+    "supportProjectDescription": "Jika Anda menikmati menggunakan TARS-AI, pertimbangkan untuk mendukung proyek ini dengan:",
     "githubButton": "Beri Bintang di GitHub",
     "orBy": "atau dengan",
     "versionCopiedTitle": "Versi disalin",
@@ -554,17 +554,17 @@
     "privacyPolicy": "Kebijakan Privasi",
     "termsOfService": "Ketentuan Layanan",
     "tour": "Tur",
-    "tourDescription": "Putar ulang layar selamat datang untuk melihat apa yang ditawarkan PocketPal AI.",
+    "tourDescription": "Putar ulang layar selamat datang untuk melihat apa yang ditawarkan TARS-AI.",
     "showIntroButton": "Tampilkan intro lagi",
     "openSourceNotices": "Pemberitahuan open source",
     "phononNoticesCredit": "Model dan suara Phonon oleh Gradium, dilisensikan di bawah Apache-2.0. Dibangun di atas Pocket TTS dan codec Mimi dari Kyutai."
   },
   "feedback": {
     "title": "Kirim Masukan",
-    "description": "Suara Anda penting! Ceritakan bagaimana PocketPal AI membantu Anda dan apa yang bisa kami lakukan agar lebih bermanfaat.",
+    "description": "Suara Anda penting! Ceritakan bagaimana TARS-AI membantu Anda dan apa yang bisa kami lakukan agar lebih bermanfaat.",
     "shareThoughtsButton": "Bagikan pikiran Anda",
     "useCase": {
-      "label": "Untuk apa Anda menggunakan PocketPal AI?",
+      "label": "Untuk apa Anda menggunakan TARS-AI?",
       "placeholder": "misalnya, merangkum, bermain peran, dll."
     },
     "featureRequests": {
@@ -576,7 +576,7 @@
       "placeholder": "Bagikan pikiran lain yang Anda miliki."
     },
     "usageFrequency": {
-      "label": "Seberapa sering Anda menggunakan PocketPal AI? (Opsional)",
+      "label": "Seberapa sering Anda menggunakan TARS-AI? (Opsional)",
       "options": {
         "daily": "Setiap hari",
         "weekly": "Mingguan",
@@ -626,7 +626,7 @@
     },
     "chatEmptyPlaceholder": {
       "noModelsTitle": "Tidak Ada Model Tersedia",
-      "noModelsDescription": "Unduh model untuk mulai mengobrol dengan PocketPal",
+      "noModelsDescription": "Unduh model untuk mulai mengobrol dengan TARS-AI",
       "noModelsButton": "Unduh Model",
       "activateModelTitle": "Aktifkan Model untuk Memulai",
       "activateModelDescription": "Pilih model dan unduh. Setelah diunduh, ketuk Muat di sebelah model dan mulai mengobrol.",
@@ -679,7 +679,7 @@
     },
     "modelErrorReportSheet": {
       "title": "Laporkan Masalah Pemuatan Model",
-      "privacyNote": "Bantu kami meningkatkan PocketPal dengan membagikan detail tentang kesalahan ini. Tinjau di bawah ini apa yang akan dibagikan – Anda dapat membatalkan item apa pun yang tidak ingin disertakan.",
+      "privacyNote": "Bantu kami meningkatkan TARS-AI dengan membagikan detail tentang kesalahan ini. Tinjau di bawah ini apa yang akan dibagikan – Anda dapat membatalkan item apa pun yang tidak ingin disertakan.",
       "errorMessage": "Pesan kesalahan",
       "modelInfo": "Informasi Model",
       "modelName": "Nama",
@@ -697,7 +697,7 @@
       "submit": "Kirim Laporan",
       "success": {
         "title": "Laporan Dikirim",
-        "message": "Terima kasih telah membantu kami meningkatkan PocketPal. Laporan Anda akan membantu kami memperbaiki masalah ini."
+        "message": "Terima kasih telah membantu kami meningkatkan TARS-AI. Laporan Anda akan membantu kami memperbaiki masalah ini."
       },
       "error": {
         "title": "Gagal Mengirim Laporan",
@@ -1219,7 +1219,7 @@
   },
   "camera": {
     "permissionTitle": "Izin Kamera Diperlukan",
-    "permissionMessage": "PocketPal memerlukan akses kamera untuk menganalisis gambar",
+    "permissionMessage": "TARS-AI memerlukan akses kamera untuk menganalisis gambar",
     "requestingPermission": "Meminta izin kamera...",
     "noDevice": "Tidak ditemukan perangkat kamera",
     "errorTitle": "Kesalahan Kamera",
@@ -1233,7 +1233,7 @@
   },
   "video": {
     "permissionTitle": "Izin Kamera Diperlukan",
-    "permissionMessage": "PocketPal memerlukan akses kamera untuk analisis video",
+    "permissionMessage": "TARS-AI memerlukan akses kamera untuk analisis video",
     "requestingPermission": "Meminta izin kamera...",
     "noDevice": "Tidak ditemukan perangkat kamera",
     "errorTitle": "Kesalahan Kamera",
@@ -1586,14 +1586,14 @@
     "skip": "Lewati",
     "skipForNow": "Lewati untuk sekarang",
     "splash": {
-      "brand": "PocketPal"
+      "brand": "TARS-AI"
     },
     "screen1": {
       "title": "Temui para pal Anda.",
       "titleAccent": "pal.",
       "body": "Teman-teman kecil pintar yang tinggal di dalam ponsel Anda.\nMari kita siapkan - akan memakan waktu sebentar.",
       "cta": "Ajak Berkeliling",
-      "eyebrow": "Selamat Datang di PocketPal"
+      "eyebrow": "Selamat Datang di TARS-AI"
     },
     "screen2": {
       "title": "Kapan Saja,\nDi Mana Saja.",
@@ -1726,11 +1726,11 @@
     "memoryAlertTryAnyway": "Tetap coba"
   },
   "plus": {
-    "eyebrow": "PocketPal Plus",
+    "eyebrow": "Upstream Plus",
     "headline": "Bawa AI lokal lebih jauh.",
-    "subline": "Plus menjaga PocketPal tetap gratis dan open source. Fitur tambahannya adalah ucapan terima kasih kami.",
-    "unsupportedSubline": "Fitur Plus belum bisa jalan di ponsel ini. Anda tetap bisa mendukung PocketPal.",
-    "thanksHeadline": "Terima kasih sudah ikut menjaga PocketPal tetap berjalan.",
+    "subline": "Plus menjaga TARS-AI tetap gratis dan open source. Fitur tambahannya adalah ucapan terima kasih kami.",
+    "unsupportedSubline": "Fitur Plus belum bisa jalan di ponsel ini. Anda tetap bisa mendukung TARS-AI.",
+    "thanksHeadline": "Terima kasih sudah ikut menjaga TARS-AI tetap berjalan.",
     "thanksSubline": "Plus sudah terbuka di perangkat ini.",
     "features": {
       "handsFreeVoice": "Suara bebas genggam",
@@ -1761,7 +1761,7 @@
     "noPurchaseFound": "Tidak ada pembelian Plus yang ditemukan.",
     "restoreFailed": "Toko tidak dapat dijangkau. Coba lagi.",
     "sidebar": {
-      "title": "PocketPal Plus",
+      "title": "Upstream Plus",
       "unlocked": "Terbuka",
       "subtitleOne": "{{first}}",
       "subtitleTwo": "{{first}}, {{second}}",
@@ -1824,7 +1824,7 @@
     "continueAnywayCta": "Tetap lanjutkan",
     "chooseSmallerModelCta": "Pilih model lebih kecil",
     "startLabel": "Mulai mode suara",
-    "startLockedLabel": "Suara bebas genggam, PocketPal Plus",
+    "startLockedLabel": "Suara bebas genggam, Upstream Plus",
     "startLockedHint": "Membuka pratinjau singkat. Mengetik dan dikte tetap gratis.",
     "teaserTitle": "Percakapan suara adalah fitur Plus",
     "teaserBody": "Bicara bebas genggam. Jawabannya dibacakan dengan lantang.",

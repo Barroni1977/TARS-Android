@@ -372,7 +372,7 @@ describe.each([
     nextFrame();
     expect(calls.map(({target, event: sent}) => [target, sent])).toEqual([
       ['header:Push local AI further.', event],
-      ['header:Thank you for keeping PocketPal going.', event],
+      ['header:Thank you for supporting the original project.', event],
     ]);
   });
 
@@ -394,7 +394,7 @@ describe.each([
     nextFrame();
 
     expect(targets()).toEqual([
-      'header:Thank you for keeping PocketPal going.',
+      'header:Thank you for supporting the original project.',
     ]);
   });
 
@@ -422,7 +422,7 @@ describe.each([
     nextFrame();
 
     expect(targets()).toEqual([
-      'header:Thank you for keeping PocketPal going.',
+      'header:Thank you for supporting the original project.',
     ]);
   });
 

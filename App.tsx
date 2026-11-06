@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Appearance,
   Dimensions,
+  Platform,
   StatusBar,
   StyleSheet,
   View,
@@ -43,6 +44,10 @@ import {
   PlusHost,
 } from './src/components';
 import {MarkdownProvider} from './src/components/MarkdownView';
+import {
+  TarsBootScreen,
+  TARS_BOOT_DURATION_MS,
+} from './src/components/TarsBootScreen';
 import {
   AutomationBridge,
   BenchmarkRunnerScreen,
@@ -106,6 +111,21 @@ const App = observer(() => {
   const styles = createStyles(theme);
   const currentL10n = l10n[uiStore.language];
 
+  // Keep the existing app mounted behind the native-like animated boot layer.
+  // Automated E2E journeys skip the animation; normal starts stay offline.
+  const [showTarsBoot, setShowTarsBoot] = React.useState(!__E2E__);
+
+  React.useEffect(() => {
+    if (__E2E__) {
+      return;
+    }
+    const timeout = setTimeout(
+      () => setShowTarsBoot(false),
+      TARS_BOOT_DURATION_MS,
+    );
+    return () => clearTimeout(timeout);
+  }, []);
+
   // Initialize locale with the current language
   React.useEffect(() => {
     initLocale(uiStore.language);
@@ -130,7 +150,10 @@ const App = observer(() => {
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+      <StatusBar
+        hidden={showTarsBoot}
+        barStyle={showTarsBoot || theme.dark ? 'light-content' : 'dark-content'}
+      />
       {__E2E__ ? <AutomationBridge /> : null}
       <SafeAreaProvider>
         <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
@@ -272,6 +295,9 @@ const App = observer(() => {
           </PaperProvider>
         </KeyboardProvider>
       </SafeAreaProvider>
+      {showTarsBoot ? (
+        <TarsBootScreen onSkip={() => setShowTarsBoot(false)} />
+      ) : null}
     </GestureHandlerRootView>
   );
 });
@@ -295,14 +321,11 @@ const createStyles = (theme: Theme) =>
     },
   });
 
-// Neutral background-only hold, rendered until mobx-persist-store has
-// loaded UIStore from AsyncStorage. It is a single full-screen View whose
-// only meaningful property is backgroundColor, resolved from the system
-// color scheme. Deliberately carries NO branding, NO Text, NO
-// SafeAreaProvider, NO insets, and NO spinner: a flat colored View has
-// nothing to match against either native launch surface (iOS has a branded
-// storyboard, Android has no native launch screen), so it cannot diverge
-// from native on any axis and reads simply as "app launching".
+// Background-only hold until persisted UI preferences have hydrated.
+// Android's TARS native launch window is black regardless of the system
+// theme; match it to prevent a white flash before the black animated boot.
+// iOS retains its system-color hold because its native storyboard is separate.
+// The hold contains no branding, controls, text, spinner, or safe-area chrome.
 const splashStyles = StyleSheet.create({
   light: {flex: 1, backgroundColor: '#ffffff'},
   dark: {flex: 1, backgroundColor: '#000000'},
@@ -312,7 +335,7 @@ const HydrationHold = () => (
   <View
     testID="hydration-splash"
     style={
-      Appearance.getColorScheme() === 'dark'
+      Platform.OS === 'android' || Appearance.getColorScheme() === 'dark'
         ? splashStyles.dark
         : splashStyles.light
     }
