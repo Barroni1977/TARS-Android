@@ -67,11 +67,15 @@ export const TarsOnboardingHero: React.FC<{
               {row}
             </Text>
           ))}
-          <Text style={[styles.status, compact && styles.compactMicro]}>{cfg.status}</Text>
+          <Text style={[styles.status, compact && styles.compactMicro]}>
+            {cfg.status}
+          </Text>
         </View>
         <View style={styles.brandStrip}>
           <View style={styles.amberRule} />
-          <Text style={[styles.brand, compact && styles.compactBrand]}>TARS AI</Text>
+          <Text style={[styles.brand, compact && styles.compactBrand]}>
+            TARS AI
+          </Text>
           <View style={styles.amberRule} />
         </View>
         <View style={styles.lowerRow}>
@@ -97,8 +101,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   compact: {
-    width: 190,
-    height: 151,
+    width: 152,
+    height: 120,
     alignSelf: 'center',
   },
   compactMicro: {
