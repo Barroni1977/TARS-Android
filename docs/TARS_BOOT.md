@@ -1,68 +1,64 @@
-# TARS AI — animated boot screen
+# TARS-AI — Full-screen animated boot
 
-This fork adds a **code-driven offline boot animation** to the React Native app.
+## Updated 2026-11-06
 
-## Behaviour
+This standalone work branch **does not start any GitHub Actions build** and
+does not create a pull request. An APK is built only after explicit approval.
 
-- The first ~3.3 seconds after the React Native app mounts display a black,
-  modular, steel-panel TARS-inspired screen.
-- Green diagnostic lines scroll continuously inside a display on the robot.
-- An amber TARS AI title, a pulsing green indicator and a moving waveform
-  bring the display to life.
-- The loading caption progresses through four scripted startup messages.
-- No network, streamed video, microphone, or extra model is required.
-- Automated E2E builds skip the animation to avoid interrupting navigation.
+### Behaviour now implemented
 
-The diagnostics and waveform are **visual effects**, not live hardware or
-voice-activity telemetry. The screen does not claim to have loaded the LLM.
+- An immersive **full-screen** metal-monolith boot interface, with the
+  Android status bar hidden while booting.
+- **2.5 second** timed presentation, with tap anywhere to skip immediately.
+- Simulated green diagnostic readouts and a pulsing waveform; these are
+  decorative and never claim that model inference, microphone or network
+  connections are actually running.
+- **TARS AI** glows amber in a horizontal central identity plaque.
+- A segmented `INITIALISING` progress bar animates smoothly before the app
+  transitions to the existing chat interface.
+- No `OFFLINE CO-PILOT` slogan.
+- Existing working local GGUF model engine, conversations and model downloads
+  remain unchanged.
 
-## Android splash limitation
+### Visual artwork parity
 
-Android displays a **static native launch window** until the React Native
-JavaScript runtime is ready. We set that window's background to black to
-minimise the flash, then render the animated boot component above the normal
-application. The animation begins **after JS startup**, not before it.
+The approved portrait reference image is available in this conversation,
+but is **not** yet packaged as an image asset inside the GitHub repository.
+The newly committed React Native layout animates the approved composition
+using native gradient panels and text. It is not a pixel-identical raster
+reproduction. Adding the exact approved art as an offline bundled image and
+layering the live progress/waveform over it is still an outstanding artwork
+integration step.
 
-## Implementation
+We must not claim exact image parity before that asset is shipped.
 
-- `src/components/TarsBootScreen.tsx` contains the moving display.
-- `App.tsx` controls how long it is visible.
-- `android/app/src/main/res/values/styles.xml` sets the native black backdrop.
-- `android/app/src/main/res/values/strings.xml` and `app.json` display
-  the `TARS AI` app name.
+### Brand cleanup
 
-Android now builds under the independent application ID
-`com.barroni1977.tarsai` (`com.barroni1977.tarsai.e2e` for tests).
-The original PocketPal installation uses `com.pocketpalai`, so the two apps
-have separate private storage and can coexist. The React Native namespace and
-native Kotlin package names remain unchanged intentionally; changing the
-application ID is sufficient to separate the installed Android packages.
+Visible translations in `src/locales/` now use **TARS-AI**, including the
+English welcome screens and camera prompts. The empty video placeholder
+uses the new original TARS mark rather than the previous project logo.
+The About screen identifies TARS AI independently and its GitHub button
+points to the TARS fork.
 
-**Note:** Locally downloaded models in PocketPal do not automatically carry
-over to TARS AI. They will need to be downloaded or imported again. The
-custom launcher icon is still pending.
+Original open-source licence and third-party credits are preserved, as
+required by the upstream MIT licence. Links to upstream privacy/terms
+are identified as **upstream policies**, not as TARS-AI policies.
+Third-party paid services are labelled as upstream subscriptions rather
+than falsely renamed as services operated by TARS-AI.
 
-## Next steps
+### Validation required before APK
 
-1. Check CI: TypeScript, lint, Jest, and Android build.
-2. Test the animation on an actual Galaxy S26 Ultra.
-3. Replace the provisional vector steel panels with the approved artwork.
-4. Add optional real diagnostics after the underlying model-loading events
-   are observable.
+- ESLint / Prettier, TypeScript, locale-validator and Jest tests.
+- Android 17 / Samsung Galaxy S26 Ultra visual verification.
+- Test Android dark/light mode, device rotation, text scaling and TalkBack.
+- Confirm no clipped text at any supported phone width and that tap-to-skip
+  immediately reveals the working application.
+- Integrate the approved high-resolution bitmap before final visual signoff.
+- Never uninstall the existing original TARS installation merely to test a
+  preview with a new ephemeral CI signing key.
 
-## First device acceptance check
+### Source
 
-After a successful CI build, install the APK on a test device using the
-independent `com.barroni1977.tarsai` package ID. Keep PocketPal installed
-separately, so its model files and configuration stay intact.
-
-On the S26 Ultra, verify that:
-
-- The launch background stays black without a bright white flash.
-- The diagnostic log scrolls while the green status dot and waveform move.
-- The sequence exits into the working chat interface.
-- Reopening the app never requires an internet connection for the animation.
-- With reduced-motion preferences, decide whether a static alternative is needed.
-
-The boot sequence is deliberately visual: completion messages are not proof
-that the local model has loaded or that the microphone is active.
+- `src/components/TarsBootScreen.tsx` — visual sequence and tap target.
+- `App.tsx` — visibility duration, status bar and dismissal.
+- `src/components/__tests__/TarsBootScreen.test.tsx` — basic UI behaviour.
