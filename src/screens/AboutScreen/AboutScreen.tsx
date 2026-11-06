@@ -196,8 +196,10 @@ export const AboutScreen: React.FC = () => {
               style={styles.actionButton}
               contentStyle={styles.feedbackButtonContent}
               icon={ChevronRightButtonIcon}
-              onPress={() => setShowFeedback(true)}>
-              {l10n.feedback.shareThoughtsButton}
+              onPress={() =>
+                Linking.openURL(`${REPO_URL}/issues/new/choose`)
+              }>
+              Send TARS-AI feedback
             </Button>
           </View>
 
