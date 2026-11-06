@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Animated,
   Easing,
+  Image,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -10,6 +12,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useTarsReducedMotion} from '../hooks/useTarsReducedMotion';
+import {TarsApprovedArtOverlay} from './TarsApprovedArtOverlay';
 
 // Startup is a timed visual sequence, not a report that model inference,
 // microphone capture or any network service has actually been started.
@@ -56,6 +59,7 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
     const scan = React.useRef(new Animated.Value(0)).current;
     const reduceMotion = useTarsReducedMotion();
     const [phase, setPhase] = React.useState(0);
+    const [approvedArtLoaded, setApprovedArtLoaded] = React.useState(false);
 
     React.useEffect(() => {
       if (reduceMotion) {
@@ -142,6 +146,10 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
       };
     }, [progress, pulse, reveal, waveform, scan, reduceMotion]);
 
+    // The original, unedited artwork is 941x1672. Contain it rather than
+    // cropping, distorting or redesigning any of the approved panels.
+    const artworkWidth = Math.min(width, height * (941 / 1672));
+    const artworkHeight = artworkWidth * (1672 / 941);
     const robotWidth = Math.min(width * 0.96, height * 0.62);
     const robotHeight = Math.min(height * 0.97, robotWidth * 2.28);
     const progressWidth = progress.interpolate({
@@ -156,6 +164,45 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
         accessibilityLabel="TARS-AI initialising. Double tap to skip startup animation."
         onPress={onSkip}
         style={styles.root}>
+        {/* Bundled Android drawable: prod/res/drawable-nodpi/tars_boot_approved.png.
+            The previous functional boot remains a fallback until the exact
+            original PNG has been uploaded to that resource path. */}
+        {Platform.OS === 'android' && (
+          <View
+            pointerEvents="none"
+            style={[
+              styles.approvedArtworkFrame,
+              {
+                width: artworkWidth,
+                height: artworkHeight,
+                top: (height - artworkHeight) / 2,
+                left: (width - artworkWidth) / 2,
+                opacity: approvedArtLoaded ? 1 : 0,
+              },
+            ]}>
+            <Image
+              testID="tars-boot-approved-artwork"
+              source={{uri: 'tars_boot_approved'}}
+              resizeMode="stretch"
+              accessibilityIgnoresInvertColors
+              onLoad={() => setApprovedArtLoaded(true)}
+              onError={() => setApprovedArtLoaded(false)}
+              style={styles.approvedArtworkImage}
+            />
+            {approvedArtLoaded && (
+              <TarsApprovedArtOverlay
+                artworkWidth={artworkWidth}
+                artworkHeight={artworkHeight}
+                progress={progress}
+                waveform={waveform}
+                pulse={pulse}
+                scan={scan}
+                reduceMotion={reduceMotion}
+              />
+            )}
+          </View>
+        )}
+        {!approvedArtLoaded && (
         <Animated.View
           style={[
             styles.robot,
@@ -277,12 +324,20 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
             <MetalPanel style={styles.railLower} />
           </View>
         </Animated.View>
+        )}
       </Pressable>
     );
   },
 );
 
 const styles = StyleSheet.create({
+  approvedArtworkFrame: {
+    position: 'absolute',
+  },
+  approvedArtworkImage: {
+    height: '100%',
+    width: '100%',
+  },
   root: {
     position: 'absolute',
     top: 0,
