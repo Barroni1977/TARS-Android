@@ -13,60 +13,83 @@ describe('TarsBootScreen', () => {
     jest.useRealTimers();
   });
 
-  it('renders a full-screen TARS display with readable diagnostics', () => {
+  it('renders the approved PNG on Android and keeps other platforms safe', () => {
     const screen = render(<TarsBootScreen />);
-
     expect(screen.getByTestId('tars-boot-screen')).toBeTruthy();
-    expect(screen.getByText('TARS AI')).toBeTruthy();
-    expect(screen.getByText('HUMOUR 90%')).toBeTruthy();
-    expect(screen.getByText('HONESTY 95%')).toBeTruthy();
-    expect(screen.getByText('SARCASM 85%')).toBeTruthy();
-    expect(screen.getByText('INITIALISING')).toBeTruthy();
-    expect(screen.getByTestId('tars-boot-progress')).toBeTruthy();
-    expect(screen.queryByText('OFFLINE CO-PILOT')).toBeNull();
+    const picture = screen.queryByTestId('tars-boot-approved-artwork');
 
+    if (picture) {
+      // Do not flash the older metal panels while the PNG decodes.
+      expect(screen.queryByTestId('tars-boot-progress')).toBeNull();
+      act(() => {
+        fireEvent(picture, 'load');
+      });
+      expect(screen.getByTestId('tars-approved-overlay')).toBeTruthy();
+      expect(screen.getByText('HUMOUR')).toBeTruthy();
+      expect(screen.getByText('90%')).toBeTruthy();
+      expect(screen.getByText('INITIALISING')).toBeTruthy();
+      expect(screen.getByTestId('tars-approved-progress')).toBeTruthy();
+      expect(screen.queryByTestId('tars-boot-progress')).toBeNull();
+    } else {
+      // iOS continues using the existing native-view fallback boot.
+      expect(screen.getByText('TARS AI')).toBeTruthy();
+      expect(screen.getByText('HUMOUR 90%')).toBeTruthy();
+      expect(screen.getByText('HONESTY 95%')).toBeTruthy();
+      expect(screen.getByText('SARCASM 85%')).toBeTruthy();
+      expect(screen.getByText('INITIALISING')).toBeTruthy();
+      expect(screen.getByTestId('tars-boot-progress')).toBeTruthy();
+    }
+    expect(screen.queryByText('OFFLINE CO-PILOT')).toBeNull();
     screen.unmount();
   });
 
   it('advances the decorative boot sequence without networking', () => {
     const screen = render(<TarsBootScreen />);
+    const picture = screen.queryByTestId('tars-boot-approved-artwork');
+    if (picture) {
+      act(() => {
+        fireEvent(picture, 'load');
+      });
+    }
     act(() => {
       jest.advanceTimersByTime(1900);
     });
-    expect(screen.getByText('INTERFACE INITIALISED')).toBeTruthy();
-    // The visual boot finishing is not proof that a GGUF model has loaded.
+
+    if (picture) {
+      // The approved image retains INITIALISING until the timed transition.
+      expect(screen.getByText('INITIALISING')).toBeTruthy();
+    } else {
+      expect(screen.getByText('INTERFACE INITIALISED')).toBeTruthy();
+    }
     expect(screen.queryByText('SYSTEM READY')).toBeNull();
     expect(TARS_BOOT_DURATION_MS).toBe(2500);
     screen.unmount();
   });
 
-  it('animates the approved art in place when the native Android asset loads', () => {
+  it('displays live animated diagnostics when the Android artwork loads', () => {
     const screen = render(<TarsBootScreen />);
-    const originalArtwork = screen.queryByTestId('tars-boot-approved-artwork');
+    const picture = screen.queryByTestId('tars-boot-approved-artwork');
 
-    // Android reads drawable-nodpi/tars_boot_approved.png by resource name.
-    // Other platforms retain the working native-view startup fallback.
-    if (originalArtwork) {
+    if (picture) {
       act(() => {
-        fireEvent(originalArtwork, 'load');
+        fireEvent(picture, 'load');
       });
-
       expect(screen.getByTestId('tars-approved-waveform')).toBeTruthy();
-      expect(screen.getByTestId('tars-approved-progress')).toBeTruthy();
       expect(screen.getByTestId('tars-approved-progress-fill')).toBeTruthy();
       expect(screen.getByTestId('tars-approved-wave-9')).toBeTruthy();
-      // The original art still provides all text and metal framing.
+      expect(screen.getByText('VOICE SYSTEM')).toBeTruthy();
+      expect(screen.getByText('STANDBY')).toBeTruthy();
       expect(screen.queryByTestId('tars-boot-progress')).toBeNull();
     }
     screen.unmount();
   });
 
-  it('falls back to the prior animated screen if the Android art is missing', () => {
+  it('shows the earlier native boot if the Android PNG fails to load', () => {
     const screen = render(<TarsBootScreen />);
-    const originalArtwork = screen.queryByTestId('tars-boot-approved-artwork');
-    if (originalArtwork) {
+    const picture = screen.queryByTestId('tars-boot-approved-artwork');
+    if (picture) {
       act(() => {
-        fireEvent(originalArtwork, 'error');
+        fireEvent(picture, 'error');
       });
     }
     expect(screen.getByTestId('tars-boot-progress')).toBeTruthy();
