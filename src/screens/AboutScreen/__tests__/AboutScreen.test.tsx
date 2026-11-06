@@ -117,7 +117,7 @@ describe('AboutScreen', () => {
     fireEvent.press(getByText('Star on GitHub'));
 
     expect(Linking.openURL).toHaveBeenCalledWith(
-      'https://github.com/a-ghorbani/pocketpal-ai',
+      'https://github.com/Barroni1977/TARS-Android',
     );
   });
 

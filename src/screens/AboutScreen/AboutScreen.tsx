@@ -153,7 +153,7 @@ export const AboutScreen: React.FC = () => {
                 </View>
               </View>
               <Text variant="bodyMedium" style={styles.description}>
-                An independent assistant built on PocketPal AI (MIT licensed).
+                An independent assistant based on MIT-licensed open-source software.
                 GGUF model inference runs locally on your device. Optional
                 connected features require an internet connection.
               </Text>
@@ -216,8 +216,8 @@ export const AboutScreen: React.FC = () => {
           </View>
 
           <Text style={styles.legalDisclaimer}>
-            Privacy and terms links below belong to the upstream PocketPal
-            project. They are not TARS AI policies.
+            Privacy and terms links below belong to the original upstream
+            project. They are not TARS-AI policies.
           </Text>
           <View style={styles.legalRow}>
             {legalLinks.map((link, i) => (

@@ -546,7 +546,7 @@
     "screenTitle": "App Info",
     "description": "An app that brings language models directly to your phone. Sits on the shoulders of llama.cpp and llama.rn.",
     "supportProject": "Support the Project",
-    "supportProjectDescription": "TARS-AI uses open-source software. You can support the original project by:",
+    "supportProjectDescription": "TARS-AI is an open-source fork. View its source code and help improve the project:",
     "githubButton": "Star on GitHub",
     "orBy": "or by",
     "versionCopiedTitle": "Version copied",
