@@ -65,7 +65,7 @@ describe('PurchasesCard', () => {
     expect(getByText('Purchased · Support code: SUP-a')).toBeTruthy();
     expect(
       getByText(
-        'This Pal is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
+        'This Profile is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
       ),
     ).toBeTruthy();
     expect(getByTestId('purchase-row-c')).toBeTruthy();
@@ -176,12 +176,12 @@ describe('PurchasesCard', () => {
       [
         'ios',
         false,
-        'This Pal is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
+        'This Profile is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
       ],
       [
         'ios',
         true,
-        'This Pal is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
+        'This Profile is no longer available. You can ask Apple for a refund.\nSupport code: SUP-b',
       ],
       [
         'android',
@@ -191,7 +191,7 @@ describe('PurchasesCard', () => {
       [
         'android',
         true,
-        'This Pal was withdrawn. Contact support for a refund.\nSupport code: SUP-b',
+        'This Profile was withdrawn. Contact support for a refund.\nSupport code: SUP-b',
       ],
     ])(
       'uses the %s wording (withdrawn after delivery: %p)',

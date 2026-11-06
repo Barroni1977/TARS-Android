@@ -203,7 +203,7 @@ describe('PalPurchaseFooter', () => {
     });
     const {getByTestId} = setup();
     expect(getByTestId('purchase-unfulfillable')).toHaveTextContent(
-      'This Pal is no longer available. You can ask Apple for a refund.',
+      'This Profile is no longer available. You can ask Apple for a refund.',
     );
     expect(getByTestId('purchase-support-code')).toHaveTextContent(
       'Support code: SUP-7',
@@ -217,7 +217,7 @@ describe('PalPurchaseFooter', () => {
 
   it.each([
     [false, "This purchase couldn't be completed. Google will refund you."],
-    [true, 'This Pal was withdrawn. Contact support for a refund.'],
+    [true, 'This Profile was withdrawn. Contact support for a refund.'],
   ])(
     'shows the Android copy for withdrawn after delivery %p with the support code',
     (delivered, text) => {
@@ -618,7 +618,7 @@ describe('PalPurchaseFooter', () => {
       const notice = getByTestId('purchase-license-notice');
 
       expect(notice).toHaveTextContent(
-        "You're buying a license to use this Pal. Terms of Sale · Apple Media Services Terms",
+        "You're buying a license to use this Profile. Terms of Sale · Apple Media Services Terms",
       );
       expect(StyleSheet.flatten(notice.props.style)).toMatchObject(
         styles.status,

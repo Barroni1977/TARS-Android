@@ -739,10 +739,10 @@ describe('PalsScreen', () => {
       addStorePurchase();
       const {getByText, queryByText, toJSON} = renderSections();
 
-      expect(getByText('My Pals (local)')).toBeTruthy();
-      expect(queryByText('My Library (palshub.ai)')).toBeNull();
+      expect(getByText('My Local Profiles')).toBeTruthy();
+      expect(queryByText('External PalsHub Library')).toBeNull();
       const tree = flatten(toJSON());
-      expect(tree.indexOf('My Pals (local)')).toBeLessThan(
+      expect(tree.indexOf('My Local Profiles')).toBeLessThan(
         tree.indexOf('palshub-pal-card-store-pal'),
       );
     });
@@ -757,9 +757,9 @@ describe('PalsScreen', () => {
       });
       const {getByText, toJSON} = renderSections();
 
-      expect(getByText('My Library (palshub.ai)')).toBeTruthy();
+      expect(getByText('External PalsHub Library')).toBeTruthy();
       const tree = flatten(toJSON());
-      const libraryTitle = tree.indexOf('My Library (palshub.ai)');
+      const libraryTitle = tree.indexOf('External PalsHub Library');
       expect(tree.indexOf('palshub-pal-card-store-pal')).toBeLessThan(
         libraryTitle,
       );

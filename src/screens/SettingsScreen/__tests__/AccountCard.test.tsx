@@ -10,7 +10,7 @@ import {deleteAccount} from '../../../services/palshub/accountDeletion';
 const deleteAccountMock = deleteAccount as jest.Mock;
 
 const CONFIRM_MESSAGE =
-  'This permanently deletes your PalsHub account and its library. Pals bought through the App Store or Google Play stay restorable on this device with your store account. Purchase records are kept anonymised for legal reasons.';
+  'This permanently deletes your PalsHub account and its library. Profiles bought through the App Store or Google Play stay restorable on this device with your store account. Purchase records are kept anonymised for legal reasons.';
 
 const alertMock = () => Alert.alert as jest.Mock;
 const confirmButtons = () => alertMock().mock.calls[0][2];
