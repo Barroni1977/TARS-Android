@@ -1,5 +1,5 @@
 import React from 'react';
-import {act, render} from '@testing-library/react-native';
+import {act, fireEvent, render} from '@testing-library/react-native';
 
 import {TarsBootScreen, TARS_BOOT_DURATION_MS} from '../TarsBootScreen';
 
@@ -13,7 +13,7 @@ describe('TarsBootScreen', () => {
     jest.useRealTimers();
   });
 
-  it('shows TARS AI and the local diagnostic display', () => {
+  it('renders a full-screen TARS display with readable diagnostics', () => {
     const screen = render(<TarsBootScreen />);
 
     expect(screen.getByTestId('tars-boot-screen')).toBeTruthy();
@@ -21,21 +21,30 @@ describe('TarsBootScreen', () => {
     expect(screen.getByText('HUMOUR 90%')).toBeTruthy();
     expect(screen.getByText('HONESTY 95%')).toBeTruthy();
     expect(screen.getByText('SARCASM 85%')).toBeTruthy();
-    expect(screen.getByText('INITIALISING CORE')).toBeTruthy();
+    expect(screen.getByText('INITIALISING')).toBeTruthy();
+    expect(screen.getByTestId('tars-boot-progress')).toBeTruthy();
+    expect(screen.queryByText('OFFLINE CO-PILOT')).toBeNull();
 
     screen.unmount();
   });
 
-  it('advances its boot status locally, without external requests', () => {
+  it('advances the decorative boot sequence without networking', () => {
     const screen = render(<TarsBootScreen />);
-
     act(() => {
-      jest.advanceTimersByTime(2400);
+      jest.advanceTimersByTime(1900);
     });
+    expect(screen.getByText('SYSTEM READY')).toBeTruthy();
+    expect(TARS_BOOT_DURATION_MS).toBe(2500);
+    screen.unmount();
+  });
 
-    expect(screen.getByText('TARS AI  /  SYSTEM ONLINE')).toBeTruthy();
-    expect(TARS_BOOT_DURATION_MS).toBeGreaterThan(2400);
+  it('allows the user to skip the opening screen', () => {
+    const onSkip = jest.fn();
+    const screen = render(<TarsBootScreen onSkip={onSkip} />);
 
+    fireEvent.press(screen.getByTestId('tars-boot-screen'));
+
+    expect(onSkip).toHaveBeenCalledTimes(1);
     screen.unmount();
   });
 });
