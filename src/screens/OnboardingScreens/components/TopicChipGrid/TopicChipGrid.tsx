@@ -39,7 +39,7 @@ export const TopicChipGrid: React.FC<TopicChipGridProps> = ({
         const chipBody = (
           <>
             {Glyph ? (
-              <Glyph width={40} height={40} fill={theme.colors.onBackground} />
+              <Glyph width={40} height={40} fill="#54DDA6" />
             ) : null}
             <View style={styles.textBlock}>
               <Text style={styles.label}>{labels[key]}</Text>
