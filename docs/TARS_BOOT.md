@@ -5,6 +5,16 @@
 This standalone work branch **does not start any GitHub Actions build** and
 does not create a pull request. An APK is built only after explicit approval.
 
+### Animation polish added 2026-11-06
+
+- Boot waveform now oscillates while the decorative CRT scanline sweeps the terminal.
+- The empty-chat Command Deck now fades and rises into view over 550 ms.
+- The Command Deck status indicator pulses **only** while the real local model context is loading; it does not imply that audio capture or inference is running.
+- Android's Reduce Motion accessibility preference disables decorative TARS animations while preserving the app's underlying interactions.
+- When the presentation finishes, the label reads `INTERFACE INITIALISED` rather than claiming that the model is `SYSTEM READY`.
+- Added a regression test to catch old product names and `co-pilot` branding in all translated user-facing copy.
+- No GitHub Actions run or APK build is requested by this set of changes.
+
 ### Behaviour now implemented
 
 - An immersive **full-screen** metal-monolith boot interface, with the
