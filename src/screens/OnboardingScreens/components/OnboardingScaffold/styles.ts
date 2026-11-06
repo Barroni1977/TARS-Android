@@ -10,7 +10,7 @@ export const createStyles = (theme: Theme) =>
       // closest token is `surface` (#F9FAFB). The previous binding to
       // `surfaceVariant` (#e4e4e6) was too dark and caused the muted
       // stepper dots (#e5e3e1) to blend into the background.
-      backgroundColor: theme.colors.surface,
+      backgroundColor: '#090F12',
     },
     body: {
       flex: 1,
@@ -21,11 +21,11 @@ export const createStyles = (theme: Theme) =>
     bodyCentered: {
       alignItems: 'center',
       justifyContent: 'center',
-      gap: theme.spacing.xl,
+      gap: theme.spacing.ml,
     },
     bodyTop: {
       alignItems: 'center',
-      paddingTop: theme.spacing.xxl,
+      paddingTop: theme.spacing.xl,
       gap: theme.spacing.ml,
     },
     topLeftSlot: {
