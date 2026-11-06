@@ -129,7 +129,7 @@
     "importError": "Failed to import chat sessions. Please check the file format.",
     "internetSearch": {
       "title": "Internet Search",
-      "description": "Let Pals search the web with their own tools. Bring your own API key — Your provider key remains local and your request goes to your selected provider.",
+      "description": "Let Profiles search the web with their own tools. Bring your own API key — Your provider key remains local and your request goes to your selected provider.",
       "providerLabel": "Search provider",
       "providerGated": "Coming soon",
       "keyLabel": "API key",
@@ -146,7 +146,7 @@
       "resultCountLabel": "Results per search",
       "resultCountDescription": "Fewer results keep more room in the model's context.",
       "consentTitle": "Searches leave your device",
-      "consentDescription": "When a Pal searches the web, your query is sent to the selected provider over the internet. When a Pal reads a page, the URL and page content may instead be sent to a default reader service (r.jina.ai) if the selected provider has no native reader. Keys and queries are not sent to an app-operated relay.",
+      "consentDescription": "When a Profile searches the web, your query is sent to the selected provider over the internet. When a Profile reads a page, the URL and page content may instead be sent to a default reader service (r.jina.ai) if the selected provider has no native reader. Keys and queries are not sent to an app-operated relay.",
       "consentAccept": "I understand",
       "consentRequired": "Accept the disclosure above to set a key and enable search.",
       "consentGivenTitle": "Searching the web is enabled",
@@ -162,10 +162,10 @@
     "useHfTokenDescription": "Enable to use token for API requests. Disable if token is causing authentication issues.",
     "cacheStorageTitle": "Cache & Storage",
     "clearPalCaches": "Clear Shortcuts Caches",
-    "clearPalCachesDescription": "Clears cached data used to speed up Shortcuts. This won't affect your Pals or chat history.",
+    "clearPalCachesDescription": "Clears cached data used to speed up Shortcuts. This won't affect your Profiles or chat history.",
     "clearCachesButton": "Clear Caches",
     "clearCachesConfirmTitle": "Clear Shortcuts Caches?",
-    "clearCachesConfirmMessage": "This will clear all cached session data ({{fileCount}} files, {{size}}). Shortcuts may be slower on first use after clearing. This won't affect your Pals or chat history.",
+    "clearCachesConfirmMessage": "This will clear all cached session data ({{fileCount}} files, {{size}}). Shortcuts may be slower on first use after clearing. This won't affect your Profiles or chat history.",
     "clearCachesSuccess": "Successfully cleared {{count}} cache file(s).",
     "clearCachesError": "Failed to clear caches. Please try again.",
     "noCachesToClear": "No caches to clear.",
@@ -240,7 +240,7 @@
       "title": "Account",
       "deleteAccount": "Delete account",
       "confirmTitle": "Delete account?",
-      "confirmMessage": "This permanently deletes your PalsHub account and its library. Pals bought through the App Store or Google Play stay restorable on this device with your store account. Purchase records are kept anonymised for legal reasons.",
+      "confirmMessage": "This permanently deletes your PalsHub account and its library. Profiles bought through the App Store or Google Play stay restorable on this device with your store account. Purchase records are kept anonymised for legal reasons.",
       "confirmWithoutApple": "Couldn't confirm with Apple. Delete your account anyway?",
       "deleted": "Your account has been deleted.",
       "signInAgain": "Please sign in again",
@@ -654,7 +654,7 @@
       "activateModelButton": "Select Model",
       "loading": "Loading...",
       "gettingReadyTitle": "{{name}} is getting ready",
-      "gettingReadyDescription": "We’ll let you know the moment your pal can chat. Tap the banner up top to see how it’s going."
+      "gettingReadyDescription": "We’ll let you know the moment your profile can chat. Tap the banner up top to see how it’s going."
     },
     "chatInput": {
       "inputPlaceholder": "Message",
@@ -773,14 +773,14 @@
     "chatPalModelPickerSheet": {
       "modelsTab": "Models",
       "palsTab": "Profiles",
-      "noPal": "No Pal",
-      "disablePal": "Disable active pal",
+      "noPal": "No Profile",
+      "disablePal": "Disable active profile",
       "noDescription": "No description",
       "assistantType": "Assistant",
       "roleplayType": "Roleplay",
       "videoType": "Video",
       "confirmationTitle": "Confirmation",
-      "modelSwitchMessage": "This pal has a different default model ({{modelName}}). Would you like to switch to the pal's default model?",
+      "modelSwitchMessage": "This profile has a different default model ({{modelName}}). Would you like to switch to the profile's default model?",
       "keepButton": "Keep",
       "switchButton": "Switch"
     },
@@ -882,12 +882,12 @@
     },
     "palSheet": {
       "title": {
-        "edit": "Edit Pal",
-        "newPal": "New Pal",
-        "newVideoPal": "New Video Pal"
+        "edit": "Edit Profile",
+        "newPal": "New Profile",
+        "newVideoPal": "New Video Profile"
       },
       "description": "Description",
-      "descriptionPlaceholder": "Enter a brief description of your pal",
+      "descriptionPlaceholder": "Enter a brief description of your profile",
       "parameters": "Parameters",
       "generationSettings": "Generation Settings",
       "configureGenerationSettings": "Configure Generation Settings",
@@ -914,7 +914,7 @@
       "greeting": {
         "sectionLabel": "Greeting",
         "textLabel": "Greeting message",
-        "textPlaceholder": "What should this pal say on an empty chat?",
+        "textPlaceholder": "What should this profile say on an empty chat?",
         "suggestedPromptsLabel": "Suggested prompts",
         "addPromptButton": "Add prompt",
         "promptPlaceholder": "A short prompt for the chip",
@@ -923,10 +923,10 @@
     },
     "assistantPalSheet": {
       "title": {
-        "create": "Create Assistant Pal",
-        "edit": "Edit Assistant Pal"
+        "create": "Create Assistant Profile",
+        "edit": "Edit Assistant Profile"
       },
-      "palName": "Pal Name",
+      "palName": "Profile Name",
       "palNamePlaceholder": "Name",
       "defaultModel": "Default Model",
       "defaultModelPlaceholder": "Select model",
@@ -939,7 +939,7 @@
     "modelNotAvailable": {
       "noModelsDownloaded": "You do not have any models downloaded yet. Please download a model first.",
       "downloadAModel": "Download a model",
-      "defaultModelNotDownloaded": "This pal recommends a specific model that needs to be downloaded, or you can select a different model.",
+      "defaultModelNotDownloaded": "This profile recommends a specific model that needs to be downloaded, or you can select a different model.",
       "modelNotDownloadedShort": "Model not downloaded",
       "recommendedModel": "Recommended Model",
       "cancelDownload": "Cancel download",
@@ -947,10 +947,10 @@
     },
     "roleplayPalSheet": {
       "title": {
-        "create": "Create Roleplay Pal",
-        "edit": "Edit Roleplay Pal"
+        "create": "Create Roleplay Profile",
+        "edit": "Edit Roleplay Profile"
       },
-      "palName": "Pal Name",
+      "palName": "Profile Name",
       "palNamePlaceholder": "Name",
       "defaultModel": "Default Model",
       "defaultModelPlaceholder": "Select model",
@@ -977,11 +977,11 @@
     },
     "lookiePalSheet": {
       "title": {
-        "create": "Create Lookie Pal",
-        "edit": "Edit Lookie Pal"
+        "create": "Create Lookie Profile",
+        "edit": "Edit Lookie Profile"
       },
-      "palName": "Pal Name",
-      "palNamePlaceholder": "Enter a name for your Lookie Pal",
+      "palName": "Profile Name",
+      "palNamePlaceholder": "Enter a name for your Lookie Profile",
       "visionModel": "Vision Model",
       "visionModelPlaceholder": "Select a vision model",
       "requiredModelsSection": "Required Models",
@@ -1002,7 +1002,7 @@
       },
       "generatingPrompt": {
         "label": "Purpose & Context",
-        "placeholder": "Describe the role, purpose, or scenario for this pal..."
+        "placeholder": "Describe the role, purpose, or scenario for this profile..."
       },
       "buttons": {
         "loadingModel": "Loading model...",
@@ -1085,8 +1085,8 @@
     "palHeaderRight": {
       "exportAllPals": "Export all profiles",
       "importPals": "Import profiles",
-      "importSuccess": "Successfully imported {{count}} pal(s).",
-      "importError": "Failed to import pals. Please check the file format."
+      "importSuccess": "Successfully imported {{count}} profile(s).",
+      "importError": "Failed to import profiles. Please check the file format."
     }
   },
   "palsScreen": {
@@ -1108,21 +1108,21 @@
     "assistant": "Assistant",
     "roleplay": "Roleplay",
     "video": "Video",
-    "deletePal": "Delete Pal",
-    "deletePalMessage": "Are you sure you want to delete this pal?",
+    "deletePal": "Delete Profile",
+    "deletePalMessage": "Are you sure you want to delete this profile?",
     "missingModel": "Missing Model",
-    "missingModelMessage": "The default model \"{{modelName}}\" for this pal is not available. Please download it in the edit sheet or select a different model.",
+    "missingModelMessage": "The default model \"{{modelName}}\" for this profile is not available. Please download it in the edit sheet or select a different model.",
     "search": "Search",
     "profile": "Profile",
     "signIn": "Sign In",
-    "addPal": "Add Pal",
+    "addPal": "Add Profile",
     "signInToAccessLibrary": "Sign in to access your library from palshub.ai",
     "signOut": "Sign Out",
     "signOutConfirmation": "Are you sure you want to sign out?",
     "signOutError": "Failed to sign out. Please try again.",
     "account": "Account",
     "signInToPalsHub": "Sign In to PalsHub",
-    "signInDescription": "Access your library, create private Pals, and sync across devices",
+    "signInDescription": "Access your library, create private Profiles, and sync across devices",
     "searchAllPals": "Search profiles...",
     "deletePalConfirmation": "Are you sure you want to delete \"{{palName}}\"?",
     "filters": {
@@ -1159,10 +1159,10 @@
       "systemPrompt": "System Prompt",
       "downloaded": "Downloaded",
       "success": "Success",
-      "palAddedToCollection": "Pal has been added to your collection!",
+      "palAddedToCollection": "Profile has been added to your collection!",
       "error": "Error",
-      "failedToLoadDetails": "Failed to load pal details",
-      "failedToDownload": "Failed to download pal",
+      "failedToLoadDetails": "Failed to load profile details",
+      "failedToDownload": "Failed to download profile",
       "notAvailable": "N/A"
     },
     "purchase": {
@@ -1173,16 +1173,16 @@
       "unlocking": "Unlocking",
       "retry": "Retry",
       "supportCode": "Support code: {{code}}",
-      "noLongerAvailable": "This Pal is no longer available. You can {{refundLink}}.",
+      "noLongerAvailable": "This Profile is no longer available. You can {{refundLink}}.",
       "refundLink": "ask Apple for a refund",
       "notCompleted": "This purchase couldn't be completed. Google will refund you.",
-      "withdrawnRefunding": "This Pal was withdrawn. Contact support for a refund.",
+      "withdrawnRefunding": "This Profile was withdrawn. Contact support for a refund.",
       "invalid": "We couldn't verify this purchase.",
       "heldInvalid": "We couldn't unlock this purchase. Contact support with this code.",
       "recommendedModel": "Recommended model",
       "sampleExchange": "Sample conversation",
       "signInLine": "Already own it? Sign in",
-      "licenseNotice": "You're buying a license to use this Pal.",
+      "licenseNotice": "You're buying a license to use this Profile.",
       "termsOfSale": "Terms of Sale",
       "appleMediaTerms": "Apple Media Services Terms",
       "linkPrompt": "Sign in to use it on your other devices too",
@@ -1202,8 +1202,8 @@
       "modelStep": {
         "download": "Download · {{size}}",
         "startChat": "Start chat",
-        "needsMemory": "This Pal needs a device with at least {{size}} of memory for its smallest model.",
-        "noModelFits": "This device doesn't have enough memory for this Pal."
+        "needsMemory": "This Profile needs a device with at least {{size}} of memory for its smallest model.",
+        "noModelFits": "This device doesn't have enough memory for this Profile."
       }
     }
   },
@@ -1254,7 +1254,7 @@
       "step1": "• Edit the prompt (optional) to guide the analysis",
       "step2": "• Tap the camera button to start live video analysis",
       "step3": "• Adjust snapshot frequency while camera is active",
-      "step4": "• Switch to another pal for normal text chat"
+      "step4": "• Switch to another profile for normal text chat"
     }
   },
   "screenTitles": {
@@ -1316,7 +1316,7 @@
     "increaseContextReloading": "Reloading model with a larger context…",
     "increaseContextSuccess": "Context increased to {{target}} tokens.",
     "increaseContextFailure": "Could not increase the context size. Your previous setting was restored.",
-    "palLoadHint": "This pal tends to need more room than the current context size allows.",
+    "palLoadHint": "This profile tends to need more room than the current context size allows.",
     "generatingPreview": "Generating preview… ({{tokens}} tokens)",
     "generatingPreviewPending": "Generating preview…",
     "toolUsedChip": "used {{name}}",
