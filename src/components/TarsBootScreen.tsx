@@ -203,127 +203,127 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
           </View>
         )}
         {!approvedArtLoaded && (
-        <Animated.View
-          style={[
-            styles.robot,
-            {width: robotWidth, height: robotHeight, opacity: reveal},
-          ]}>
-          <View style={styles.outerRail}>
-            <MetalPanel style={styles.railUpper} />
-            <MetalPanel style={styles.railJoint} dark />
-            <MetalPanel style={styles.railLower} />
-          </View>
-
-          <View style={styles.centerColumn}>
-            <View style={styles.topModules}>
-              <MetalPanel style={styles.module} />
-              <MetalPanel style={styles.module} />
+          <Animated.View
+            style={[
+              styles.robot,
+              {width: robotWidth, height: robotHeight, opacity: reveal},
+            ]}>
+            <View style={styles.outerRail}>
+              <MetalPanel style={styles.railUpper} />
+              <MetalPanel style={styles.railJoint} dark />
+              <MetalPanel style={styles.railLower} />
             </View>
-
-            <View style={styles.terminal}>
-              <View style={styles.terminalUpperLine}>
-                <Text style={styles.smallGreen}>TARS-AI</Text>
-                <Animated.View style={[styles.signalDot, {opacity: pulse}]} />
+  
+            <View style={styles.centerColumn}>
+              <View style={styles.topModules}>
+                <MetalPanel style={styles.module} />
+                <MetalPanel style={styles.module} />
               </View>
-              <View style={styles.terminalColumns}>
-                <View style={styles.readoutColumn}>
-                  <Text style={styles.terminalText}>HUMOUR 90%</Text>
-                  <Text style={styles.terminalText}>HONESTY 95%</Text>
-                  <Text style={styles.terminalText}>SARCASM 85%</Text>
-                  <View style={styles.waveform}>
-                    {WAVE_HEIGHTS.map((bar, index) => (
-                      <Animated.View
-                        key={index}
-                        style={[
-                          styles.waveBar,
-                          {
-                            height: bar,
-                            opacity: pulse,
-                            transform: [
-                              {
-                                scaleY: waveform.interpolate({
-                                  inputRange: [0, 1],
-                                  outputRange: [
-                                    index % 2 === 0 ? 0.55 : 1.05,
-                                    index % 2 === 0 ? 1.15 : 0.55,
-                                  ],
-                                }),
-                              },
-                            ],
-                          },
-                        ]}
-                      />
+  
+              <View style={styles.terminal}>
+                <View style={styles.terminalUpperLine}>
+                  <Text style={styles.smallGreen}>TARS-AI</Text>
+                  <Animated.View style={[styles.signalDot, {opacity: pulse}]} />
+                </View>
+                <View style={styles.terminalColumns}>
+                  <View style={styles.readoutColumn}>
+                    <Text style={styles.terminalText}>HUMOUR 90%</Text>
+                    <Text style={styles.terminalText}>HONESTY 95%</Text>
+                    <Text style={styles.terminalText}>SARCASM 85%</Text>
+                    <View style={styles.waveform}>
+                      {WAVE_HEIGHTS.map((bar, index) => (
+                        <Animated.View
+                          key={index}
+                          style={[
+                            styles.waveBar,
+                            {
+                              height: bar,
+                              opacity: pulse,
+                              transform: [
+                                {
+                                  scaleY: waveform.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [
+                                      index % 2 === 0 ? 0.55 : 1.05,
+                                      index % 2 === 0 ? 1.15 : 0.55,
+                                    ],
+                                  }),
+                                },
+                              ],
+                            },
+                          ]}
+                        />
+                      ))}
+                    </View>
+                  </View>
+                  <View style={styles.readoutColumn}>
+                    <Text style={styles.terminalText}>LOCAL CORE</Text>
+                    <Text style={styles.terminalValue}>STANDBY</Text>
+                    <Text style={styles.terminalText}>VOICE SYSTEM</Text>
+                    <Text style={styles.terminalValue}>STANDBY</Text>
+                    <Text style={styles.terminalText}>MEMORY CHECK</Text>
+                    <Text style={styles.terminalValue}>NOMINAL</Text>
+                  </View>
+                </View>
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    styles.scanline,
+                    {
+                      transform: [
+                        {
+                          translateY: scan.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 175],
+                          }),
+                        },
+                      ],
+                    },
+                  ]}
+                />
+              </View>
+  
+              <View style={styles.middleModules}>
+                <MetalPanel style={styles.module} dark />
+                <MetalPanel style={styles.module} />
+              </View>
+  
+              <View style={styles.identityPanel}>
+                <Text style={styles.brand} numberOfLines={1}>
+                  TARS AI
+                </Text>
+                <View style={styles.brandUnderline} />
+              </View>
+  
+              <View style={styles.progressPanel}>
+                <Text testID="tars-boot-phase" style={styles.progressLabel}>
+                  {phase < 3 ? 'INITIALISING' : 'INTERFACE INITIALISED'}
+                </Text>
+                <View style={styles.progressTrack}>
+                  <Animated.View
+                    testID="tars-boot-progress"
+                    style={[styles.progressFill, {width: progressWidth}]}
+                  />
+                  <View style={styles.progressSegments}>
+                    {Array.from({length: 13}).map((_, index) => (
+                      <View key={index} style={styles.progressDivider} />
                     ))}
                   </View>
                 </View>
-                <View style={styles.readoutColumn}>
-                  <Text style={styles.terminalText}>LOCAL CORE</Text>
-                  <Text style={styles.terminalValue}>STANDBY</Text>
-                  <Text style={styles.terminalText}>VOICE SYSTEM</Text>
-                  <Text style={styles.terminalValue}>STANDBY</Text>
-                  <Text style={styles.terminalText}>MEMORY CHECK</Text>
-                  <Text style={styles.terminalValue}>NOMINAL</Text>
-                </View>
               </View>
-              <Animated.View
-                pointerEvents="none"
-                style={[
-                  styles.scanline,
-                  {
-                    transform: [
-                      {
-                        translateY: scan.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, 175],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              />
-            </View>
-
-            <View style={styles.middleModules}>
-              <MetalPanel style={styles.module} dark />
-              <MetalPanel style={styles.module} />
-            </View>
-
-            <View style={styles.identityPanel}>
-              <Text style={styles.brand} numberOfLines={1}>
-                TARS AI
-              </Text>
-              <View style={styles.brandUnderline} />
-            </View>
-
-            <View style={styles.progressPanel}>
-              <Text testID="tars-boot-phase" style={styles.progressLabel}>
-                {phase < 3 ? 'INITIALISING' : 'INTERFACE INITIALISED'}
-              </Text>
-              <View style={styles.progressTrack}>
-                <Animated.View
-                  testID="tars-boot-progress"
-                  style={[styles.progressFill, {width: progressWidth}]}
-                />
-                <View style={styles.progressSegments}>
-                  {Array.from({length: 13}).map((_, index) => (
-                    <View key={index} style={styles.progressDivider} />
-                  ))}
-                </View>
+  
+              <View style={styles.bottomModules}>
+                <MetalPanel style={styles.module} />
+                <MetalPanel style={styles.module} dark />
               </View>
             </View>
-
-            <View style={styles.bottomModules}>
-              <MetalPanel style={styles.module} />
-              <MetalPanel style={styles.module} dark />
+  
+            <View style={styles.outerRail}>
+              <MetalPanel style={styles.railUpper} />
+              <MetalPanel style={styles.railJoint} dark />
+              <MetalPanel style={styles.railLower} />
             </View>
-          </View>
-
-          <View style={styles.outerRail}>
-            <MetalPanel style={styles.railUpper} />
-            <MetalPanel style={styles.railJoint} dark />
-            <MetalPanel style={styles.railLower} />
-          </View>
-        </Animated.View>
+          </Animated.View>
         )}
       </Pressable>
     );
