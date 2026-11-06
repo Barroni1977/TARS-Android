@@ -79,10 +79,8 @@
     "useHfTokenDescription": "Włącz obsługę tokenu w żądaniach API. Wyłącz tę opcję, jeśli token powoduje problemy z uwierzytelnianiem.",
     "cacheStorageTitle": "Pamięć podręczna i Pamięć masowa",
     "clearPalCaches": "Wyczyść Pamięć Podręczną Skrótów",
-    "clearPalCachesDescription": "Usuwa dane z pamięci podręcznej służące do przyspieszenia działania Skrótów. Nie wpłynie to na Twoich Kumpli ani historię czatu.",
     "clearCachesButton": "Wyczyść Pamięć Podręczną",
     "clearCachesConfirmTitle": "Wyczyścić Pamięć Podręczną Skrótów?",
-    "clearCachesConfirmMessage": "Spowoduje to wyczyszczenie wszystkich danych sesji zapisanych w pamięci podręcznej ({{fileCount}} plików, {{size}}). Po wyczyszczeniu pamięci podręcznej Skróty mogą działać wolniej przy pierwszym użyciu. Nie wpłynie to na Twoich Kumpli ani historię czatu.",
     "clearCachesSuccess": "Pomyślnie usunięto {{count}} plików z pamięci podręcznej.",
     "clearCachesError": "Nie udało się wyczyścić pamięci podręcznej. Spróbuj ponownie.",
     "noCachesToClear": "Nie ma pamięci podręcznej do wyczyszczenia.",
@@ -169,7 +167,6 @@
     "languageSearchPlaceholder": "Wyszukaj języki",
     "internetSearch": {
       "title": "Wyszukiwanie w internecie",
-      "description": "Pozwól Kumplom przeszukiwać internet za pomocą własnych narzędzi. Użyj własnego klucza API — TARS-AI nigdy nie przechowuje Twoich kluczy ani nie przekazuje Twoich zapytań.",
       "providerLabel": "Dostawca wyszukiwania",
       "providerGated": "Wkrótce",
       "keyLabel": "Klucz API",
@@ -185,7 +182,6 @@
       "resultCountLabel": "Liczba wyników na wyszukiwanie",
       "resultCountDescription": "Mniej wyników zostawia więcej miejsca w kontekście modelu.",
       "consentTitle": "Wyszukiwania opuszczają Twoje urządzenie",
-      "consentDescription": "Gdy Kumpel przeszukuje internet, Twoje zapytanie jest wysyłane przez internet do wybranego dostawcy. Gdy Kumpel odczytuje stronę, jej adres URL i zawartość mogą zostać wysłane do domyślnej usługi odczytu (r.jina.ai), jeśli wybrany dostawca nie ma własnego mechanizmu odczytu. Klucze i zapytania nigdy nie są wysyłane do TARS-AI.",
       "consentAccept": "Rozumiem",
       "consentRequired": "Zaakceptuj powyższą informację, aby ustawić klucz i włączyć wyszukiwanie.",
       "consentGivenTitle": "Wyszukiwanie w internecie jest włączone",
@@ -688,7 +684,6 @@
         "title": "Sukces",
         "message": "Te ustawienia zostaną zastosowane do wszystkich przyszłych sesji"
       },
-      "palSettings": "Ustawienia Kumpla",
       "settingsSource": "Źródło Ustawień"
     },
     "palGenerationSettingsSheet": {
@@ -698,10 +693,8 @@
       "pleaseCorrect": "Proszę poprawić następujące elementy:",
       "ok": "OK",
       "error": "Błąd",
-      "failedToSave": "Nie udało się zapisać ustawień Kumpla",
       "resetToGlobal": "Przywróć Globalne Wartości Domyślne",
       "resetToSystem": "Przywróć Wartości Domyślne",
-      "clearPalSettings": "Wyczyść Ustawienia Kumpla",
       "customSettingsFor": "Ustawienia niestandardowe dla {{palName}}",
       "inheritedSettingsFor": "Ustawienia odziedziczone dla {{palName}}"
     },
@@ -713,15 +706,11 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "Modele",
-      "palsTab": "Kumple",
-      "noPal": "Brak Kumpli",
-      "disablePal": "Wyłącz aktywnego Kumpla",
       "noDescription": "Brak opisu",
       "assistantType": "Asystent",
       "roleplayType": "Odgrywanie ról",
       "videoType": "Wideo",
       "confirmationTitle": "Potwierdzenie",
-      "modelSwitchMessage": "Ten Kumpel ma inny model domyślny ({{modelName}}). Czy chcesz przełączyć się na model domyślny tego Kumpla?",
       "keepButton": "Zachowaj",
       "switchButton": "Przełącz"
     },
@@ -822,11 +811,7 @@
       "confirmReset": "Potwierdź Reset"
     },
     "palSheet": {
-      "title": {
-        "edit": "Edytuj Kumpla",
-        "newPal": "Nowy Kumpel",
-        "newVideoPal": "Nowy Kumpel Wideo"
-      },
+      "title": {},
       "talentNames": {
         "datetime": "Data i czas",
         "render_html": "Podgląd HTML",
@@ -850,14 +835,12 @@
       "greeting": {
         "sectionLabel": "Przywitanie",
         "textLabel": "Wiadomość powitalna",
-        "textPlaceholder": "Co ten kumpel powinien napisać na pustym czacie?",
         "suggestedPromptsLabel": "Proponowane prompty",
         "addPromptButton": "Dodaj prompt",
         "removePromptLabel": "Usuń prompt",
         "promptPlaceholder": "Krótki prompt dla chipu"
       },
       "description": "Opis",
-      "descriptionPlaceholder": "Wpisz krótki opis swojego kumpla",
       "parameters": "Parametry",
       "generationSettings": "Ustawienia Generowania",
       "configureGenerationSettings": "Skonfiguruj Ustawienia Generowania"
@@ -866,7 +849,6 @@
       "loading": "Ładowanie...",
       "activateModelButton": "Wybierz Model",
       "gettingReadyTitle": "{{name}} przygotowuje się",
-      "gettingReadyDescription": "Poinformujemy Cię, gdy tylko Twój kumpel będzie mógł rozpocząć czat. Kliknij baner u góry, aby sprawdzić, jak mu idzie.",
       "noModelsTitle": "Brak Dostępnych Modeli",
       "noModelsDescription": "Pobierz model, aby rozpocząć rozmowę w TARS-AI",
       "noModelsButton": "Pobierz Model",
@@ -885,7 +867,6 @@
       }
     },
     "modelNotAvailable": {
-      "defaultModelNotDownloaded": "Ten kumpel poleca konkretny model, który należy pobrać, ale można też wybrać inny model.",
       "modelNotDownloadedShort": "Model nie został pobrany",
       "recommendedModel": "Zalecany Model",
       "cancelDownload": "Anuluj pobieranie",
@@ -894,11 +875,7 @@
       "downloadAModel": "Pobierz model"
     },
     "roleplayPalSheet": {
-      "title": {
-        "create": "Stwórz Kumpla do Odgrywania ról",
-        "edit": "Edytuj Kumpla do Odgrywania ról"
-      },
-      "palName": "Nazwa Kumpla",
+      "title": {},
       "palNamePlaceholder": "Nazwa",
       "defaultModel": "Domyślny Model",
       "defaultModelPlaceholder": "Wybierz model",
@@ -924,12 +901,7 @@
       "create": "Utwórz"
     },
     "lookiePalSheet": {
-      "title": {
-        "create": "Utwórz Kumpla Lookie",
-        "edit": "Edytuj Kumpla Lookie"
-      },
-      "palName": "Nazwa Kumpla",
-      "palNamePlaceholder": "Wpisz nazwę dla swojego Kumpla Lookie",
+      "title": {},
       "visionModel": "Model Wizji",
       "visionModelPlaceholder": "Wybierz model wizji",
       "requiredModelsSection": "Wymagane Modele",
@@ -949,8 +921,7 @@
         "placeholder": "Wybierz model"
       },
       "generatingPrompt": {
-        "label": "Cel i Kontekst",
-        "placeholder": "Opisz rolę, przeznaczenie lub scenariusz dla tego kumpla..."
+        "label": "Cel i Kontekst"
       },
       "buttons": {
         "loadingModel": "Ładowanie modelu...",
@@ -973,7 +944,6 @@
       "menuItems": {
         "chat": "Czat",
         "models": "Modele",
-        "pals": "Kumple",
         "benchmark": "Benchmark",
         "settings": "Ustawienia",
         "appInfo": "Informacje o Aplikacji",
@@ -1030,23 +1000,14 @@
         "reportContent": "Zgłoś Zawartość"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Eksportuj wszystkich kumpli",
-      "importPals": "Importuj kumpli",
-      "importSuccess": "Pomyślnie zaimportowano {{count}} kumpla(i).",
-      "importError": "Nie udało się zaimportować kumpli. Sprawdź format pliku."
-    },
+    "palHeaderRight": {},
     "assistantPalSheet": {
       "validation": {
         "generatingPromptRequired": "Prompt generowania jest wymagany",
         "promptModelRequired": "Model generowania promptów jest wymagany"
       },
       "create": "Utwórz",
-      "title": {
-        "create": "Stwórz Kumpla Asystenta",
-        "edit": "Edytuj Kumpla Asystenta"
-      },
-      "palName": "Nazwa Kumpla",
+      "title": {},
       "palNamePlaceholder": "Nazwa",
       "defaultModel": "Domyślny Model",
       "defaultModelPlaceholder": "Wybierz model"
@@ -1073,26 +1034,18 @@
     "assistant": "Asystent",
     "roleplay": "Odgrywanie ról",
     "video": "Wideo",
-    "deletePal": "Usuń Kumpla",
-    "deletePalMessage": "Czy jesteś pewien że chcesz usunąć tego Kumpla?",
     "missingModel": "Brakujący Model",
-    "missingModelMessage": "Domyślny model \"{{modelName}}\" dla tego Kumpla nie jest dostępny. Pobierz go w arkuszu edycji lub wybierz inny model.",
     "search": "Szukaj",
-    "profile": "Profil",
     "signIn": "Zaloguj Się",
-    "addPal": "Dodaj Kumpla",
     "signInToAccessLibrary": "Zaloguj się, aby uzyskać dostęp do swojej biblioteki na stronie palshub.ai",
     "signOut": "Wyloguj Się",
     "signOutConfirmation": "Czy na pewno chcesz się wylogować?",
     "signOutError": "Nie udało się wylogować. Spróbuj ponownie.",
     "account": "Konto",
     "signInToPalsHub": "Zaloguj Się do Serwisu PalsHub",
-    "signInDescription": "Uzyskaj dostęp do swojej biblioteki, twórz prywatnych Kumpli i synchronizuj dane między urządzeniami",
-    "searchAllPals": "Szukaj wśród Kumpli...",
     "deletePalConfirmation": "Czy na pewno chcesz usunąć \"{{palName}}\"?",
     "filters": {
       "all": "Wszystko",
-      "myPals": "Moi Kumple",
       "local": "Lokalne",
       "video": "Wideo",
       "free": "Darmowe",
@@ -1124,14 +1077,10 @@
       "systemPrompt": "Prompt Systemowy",
       "downloaded": "Pobrane",
       "success": "Sukces",
-      "palAddedToCollection": "Kumpel został dodany do twojej kolekcji!",
       "error": "Błąd",
-      "failedToLoadDetails": "Nie udało się załadować szczegółów Kumpla",
-      "failedToDownload": "Nie udało się pobrać Kumpla",
       "notAvailable": "nie dot."
     },
     "sectionTitles": {
-      "myPalsLocal": "Moi Kumple (lokalni)",
       "myLibrary": "Moja Biblioteka (palshub.ai)",
       "discoverPals": "Odkryj Kumpli (palshub.ai)"
     },
@@ -1147,16 +1096,13 @@
       "unlocking": "Odblokowywanie",
       "retry": "Ponów",
       "supportCode": "Kod pomocy technicznej: {{code}}",
-      "noLongerAvailable": "Ten Kumpel nie jest już dostępny. Możesz {{refundLink}}.",
       "refundLink": "poprosić Apple o zwrot pieniędzy",
       "notCompleted": "Nie udało się zrealizować tego zakupu. Google zwróci Ci pieniądze.",
-      "withdrawnRefunding": "Ten Kumpel został wycofany. Skontaktuj się z pomocą techniczną, aby otrzymać zwrot pieniędzy.",
       "invalid": "Nie udało się zweryfikować tego zakupu.",
       "heldInvalid": "Nie udało się odblokować tego zakupu. Skontaktuj się z pomocą techniczną, podając ten kod.",
       "recommendedModel": "Zalecany model",
       "sampleExchange": "Przykładowa rozmowa",
       "signInLine": "Masz go już? Zaloguj się",
-      "licenseNotice": "Kupujesz licencję na korzystanie z tego Kumpla.",
       "termsOfSale": "Warunki sprzedaży",
       "appleMediaTerms": "Warunki dotyczące usług multimedialnych Apple",
       "linkPrompt": "Zaloguj się, aby korzystać z niego także na innych urządzeniach",
@@ -1175,9 +1121,7 @@
       "updateCancel": "Anuluj",
       "modelStep": {
         "download": "Pobierz · {{size}}",
-        "startChat": "Rozpocznij czat",
-        "needsMemory": "Najmniejszy model tego Kumpla wymaga urządzenia z co najmniej {{size}} pamięci.",
-        "noModelFits": "To urządzenie nie ma wystarczającej ilości pamięci dla tego Kumpla."
+        "startChat": "Rozpocznij czat"
       }
     }
   },
@@ -1227,8 +1171,7 @@
       "howToUse": "Sposób użycia:",
       "step1": "• Edytuj prompt (opcjonalnie) aby ukierunkować analizę",
       "step2": "• Naciśnij przycisk aparatu, aby rozpocząć analizę wideo na żywo",
-      "step3": "• Dostosuj częstotliwość tworzenia migawek, gdy kamera jest włączona",
-      "step4": "• Przejdź do innego kumpla, aby prowadzić zwykły czat tekstowy"
+      "step3": "• Dostosuj częstotliwość tworzenia migawek, gdy kamera jest włączona"
     }
   },
   "benchmark": {
@@ -1242,7 +1185,6 @@
       },
       "advancedSettings": {
         "title": "Ustawienia Zaawansowane",
-        "testProfile": "Profil Testowy",
         "customParameters": "Niestandardowe Parametry",
         "description": "Dostosuj parametry testu porównawczego do konkretnych scenariuszy testowych."
       },
@@ -1471,30 +1413,8 @@
     "engineTierNatural": "naturalny angielski"
   },
   "onboarding": {
-    "screen5": {
-      "topicDescription": {
-        "coding": "Pisz kod, debuguj, wyjaśniaj",
-        "education": "Ucz się, wyjaśniaj, sprawdzaj wiedzę",
-        "roleplay": "Postacie, scenariusze",
-        "creative_writing": "Opowiadania, pomysły, szkice",
-        "else": "Przejrzyj wszystkich Kumpli później w aplikacji",
-        "smartchat": "Przyjazny towarzysz na co dzień"
-      },
-      "body": "Wybierz temat, o którym chcesz porozmawiać – dobierzemy Ci kumpla, który będzie pasował do Twojego telefonu.",
-      "topic": {
-        "smartchat": "Inteligentny Czat",
-        "coding": "Programowanie",
-        "education": "Edukacja",
-        "roleplay": "Odgrywanie ról",
-        "creative_writing": "Pisanie Twórcze",
-        "else": "Szukasz czegoś innego?"
-      },
-      "title": "Do czego służy twój kumpel?"
-    },
+    "screen5": {},
     "screen6": {
-      "cta": "Pobierz {{name}}",
-      "ctaTemplate": "Pobierz {{name}} ({{size}})",
-      "useTemplate": "Użyj {{name}}",
       "deviceRamSuffix": "GB RAM",
       "deviceFreeSuffix": "GB wolnych",
       "recommended": "Zalecane",
@@ -1503,24 +1423,6 @@
         "quick": "Szybki",
         "balanced": "Zrównoważony",
         "best": "Najlepszy"
-      },
-      "subtitleTemplate": "{{name}} myśli za pomocą niewielkiego modelu sztucznej inteligencji na telefonie – wybierz taki, który Ci odpowiada.",
-      "pal": {
-        "pip": {
-          "body": "Znaleźliśmy dla Ciebie idealnego kumpla - przyjaznego towarzysza na co dzień. Wystarczająco inteligentny, by poradzić sobie z większością zadań, i wystarczająco lekki, by pasować do każdego telefonu."
-        },
-        "codie": {
-          "body": "Poznaj Codie — Twojego lokalnego partnera do programowania. Czyta kod, pisze kod i wyjaśnia skomplikowane fragmenty, nie opuszczając przy tym nigdy Twojego telefonu."
-        },
-        "sage": {
-          "body": "Sage jest cierpliwy, ciekawy świata i krok po kroku wyjaśnia różne pomysły. To taki kolega do nauki, którego zawsze masz pod ręką."
-        },
-        "echo": {
-          "body": "Echo to wszechstronny towarzysz w grach fabularnych — pozostaje w charakterze swojej postaci, maluje sceny i podąża za Tobą, dokądkolwiek zaprowadzi cię Twoja historia."
-        },
-        "muse": {
-          "body": "Muse pomaga w pisaniu. Sugeruje sformułowania, nadaje tekstowi rytm i pozwala zachować odpowiedni ton."
-        }
       }
     },
     "back": "Wróć",
@@ -1528,37 +1430,6 @@
     "skipForNow": "Na razie pomiń",
     "splash": {
       "brand": "TARS-AI"
-    },
-    "screen1": {
-      "title": "Poznaj swoich kumpli.",
-      "titleAccent": "kumple.",
-      "body": "Sprytni mali przyjaciele, którzy mieszkają w Twoim telefonie.\nZacznijmy konfigurację – to zajmie tylko chwilę.",
-      "cta": "Oprowadź mnie",
-      "eyebrow": "Witaj w TARS-AI"
-    },
-    "screen3": {
-      "cta": "Rozumiem",
-      "eyebrow": "Uwaga",
-      "title": "Mniejszy,\nale za to Twój.",
-      "titleAccent": "Mniejszy,",
-      "body": "Kumple na Twoim telefonie działają szybko i zapewniają prywatność – ale są mniej rozbudowani niż sztuczna inteligencja w chmurze. Pomyśl o nich raczej jak o kieszonkowych towarzyszach, a nie wszechwiedzących wyroczniach.",
-      "highlight": "szybko i dyskretnie"
-    },
-    "screen4": {
-      "title": "Żadne dane nie opuszczają Twojego telefonu.",
-      "titleAccent": "opuszcza",
-      "body": "Żadnych kont. Żadnej chmury. Żadnego śledzenia. Twoje rozmowy pozostają wyłącznie Twoje.",
-      "highlight": "Żadnych kont. Żadnej chmury. Żadnego śledzenia.",
-      "eyebrow": "Gwarancja prywatności",
-      "cta": "Zaczynajmy"
-    },
-    "screen2": {
-      "title": "Kiedy chcesz,\nGdzie chcesz.",
-      "body": "Twoi Kumple żyją w Twoim telefonie.\nBez internetu, bez zasięgu – działają w samolotach, poza siecią, w odległych wioskach.",
-      "highlight": "Bez internetu, bez sieci",
-      "cta": "Następny",
-      "eyebrow": "Pomysł",
-      "titleAccent": "Kiedy tylko zechcesz,"
     }
   },
   "memory": {
@@ -1590,7 +1461,6 @@
   "screenTitles": {
     "chat": "Czat",
     "models": "Modele",
-    "pals": "Kumple (w fazie testów)",
     "benchmark": "Benchmark",
     "settings": "Ustawienia",
     "appInfo": "Informacje o Aplikacji",
@@ -1638,7 +1508,6 @@
     "increaseContextReloading": "Przeładowywanie modelu z uwzględnieniem szerszego kontekstu…",
     "increaseContextSuccess": "Kontekst został zwiększony do {{target}} tokenów.",
     "increaseContextFailure": "Nie udało się zwiększyć rozmiaru kontekstu. Przywrócono poprzednie ustawienie.",
-    "palLoadHint": "Ten kumpel zazwyczaj wymaga więcej miejsca, niż pozwala na to obecny rozmiar kontekstu.",
     "generatingPreview": "Generowanie podglądu… ({{tokens}} tokenów)",
     "generatingPreviewPending": "Generowanie podglądu…",
     "toolUsedChip": "użyto {{name}}",
