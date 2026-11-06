@@ -95,7 +95,9 @@ labels and safe-area insets. Never encode state with colour alone.
 
 ### 07 / Launch and Icon
 
-- Existing 3.3 s React Native boot animation remains.
+- React Native boot is a 2.5 s decorative animation; it does not assert model readiness.
+- The command deck has a short entrance animation and a loading-only status pulse.
+- Respect Android Reduce Motion; static visuals remain fully readable.
 - Android's initial native frame remains static black by design.
 - Adaptive icon: original alloy/amber emblem with safe inset; planned
   raster launcher replacements remain separate until approved artwork
