@@ -1,0 +1,59 @@
+name: TARS-AI Branding Audit (No APK)
+
+on:
+  push:
+    branches:
+      - feature/tars-onboarding-debrand-no-build
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-tars-branding:
+    name: Brand, L10n, ESLint, TypeScript and Jest (No APK)
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      RNLLAMA_SKIP_POSTINSTALL: '1'
+      NODE_OPTIONS: '--max-old-space-size=6144'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.21.0'
+          cache: yarn
+
+      - name: Install Yarn
+        run: npm install -g yarn@1.22.22
+
+      - name: Install JavaScript dependencies only
+        run: yarn install --frozen-lockfile
+
+      - name: Five-pass TARS branding audit
+        run: node scripts/audit-tars-branding.js
+
+      - name: Validate localisations
+        run: node scripts/validate-l10n.js
+
+      - name: Verify font resources
+        run: node scripts/verify-fonts.js
+
+      - name: ESLint and Prettier
+        run: yarn lint
+
+      - name: TypeScript type check
+        run: yarn typecheck
+
+      - name: Unit tests (no native build)
+        run: yarn test --runInBand
+
+      - name: Audit legacy asset usage in source
+        if: always()
+        run: |
+          echo "Legacy static assets referenced by active source:"
+          grep -REn "pocketpal-dark-v2|screen-3-cards|splash-mark|PocketPal-512x512" src --include='*.js' --include='*.ts' --include='*.tsx' || true
+          echo "The above findings are an inspection report, not an instruction to delete runtime imports."
