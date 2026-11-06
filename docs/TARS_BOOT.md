@@ -1,5 +1,44 @@
 # TARS-AI — Full-screen animated boot
 
+## Exact approved artwork integration — 2026-11-06 (no build)
+
+**Artwork policy:** Preserve the exact approved portrait image. Do not regenerate,
+redraw, relabel, crop or recolour the metal panels, text or amber TARS AI logo.
+The image is 941 × 1672 pixels, SHA-256:
+`20354469f090bd470c0a37cf947ee527e3e7b6d689573ed5a7bef9823737877b`.
+
+This branch provides an Android drawable-based **image-backed boot** plus
+a separate animated overlay in `src/components/TarsApprovedArtOverlay.tsx`.
+The aspect ratio is preserved and the image is fully contained on the screen.
+
+To finish this integration, **upload the original, unmodified binary image** to:
+
+`android/app/src/prod/res/drawable-nodpi/tars_boot_approved.png`
+
+That file is not included in this source-only commit, because the available
+GitHub code-writing connection cannot transfer the original image bytes.
+The reserved folder already exists. Until the image is uploaded, Android
+automatically falls back to the previously implemented boot artwork.
+
+### Precisely positioned animations
+
+- Green display: a moving, subtle scanline across the existing diagnostics,
+  and a 10-bar oscillating waveform in the exact original waveform area.
+- Initialising: an independent 16-cell progress bar empties and refills over
+  the image's existing progress-track area, leaving the green outline intact.
+- All other artwork is drawn from the original bitmap, not reconstructed.
+- Both animations respect Android Reduce Motion and do not simulate model
+  readiness. The image's decorative text is not a live telemetry report.
+- The existing tap-to-skip control and 2.5-second startup remain unchanged.
+
+### Validation and change policy
+
+No CI/APK build is triggered from this standalone branch; the workflow runs
+on pull requests to `main` or pushes to `main`, neither of which we performed.
+Do not open a pull request or trigger a build until the user says **build**.
+After bundling the bitmap, verify the full composition and overlay alignment
+on the user's Galaxy S26 Ultra; the proportions have not yet been device-tested.
+
 ## Updated 2026-11-06
 
 This standalone work branch **does not start any GitHub Actions build** and
