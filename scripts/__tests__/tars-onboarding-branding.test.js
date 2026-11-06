@@ -7,7 +7,7 @@ const read = relative =>
 describe('TARS-AI first-run onboarding debrand', () => {
   const onboarding = require('../../src/locales/en.json').onboarding;
 
-  it('does not show the previous PocketPal introduction or unrealistic privacy promises', () => {
+  it('replaces old welcome copy and unrealistic privacy promises', () => {
     const introductoryScreens = [
       onboarding.screen1,
       onboarding.screen2,
@@ -19,12 +19,14 @@ describe('TARS-AI first-run onboarding debrand', () => {
       .join(' ');
 
     expect(visibleCopy).toContain('TARS-AI');
-    expect(visibleCopy).not.toMatch(/pocketpal|meet your pals|your pals|no tracking|no accounts|nothing leaves your phone/i);
+    expect(visibleCopy).not.toMatch(
+      /pocketpal|meet your pals|your pals|no tracking|no accounts|nothing leaves your phone/i,
+    );
     expect(onboarding.screen4.body).toMatch(/optional online tools/i);
     expect(onboarding.screen2.body).toMatch(/after downloading a model/i);
   });
 
-  it('routes all four intro steps through the TARS artwork, never the old cartoons', () => {
+  it('routes the four intro screens through TARS artwork', () => {
     for (let i = 1; i <= 4; i++) {
       const filename =
         i < 3
