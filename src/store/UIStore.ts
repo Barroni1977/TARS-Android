@@ -1,5 +1,3 @@
-import {Appearance} from 'react-native';
-
 import {makePersistable} from 'mobx-persist-store';
 import {makeAutoObservable, runInAction} from 'mobx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -35,8 +33,8 @@ export class UIStore {
   autoNavigatetoChat = true;
 
   //colorScheme = useColorScheme();
-  colorScheme: 'light' | 'dark' =
-    Appearance.getColorScheme() === 'dark' ? 'dark' : 'light';
+  // Dark is the default for a fresh TARS install; persisted user selection wins.
+  colorScheme: 'light' | 'dark' = 'dark';
 
   // Current selected language (default to English)
   _language: AvailableLanguage = 'en';

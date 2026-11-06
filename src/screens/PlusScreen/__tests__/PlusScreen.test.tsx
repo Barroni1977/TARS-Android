@@ -140,7 +140,7 @@ describe('PlusScreen', () => {
       expect(getByText('Push local AI further.')).toBeTruthy();
       expect(
         getByText(
-          'Plus keeps PocketPal free and open source. The extra features are our thanks.',
+          'Upstream Plus supports the original open-source project. Extra features are provided by that project.',
         ),
       ).toBeTruthy();
       expect(getByTestId('plus-feature-handsFreeVoice')).toHaveTextContent(
@@ -355,7 +355,9 @@ describe('PlusScreen', () => {
     const {getByTestId, getByText, queryByTestId, onClose, UNSAFE_root} =
       renderScreen();
 
-    expect(getByText('Thank you for keeping PocketPal going.')).toBeTruthy();
+    expect(
+      getByText('Thank you for supporting the original project.'),
+    ).toBeTruthy();
     expect(getByText('Plus is unlocked on this device.')).toBeTruthy();
     const hearts = UNSAFE_root.findAll(
       node => (node.type as string) === 'HeartIcon',
@@ -511,7 +513,7 @@ describe('PlusScreen', () => {
       );
       expect(
         getByText(
-          "Plus features don't run on this phone yet. You can still support PocketPal.",
+          "Plus features don't run on this phone yet. You can still support the original project.",
         ),
       ).toBeTruthy();
     });
@@ -645,7 +647,7 @@ describe('PlusScreen', () => {
       fireEvent.press(getByTestId('plus-open-source'));
 
       expect(openURL).toHaveBeenCalledWith(REPO_URL);
-      expect(REPO_URL).toBe('https://github.com/a-ghorbani/pocketpal-ai');
+      expect(REPO_URL).toBe('https://github.com/Barroni1977/TARS-Android');
     });
 
     it('says when no Plus purchase was found', async () => {

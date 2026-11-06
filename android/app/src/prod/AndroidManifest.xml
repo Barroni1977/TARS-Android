@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Only the independently installable prod preview is given this icon.
+         The source generator's upstream shared icons remain unmodified. -->
+    <application
+        android:icon="@mipmap/tars_launcher"
+        android:roundIcon="@mipmap/tars_launcher_round"
+        tools:replace="android:icon,android:roundIcon" />
+</manifest>

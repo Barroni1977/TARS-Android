@@ -8,6 +8,43 @@ export const createStyles = (theme: MD3Theme) =>
       flex: 1,
       backgroundColor: theme.colors.surface,
     },
+    brandHeader: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      marginHorizontal: 14,
+      marginTop: 12,
+      marginBottom: 15,
+      padding: 10,
+      backgroundColor: theme.dark ? '#11171B' : theme.colors.surface,
+      borderWidth: 1,
+      borderColor: theme.dark ? '#354247' : theme.colors.outline,
+      borderRadius: 5,
+    },
+    brandNameStack: {
+      flex: 1,
+      gap: 3,
+    },
+    brandTitle: {
+      color: theme.dark ? '#F4AF5E' : theme.colors.primary,
+      fontWeight: '900',
+      fontSize: 21,
+      letterSpacing: 2,
+    },
+    brandSubtitle: {
+      color: theme.dark ? '#A6B3B6' : theme.colors.onSurfaceVariant,
+      fontFamily: 'monospace',
+      fontSize: 9,
+      letterSpacing: 0.5,
+    },
+    brandRule: {
+      height: 2,
+      backgroundColor: theme.dark ? '#F4AF5E' : theme.colors.primary,
+      marginHorizontal: 18,
+      opacity: 0.75,
+      marginBottom: 10,
+    },
+
     divider: {
       marginHorizontal: 16,
       backgroundColor: theme.colors.onSurfaceVariant,
