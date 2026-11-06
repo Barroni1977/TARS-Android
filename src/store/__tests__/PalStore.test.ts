@@ -169,7 +169,7 @@ describe('PalStore', () => {
       await new Promise(resolve => setTimeout(resolve, 100));
 
       const lookieCall = (palRepository.createPal as jest.Mock).mock.calls.find(
-        call => call[0]?.name === 'Lookie',
+        call => call[0]?.name === 'TARS / VISION',
       );
 
       expect(lookieCall).toBeDefined();
@@ -182,7 +182,7 @@ describe('PalStore', () => {
       const existingLookie: Pal = {
         ...mockPal,
         id: 'existing-lookie',
-        name: 'Lookie',
+        name: 'TARS / VISION',
         capabilities: {video: true},
       } as Pal;
       (palRepository.getAllPals as jest.Mock).mockResolvedValue([
@@ -195,7 +195,7 @@ describe('PalStore', () => {
 
       const lookieCreate = (
         palRepository.createPal as jest.Mock
-      ).mock.calls.find(call => call[0]?.name === 'Lookie');
+      ).mock.calls.find(call => call[0]?.name === 'TARS / VISION');
       expect(lookieCreate).toBeUndefined();
       expect(resolveHFModelForDownload).not.toHaveBeenCalled();
     });
@@ -276,7 +276,7 @@ describe('PalStore', () => {
       const lookie: Pal = {
         ...mockPal,
         id: 'lookie-1',
-        name: 'Lookie',
+        name: 'TARS / VISION',
         source: 'local',
         type: 'local',
         capabilities: {video: true},
@@ -289,12 +289,12 @@ describe('PalStore', () => {
       await callInitializePipPal();
 
       const names = palStore.pals.map(p => p.name).sort();
-      expect(names).toEqual(['Lookie', 'TARS']);
+      expect(names).toEqual(['TARS', 'TARS / VISION']);
     });
   });
 
   describe.each([
-    ['Lookie', 'initializeLookiePal'],
+    ['TARS / VISION', 'initializeLookiePal'],
     ['TARS', 'initializePipPal'],
   ])('%s seed persistence', (name, initializer) => {
     const seed = () => (palStore as any)[initializer]();
