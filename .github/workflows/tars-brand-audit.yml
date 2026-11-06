@@ -33,6 +33,11 @@ jobs:
       - name: Install JavaScript dependencies only
         run: yarn install --frozen-lockfile
 
+      - name: Prettier reference output for onboarding review (no Git writes)
+        run: |
+          yarn prettier --write scripts/audit-tars-branding.js scripts/__tests__/tars-onboarding-branding.test.js src/screens/OnboardingScreens/components/TarsOnboardingHero.tsx src/screens/OnboardingScreens/components/TopicChipGrid/TopicChipGrid.tsx
+          node -e 'const fs=require("fs");for(const p of ["scripts/audit-tars-branding.js","scripts/__tests__/tars-onboarding-branding.test.js","src/screens/OnboardingScreens/components/TarsOnboardingHero.tsx","src/screens/OnboardingScreens/components/TopicChipGrid/TopicChipGrid.tsx"]){console.log("TARS_FMT "+p+" "+JSON.stringify(fs.readFileSync(p,"utf8")));}'
+
       - name: Five-pass TARS branding audit
         run: node scripts/audit-tars-branding.js
 
