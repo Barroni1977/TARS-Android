@@ -35,8 +35,25 @@ pass('1 / Copy', !/pocketpal|meet your pals|nothing leaves your phone|no trackin
   'first-run screens contain no old marketing or unconditional privacy guarantees');
 pass('1 / Copy', /after downloading a model/i.test(en.onboarding.screen2.body),
   'offline operation correctly requires a downloaded model');
-pass('1 / Copy', !/\bpal(s)?\b/i.test(JSON.stringify(en).replace(/PalsHub/gi, '')),
-  'English interface has no generic pal/pals labels');
+// Examine translated user-visible VALUES, not JSON schema keys such as
+// onboarding.screen6.pal or palSheet, which are compatibility identifiers.
+const visibleStrings = obj => {
+  if (typeof obj === 'string') return [obj];
+  if (!obj || typeof obj !== 'object') return [];
+  return Object.values(obj).flatMap(visibleStrings);
+};
+const visibleEnglish = visibleStrings(en).map(x => x.replace(/PalsHub/gi, '')).join(' ');
+pass('1 / Copy', !/\\bpal(s)?\\b/i.test(visibleEnglish),
+  'English interface values contain no generic pal/pals copy');
+for (const lang of [
+  'ar', 'es', 'fa', 'he', 'id', 'ja', 'ko', 'ms', 'pl', 'pt',
+  'pt_BR', 'ru', 'uk', 'zh', 'zh_Hant', 'de',
+]) {
+  const translated = JSON.parse(read(`src/locales/${lang}.json`));
+  pass('1 / Locales', [1, 2, 3, 4].every(i =>
+    !Object.prototype.hasOwnProperty.call(translated.onboarding || {}, `screen${i}`)),
+  `${lang} uses updated TARS introduction instead of stale PocketPal translations`);
+}
 
 // PASS 2: screen components, startup, navigation and model picker
 for (const n of [1, 2, 3, 4]) {
