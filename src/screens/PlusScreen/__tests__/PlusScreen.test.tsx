@@ -355,7 +355,9 @@ describe('PlusScreen', () => {
     const {getByTestId, getByText, queryByTestId, onClose, UNSAFE_root} =
       renderScreen();
 
-    expect(getByText('Thank you for supporting the original project.')).toBeTruthy();
+    expect(
+      getByText('Thank you for supporting the original project.'),
+    ).toBeTruthy();
     expect(getByText('Plus is unlocked on this device.')).toBeTruthy();
     const hearts = UNSAFE_root.findAll(
       node => (node.type as string) === 'HeartIcon',
