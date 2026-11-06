@@ -150,6 +150,7 @@ const App = observer(() => {
   return (
     <GestureHandlerRootView style={styles.root}>
       <StatusBar
+        hidden={showTarsBoot}
         barStyle={showTarsBoot || theme.dark ? 'light-content' : 'dark-content'}
       />
       {__E2E__ ? <AutomationBridge /> : null}
@@ -293,7 +294,9 @@ const App = observer(() => {
           </PaperProvider>
         </KeyboardProvider>
       </SafeAreaProvider>
-      {showTarsBoot ? <TarsBootScreen /> : null}
+      {showTarsBoot ? (
+        <TarsBootScreen onSkip={() => setShowTarsBoot(false)} />
+      ) : null}
     </GestureHandlerRootView>
   );
 });
