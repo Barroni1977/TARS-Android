@@ -819,7 +819,9 @@ class PalStore {
 
       // Check if Lookie already exists
       const lookiePal = this.pals.find(
-        p => p.capabilities?.video === true && p.name === 'TARS / VISION',
+        p =>
+          p.capabilities?.video === true &&
+          (p.name === 'TARS / VISION' || p.name === 'Lookie'),
       );
 
       if (!lookiePal) {
@@ -951,7 +953,8 @@ class PalStore {
       }
 
       const existing = this.pals.find(
-        p => p.name === 'TARS' && p.source === 'local',
+        p =>
+          (p.name === 'TARS' || p.name === 'Pip') && p.source === 'local',
       );
       if (existing) {
         await AsyncStorage.setItem(PIP_SEEDED_KEY, 'true');
