@@ -122,20 +122,39 @@ describe('status bar', () => {
     (useTheme as jest.Mock).mockReturnValue(themeFixtures.lightTheme);
   });
 
-  it('shows dark icons over the light theme', () => {
+  it('hides the system status bar during the TARS boot sequence', () => {
     const result = render(<App />);
 
     expect(result.UNSAFE_getByType(StatusBar).props).toMatchObject({
+      hidden: true,
+      barStyle: 'light-content',
+    });
+  });
+
+  it('shows dark icons over the light theme after boot finishes', () => {
+    const result = render(<App />);
+
+    act(() => {
+      jest.advanceTimersByTime(2500);
+    });
+
+    expect(result.UNSAFE_getByType(StatusBar).props).toMatchObject({
+      hidden: false,
       barStyle: 'dark-content',
     });
   });
 
-  it('shows light icons over the dark theme', () => {
+  it('shows light icons over the dark theme after boot finishes', () => {
     (useTheme as jest.Mock).mockReturnValue(themeFixtures.darkTheme);
 
     const result = render(<App />);
 
+    act(() => {
+      jest.advanceTimersByTime(2500);
+    });
+
     expect(result.UNSAFE_getByType(StatusBar).props).toMatchObject({
+      hidden: false,
       barStyle: 'light-content',
     });
   });
