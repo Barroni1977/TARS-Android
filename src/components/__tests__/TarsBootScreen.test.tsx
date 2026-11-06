@@ -40,6 +40,39 @@ describe('TarsBootScreen', () => {
     screen.unmount();
   });
 
+  it('animates the approved art in place when the native Android asset loads', () => {
+    const screen = render(<TarsBootScreen />);
+    const originalArtwork = screen.queryByTestId('tars-boot-approved-artwork');
+
+    // Android reads drawable-nodpi/tars_boot_approved.png by resource name.
+    // Other platforms retain the working native-view startup fallback.
+    if (originalArtwork) {
+      act(() => {
+        fireEvent(originalArtwork, 'load');
+      });
+
+      expect(screen.getByTestId('tars-approved-waveform')).toBeTruthy();
+      expect(screen.getByTestId('tars-approved-progress')).toBeTruthy();
+      expect(screen.getByTestId('tars-approved-progress-fill')).toBeTruthy();
+      expect(screen.getByTestId('tars-approved-wave-9')).toBeTruthy();
+      // The original art still provides all text and metal framing.
+      expect(screen.queryByTestId('tars-boot-progress')).toBeNull();
+    }
+    screen.unmount();
+  });
+
+  it('falls back to the prior animated screen if the Android art is missing', () => {
+    const screen = render(<TarsBootScreen />);
+    const originalArtwork = screen.queryByTestId('tars-boot-approved-artwork');
+    if (originalArtwork) {
+      act(() => {
+        fireEvent(originalArtwork, 'error');
+      });
+    }
+    expect(screen.getByTestId('tars-boot-progress')).toBeTruthy();
+    screen.unmount();
+  });
+
   it('allows the user to skip the opening screen', () => {
     const onSkip = jest.fn();
     const screen = render(<TarsBootScreen onSkip={onSkip} />);
