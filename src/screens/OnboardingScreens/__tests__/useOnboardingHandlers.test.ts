@@ -123,7 +123,7 @@ describe('useOnboardingHandlers', () => {
       palStore.pals = [
         {
           id: 'pip-id',
-          name: 'Pip',
+          name: 'TARS',
           source: 'local',
           type: 'local',
           description: 'desc',
@@ -166,7 +166,7 @@ describe('useOnboardingHandlers', () => {
 
       expect(palStore.createPal).toHaveBeenCalledTimes(1);
       const palData = (palStore.createPal as jest.Mock).mock.calls[0][0];
-      expect(palData.name).toBe('Codie');
+      expect(palData.name).toBe('TARS / CODE');
       expect(palData.systemPrompt).toBe(TOPIC_TO_PAL.coding.systemPrompt);
       expect(palData.defaultModel?.id).toBe(CODIE_BALANCED_ID);
       expect(palData.source).toBe('local');
@@ -193,11 +193,11 @@ describe('useOnboardingHandlers', () => {
 
       expect(palStore.createPal).toHaveBeenCalledTimes(1);
       const palData = (palStore.createPal as jest.Mock).mock.calls[0][0];
-      expect(palData.name).toBe('Pip');
+      expect(palData.name).toBe('TARS');
     });
 
     it('with selectedModelId=null, completes onboarding without touching the pal store or download queue', async () => {
-      palStore.pals = [{id: 'pip-id', name: 'Pip', source: 'local'} as any];
+      palStore.pals = [{id: 'pip-id', name: 'TARS', source: 'local'} as any];
       uiStore.onboardingState.selectedModelId = null;
       uiStore.onboardingState.selectedTopic = 'smartchat';
 
@@ -243,7 +243,7 @@ describe('useOnboardingHandlers', () => {
       palStore.pals = [
         {
           id: 'sage-id',
-          name: 'Sage',
+          name: 'TARS / LEARN',
           source: 'local',
           type: 'local',
           description: 'desc',
