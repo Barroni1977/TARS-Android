@@ -33,6 +33,16 @@ describe('TARS AI prod launcher icon', () => {
     );
   });
 
+  it('uses Android-compatible transparent fills for stroke-only vectors', () => {
+    const monochrome = read('res/drawable/tars_launcher_monochrome.xml');
+    // Android resource linking rejects fillColor="none", even though SVG
+    // accepts it. A transparent 8-digit ARGB value retains stroke-only paths.
+    expect(monochrome).not.toMatch(/android:fillColor="none"/);
+    expect((monochrome.match(/android:fillColor="#00000000"/g) || []).length).toBe(
+      3,
+    );
+  });
+
   it('uses original monolith/amber design rather than old PocketPal artwork', () => {
     const foreground = read('res/drawable/tars_launcher_foreground.xml');
     expect(foreground).toContain('#FFA52D');
