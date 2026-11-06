@@ -59,7 +59,12 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
     const scan = React.useRef(new Animated.Value(0)).current;
     const reduceMotion = useTarsReducedMotion();
     const [phase, setPhase] = React.useState(0);
-    const [approvedArtLoaded, setApprovedArtLoaded] = React.useState(false);
+    // Avoid flashing the older generated screen while Android decodes the PNG.
+    // Keep it only as an error fallback.
+    const [artworkState, setArtworkState] = React.useState<
+      'loading' | 'loaded' | 'failed'
+    >(Platform.OS === 'android' ? 'loading' : 'failed');
+    const approvedArtLoaded = artworkState === 'loaded';
 
     React.useEffect(() => {
       if (reduceMotion) {
@@ -146,8 +151,8 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
       };
     }, [progress, pulse, reveal, waveform, scan, reduceMotion]);
 
-    // The original, unedited artwork is 941x1672. Contain it rather than
-    // cropping, distorting or redesigning any of the approved panels.
+    // The user-approved clean PNG is 941x1672. Contain it rather than
+    // cropping, distorting or rebuilding any of the actual metalwork.
     const artworkWidth = Math.min(width, height * (941 / 1672));
     const artworkHeight = artworkWidth * (1672 / 941);
     const robotWidth = Math.min(width * 0.96, height * 0.62);
@@ -164,9 +169,8 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
         accessibilityLabel="TARS-AI initialising. Double tap to skip startup animation."
         onPress={onSkip}
         style={styles.root}>
-        {/* Bundled Android drawable: prod/res/drawable-nodpi/tars_boot_approved.png.
-            The previous functional boot remains a fallback until the exact
-            original PNG has been uploaded to that resource path. */}
+        {/* Shipped local Android drawable: the older native-view startup is
+            shown only if this exact PNG fails to decode. */}
         {Platform.OS === 'android' && (
           <View
             pointerEvents="none"
@@ -185,8 +189,8 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
               source={{uri: 'tars_boot_approved'}}
               resizeMode="stretch"
               accessibilityIgnoresInvertColors
-              onLoad={() => setApprovedArtLoaded(true)}
-              onError={() => setApprovedArtLoaded(false)}
+              onLoad={() => setArtworkState('loaded')}
+              onError={() => setArtworkState('failed')}
               style={styles.approvedArtworkImage}
             />
             {approvedArtLoaded && (
@@ -202,7 +206,7 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
             )}
           </View>
         )}
-        {!approvedArtLoaded && (
+        {artworkState === 'failed' && (
           <Animated.View
             style={[
               styles.robot,
