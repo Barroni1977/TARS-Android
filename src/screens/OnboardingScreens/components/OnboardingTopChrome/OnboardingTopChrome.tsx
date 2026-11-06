@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {observer} from 'mobx-react';
 
-import {Stepper} from '../../../../components/ui';
+import {TarsOnboardingStepper} from '../TarsOnboardingStepper';
 import {useTheme} from '../../../../hooks';
 import {uiStore} from '../../../../store';
 import {L10nContext} from '../../../../utils';
@@ -57,11 +57,7 @@ export const OnboardingTopChrome: React.FC<{step: OnboardingChromeStep}> =
         <View pointerEvents="box-none" style={styles.band}>
           {showStepper ? (
             <View pointerEvents="none" style={styles.stepperSlot}>
-              <Stepper
-                total={4}
-                current={step as number}
-                style={styles.stepperOverride}
-              />
+              <TarsOnboardingStepper current={step as number} />
             </View>
           ) : null}
           {topRight ? (
