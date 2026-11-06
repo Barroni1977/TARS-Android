@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Single-colour version for Android 13+ themed launcher icons. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="168"
-    android:viewportHeight="168">
-    <group
-        android:translateX="28"
-        android:translateY="28">
-        <group>
-            <clip-path
-                android:pathData="M0.643678 112C51.0157 100.937 105.422 48.4766 112 0L115.7994 -28H-28V118.2909Z" />
-            <group
-                android:name="pal">
-                <path
-                    android:name="silhouette"
-                    android:fillColor="#FFFFFF"
-                    android:fillType="evenOdd"
-                    android:pathData="M25.1408 68.3751C16.2327 53.406 21.1461 34.0497 36.1152 25.1416C51.0843 16.2335 70.4406 21.1469 79.3487 36.116L95.4783 63.2199L41.2704 95.479L25.1408 68.3751ZM34.7873 55.7058A2.57471 2.57471 0 0 1 39.2124 53.0724L47.4418 66.9009A2.57471 2.57471 0 0 1 43.0167 69.5343ZM59.6789 40.8931A2.57471 2.57471 0 0 1 64.104 38.2597L72.3334 52.0882A2.57471 2.57471 0 0 1 67.9083 54.7216ZM53.9791 62.7819L61.1699 58.5027L61.9928 59.8855C63.1745 61.8712 62.5228 64.4389 60.5371 65.6206C58.5514 66.8023 55.9837 66.1505 54.802 64.1648L53.9791 62.7819Z" />
-            </group>
-        </group>
-        <group
-            android:name="pocket-gap"
-            android:translateX="5"
-            android:translateY="5">
-            <path
-                android:name="pocket-edge"
-                android:strokeColor="#FFFFFF"
-                android:strokeWidth="5.7931"
-                android:strokeLineCap="round"
-                android:pathData="M-33 119.389L0.643678 112C51.0157 100.937 105.422 48.4766 112 0L116.4779 -33" />
-        </group>
-    </group>
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#FFFFFFFF" android:pathData="M24,19 L39,19 L39,89 L24,89 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M70,19 L85,19 L85,89 L70,89 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M42,19 L53,19 L53,35 L42,35 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M56,19 L67,19 L67,35 L56,35 Z"/>
+    <path android:fillColor="#00000000" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:pathData="M42,38 L67,38 L67,59 L42,59 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M47,44 L50,44 L50,51 L47,51 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M53,42 L56,42 L56,53 L53,53 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M59,45 L62,45 L62,50 L59,50 Z"/>
+    <path android:fillColor="#00000000" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:pathData="M41,62 L68,62 L68,76 L41,76 Z"/>
+    <path android:fillColor="#00000000" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:pathData="M44,66 L49,66 M46.5,66 L46.5,73 M50,73 L52.5,66 L55,73 M51,70.5 L54,70.5 M56.5,73 L56.5,66 L60,66 L60,69.5 L56.5,69.5 M58.5,69.5 L60.5,73 M65,66 L62,66 L62,69.5 L65,69.5 L65,73 L62,73"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M42,79 L53,79 L53,89 L42,89 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M56,79 L67,79 L67,89 L56,89 Z"/>
 </vector>
