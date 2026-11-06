@@ -79,6 +79,7 @@ const checkFirstRun = () => {
   const store = read('src/store/PalStore.ts');
   assert(store.includes('migrateLegacyMascotProfiles'), 'migration missing');
   assert(store.includes("name: 'TARS'"), 'legacy assistant still seeded');
+  assert(store.includes("name: 'TARS / VISION'"), 'legacy video mascot still seeded');
 };
 
 const checkText = () => {
@@ -156,6 +157,23 @@ const checkPlatformResources = () => {
     manifest.includes('android:roundIcon="@mipmap/tars_launcher_round"'),
     'old round icon active',
   );
+  for (const density of ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']) {
+    for (const suffix of ['', '_round']) {
+      verifyBlob(
+        `android/app/src/main/res/mipmap-${density}/ic_launcher${suffix}.png`,
+        '87b659ce9cbeea46398f06f08d2ec2a7abfb5ce7',
+      );
+    }
+  }
+  verifyBlob(
+    'android/app/src/main/res/drawable/ic_launcher_foreground.xml',
+    '3fb13af55d9340b8bcdd1e53407c06b4a4b7dffc',
+  );
+  verifyBlob(
+    'android/app/src/main/res/drawable/ic_launcher_monochrome.xml',
+    'e4fc434e07e2267389beb87fcc367659179fa0c2',
+  );
+
   for (const folder of ['main', 'prod']) {
     const prefix = `android/app/src/${folder}/res/`;
     assert(
