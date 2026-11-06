@@ -11,7 +11,7 @@ import AppIntents
 /// Represents a Pal entity for use in App Intents
 @available(iOS 16.0, *)
 struct PalEntity: AppEntity {
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Pal"
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "AI Profile"
     
     static var defaultQuery = PalEntityQuery()
     
