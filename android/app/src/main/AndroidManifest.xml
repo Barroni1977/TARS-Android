@@ -29,8 +29,8 @@
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
+      android:icon="@mipmap/tars_launcher"
+      android:roundIcon="@mipmap/tars_launcher_round"
       android:allowBackup="true"
       android:dataExtractionRules="@xml/backup_rules_12_plus"
       android:fullBackupContent="@xml/backup_rules_legacy"
