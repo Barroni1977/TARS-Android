@@ -120,10 +120,8 @@
     "useHfTokenDescription": "Ativar para usar o token em requisições de API. Desative se o token estiver causando problemas de autenticação.",
     "cacheStorageTitle": "Cache e Armazenamento",
     "clearPalCaches": "Limpar Caches de Atalhos",
-    "clearPalCachesDescription": "Limpa os dados em cache usados para acelerar os Atalhos. Isso não afetará seus Pals nem o histórico de chats.",
     "clearCachesButton": "Limpar Caches",
     "clearCachesConfirmTitle": "Limpar Caches de Atalhos?",
-    "clearCachesConfirmMessage": "Isso limpará todos os dados de sessão em cache ({{fileCount}} arquivos, {{size}}). Os Atalhos podem ficar mais lentos no primeiro uso após a limpeza. Isso não afetará seus Pals nem o histórico de chats.",
     "clearCachesSuccess": "{{count}} arquivo(s) de cache excluído(s) com sucesso.",
     "clearCachesError": "Falha ao limpar caches. Tente novamente.",
     "noCachesToClear": "Nenhum cache para limpar.",
@@ -167,7 +165,6 @@
     "serverTypeHelp": "Detectado automaticamente; altere se estiver errado.",
     "internetSearch": {
       "title": "Busca na internet",
-      "description": "Deixe os Pals pesquisarem na web com as próprias ferramentas. Use sua própria chave de API — o TARS-AI nunca guarda suas chaves nem encaminha suas consultas.",
       "providerLabel": "Provedor de busca",
       "providerGated": "Em breve",
       "keyLabel": "Chave de API",
@@ -183,7 +180,6 @@
       "resultCountLabel": "Resultados por busca",
       "resultCountDescription": "Menos resultados deixam mais espaço no contexto do modelo.",
       "consentTitle": "As buscas saem do seu dispositivo",
-      "consentDescription": "Quando um Pal faz uma busca na web, sua consulta é enviada ao provedor selecionado pela internet. Quando um Pal lê uma página, a URL e o conteúdo da página podem, em vez disso, ser enviados a um serviço de leitura padrão (r.jina.ai) caso o provedor selecionado não tenha um leitor nativo. Chaves e consultas nunca são enviadas ao TARS-AI.",
       "consentAccept": "Entendi",
       "consentRequired": "Aceite o aviso acima para definir uma chave e ativar a busca.",
       "consentGivenTitle": "A busca na web está ativada",
@@ -653,8 +649,7 @@
       "activateModelDescription": "Selecione o modelo e baixe-o. Após o download, toque em Carregar ao lado do modelo e comece a conversar.",
       "activateModelButton": "Selecionar Modelo",
       "loading": "Carregando...",
-      "gettingReadyTitle": "{{name}} está se preparando",
-      "gettingReadyDescription": "Avisaremos assim que seu pal estiver pronto para conversar. Toque no banner no topo para ver o andamento."
+      "gettingReadyTitle": "{{name}} está se preparando"
     },
     "chatInput": {
       "inputPlaceholder": "Mensagem",
@@ -740,7 +735,6 @@
         "title": "Sucesso",
         "message": "Essas configurações serão aplicadas a todas as sessões futuras"
       },
-      "palSettings": "Configurações do Pal",
       "settingsSource": "Origem das Configurações"
     },
     "palGenerationSettingsSheet": {
@@ -750,10 +744,8 @@
       "pleaseCorrect": "Corrija o seguinte:",
       "ok": "OK",
       "error": "Erro",
-      "failedToSave": "Falha ao salvar as configurações do pal",
       "resetToGlobal": "Redefinir para os Padrões Globais",
       "resetToSystem": "Redefinir para os Padrões do Sistema",
-      "clearPalSettings": "Limpar Configurações do Pal",
       "customSettingsFor": "Configurações personalizadas para {{palName}}",
       "inheritedSettingsFor": "Configurações herdadas para {{palName}}"
     },
@@ -765,15 +757,11 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "Modelos",
-      "palsTab": "Pals",
-      "noPal": "Nenhum Pal",
-      "disablePal": "Desativar pal ativo",
       "noDescription": "Sem descrição",
       "assistantType": "Assistente",
       "roleplayType": "Interpretação",
       "videoType": "Vídeo",
       "confirmationTitle": "Confirmação",
-      "modelSwitchMessage": "Este pal tem um modelo padrão diferente ({{modelName}}). Deseja mudar para o modelo padrão do pal?",
       "keepButton": "Manter",
       "switchButton": "Mudar"
     },
@@ -874,13 +862,8 @@
       "confirmReset": "Confirmar Redefinição"
     },
     "palSheet": {
-      "title": {
-        "edit": "Editar Pal",
-        "newPal": "Novo Pal",
-        "newVideoPal": "Novo Pal de Vídeo"
-      },
+      "title": {},
       "description": "Descrição",
-      "descriptionPlaceholder": "Insira uma breve descrição do seu pal",
       "parameters": "Parâmetros",
       "generationSettings": "Configurações de Geração",
       "configureGenerationSettings": "Configurar Configurações de Geração",
@@ -907,7 +890,6 @@
       "greeting": {
         "sectionLabel": "Saudação",
         "textLabel": "Mensagem de saudação",
-        "textPlaceholder": "O que este pal deve dizer em um chat vazio?",
         "suggestedPromptsLabel": "Prompts sugeridos",
         "addPromptButton": "Adicionar prompt",
         "promptPlaceholder": "Um prompt curto para o chip",
@@ -915,11 +897,7 @@
       }
     },
     "assistantPalSheet": {
-      "title": {
-        "create": "Criar Pal Assistente",
-        "edit": "Editar Pal Assistente"
-      },
-      "palName": "Nome do Pal",
+      "title": {},
       "palNamePlaceholder": "Nome",
       "defaultModel": "Modelo Padrão",
       "defaultModelPlaceholder": "Selecionar modelo",
@@ -932,18 +910,13 @@
     "modelNotAvailable": {
       "noModelsDownloaded": "Você ainda não tem nenhum modelo baixado. Baixe um modelo primeiro.",
       "downloadAModel": "Baixar um modelo",
-      "defaultModelNotDownloaded": "Este pal recomenda um modelo específico que precisa ser baixado, ou você pode selecionar um modelo diferente.",
       "modelNotDownloadedShort": "Modelo não baixado",
       "recommendedModel": "Modelo Recomendado",
       "cancelDownload": "Cancelar download",
       "download": "Baixar"
     },
     "roleplayPalSheet": {
-      "title": {
-        "create": "Criar Pal de Interpretação",
-        "edit": "Editar Pal de Interpretação"
-      },
-      "palName": "Nome do Pal",
+      "title": {},
       "palNamePlaceholder": "Nome",
       "defaultModel": "Modelo Padrão",
       "defaultModelPlaceholder": "Selecionar modelo",
@@ -969,12 +942,7 @@
       "create": "Criar"
     },
     "lookiePalSheet": {
-      "title": {
-        "create": "Criar Pal Lookie",
-        "edit": "Editar Pal Lookie"
-      },
-      "palName": "Nome do Pal",
-      "palNamePlaceholder": "Digite um nome para o seu Pal Lookie",
+      "title": {},
       "visionModel": "Modelo de Visão",
       "visionModelPlaceholder": "Selecione um modelo de visão",
       "requiredModelsSection": "Modelos Necessários",
@@ -994,8 +962,7 @@
         "placeholder": "Selecionar modelo"
       },
       "generatingPrompt": {
-        "label": "Propósito e Contexto",
-        "placeholder": "Descreva o papel, propósito ou cenário deste pal..."
+        "label": "Propósito e Contexto"
       },
       "buttons": {
         "loadingModel": "Carregando modelo...",
@@ -1018,7 +985,6 @@
       "menuItems": {
         "chat": "Chat",
         "models": "Modelos",
-        "pals": "Pals",
         "benchmark": "Benchmark",
         "settings": "Configurações",
         "appInfo": "Sobre o App",
@@ -1075,12 +1041,7 @@
         "reportContent": "Denunciar Conteúdo"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "Exportar todos os pals",
-      "importPals": "Importar pals",
-      "importSuccess": "{{count}} pal(s) importado(s) com sucesso.",
-      "importError": "Falha ao importar pals. Verifique o formato do arquivo."
-    },
+    "palHeaderRight": {},
     "completionSettings": {
       "serverDefault": "padrão do servidor",
       "usingServerDefault": "Usando o padrão do servidor: {{value}}",
@@ -1091,7 +1052,6 @@
   },
   "palsScreen": {
     "sectionTitles": {
-      "myPalsLocal": "Meus Pals (local)",
       "myLibrary": "Minha Biblioteca (palshub.ai)",
       "discoverPals": "Descobrir Pals (palshub.ai)"
     },
@@ -1108,26 +1068,18 @@
     "assistant": "Assistente",
     "roleplay": "Interpretação",
     "video": "Vídeo",
-    "deletePal": "Excluir Pal",
-    "deletePalMessage": "Tem certeza de que deseja excluir este pal?",
     "missingModel": "Modelo Ausente",
-    "missingModelMessage": "O modelo padrão \"{{modelName}}\" para este pal não está disponível. Baixe-o na tela de edição ou selecione um modelo diferente.",
     "search": "Pesquisar",
-    "profile": "Perfil",
     "signIn": "Entrar",
-    "addPal": "Adicionar Pal",
     "signInToAccessLibrary": "Entre para acessar sua biblioteca do palshub.ai",
     "signOut": "Sair",
     "signOutConfirmation": "Tem certeza de que deseja sair?",
     "signOutError": "Falha ao sair. Tente novamente.",
     "account": "Conta",
     "signInToPalsHub": "Entrar no PalsHub",
-    "signInDescription": "Acesse sua biblioteca, crie Pals privados e sincronize entre dispositivos",
-    "searchAllPals": "Pesquisar todos os Pals...",
     "deletePalConfirmation": "Tem certeza de que deseja excluir \"{{palName}}\"?",
     "filters": {
       "all": "Todos",
-      "myPals": "Meus Pals",
       "local": "Local",
       "video": "Vídeo",
       "free": "Grátis",
@@ -1159,10 +1111,7 @@
       "systemPrompt": "Prompt de Sistema",
       "downloaded": "Baixado",
       "success": "Sucesso",
-      "palAddedToCollection": "O pal foi adicionado à sua coleção!",
       "error": "Erro",
-      "failedToLoadDetails": "Falha ao carregar os detalhes do pal",
-      "failedToDownload": "Falha ao baixar o pal",
       "notAvailable": "N/D"
     },
     "purchase": {
@@ -1173,16 +1122,12 @@
       "unlocking": "Desbloqueando",
       "retry": "Tentar novamente",
       "supportCode": "Código de suporte: {{code}}",
-      "noLongerAvailable": "Este Pal não está mais disponível. Você pode {{refundLink}}.",
       "refundLink": "pedir reembolso à Apple",
       "notCompleted": "Não foi possível concluir esta compra. O Google fará o reembolso.",
-      "withdrawnRefunding": "Este Pal foi retirado. Entre em contato com o suporte para obter o reembolso.",
       "invalid": "Não foi possível verificar esta compra.",
       "heldInvalid": "Não foi possível desbloquear esta compra. Entre em contato com o suporte usando este código.",
       "recommendedModel": "Modelo recomendado",
       "sampleExchange": "Exemplo de conversa",
-      "signInLine": "Já tem este Pal? Entre",
-      "licenseNotice": "Você está comprando uma licença de uso deste Pal.",
       "termsOfSale": "Termos de Venda",
       "appleMediaTerms": "Termos dos Serviços de Mídia da Apple",
       "linkPrompt": "Entre para usar também nos seus outros dispositivos",
@@ -1201,9 +1146,7 @@
       "updateCancel": "Cancelar",
       "modelStep": {
         "download": "Baixar · {{size}}",
-        "startChat": "Iniciar chat",
-        "needsMemory": "Este Pal precisa de um dispositivo com pelo menos {{size}} de memória para o menor modelo dele.",
-        "noModelFits": "Este dispositivo não tem memória suficiente para este Pal."
+        "startChat": "Iniciar chat"
       }
     }
   },
@@ -1253,14 +1196,12 @@
       "howToUse": "Como usar:",
       "step1": "• Edite o prompt (opcional) para guiar a análise",
       "step2": "• Toque no botão da câmera para iniciar a análise de vídeo ao vivo",
-      "step3": "• Ajuste a frequência de capturas enquanto a câmera estiver ativa",
-      "step4": "• Mude para outro pal para o chat de texto normal"
+      "step3": "• Ajuste a frequência de capturas enquanto a câmera estiver ativa"
     }
   },
   "screenTitles": {
     "chat": "Chat",
     "models": "Modelos",
-    "pals": "Pals (experimental)",
     "benchmark": "Benchmark",
     "settings": "Configurações",
     "appInfo": "Sobre o App",
@@ -1314,7 +1255,6 @@
     "increaseContextReloading": "Recarregando modelo com um contexto maior…",
     "increaseContextSuccess": "Contexto aumentado para {{target}} tokens.",
     "increaseContextFailure": "Não foi possível aumentar o tamanho do contexto. Sua configuração anterior foi restaurada.",
-    "palLoadHint": "Este pal costuma precisar de mais espaço do que o tamanho de contexto atual permite.",
     "generatingPreview": "Gerando pré-visualização… ({{tokens}} tokens)",
     "generatingPreviewPending": "Gerando pré-visualização…",
     "toolUsedChip": "usou {{name}}",
@@ -1372,7 +1312,6 @@
     "dialogs": {
       "advancedSettings": {
         "title": "Configurações Avançadas",
-        "testProfile": "Perfil de Teste",
         "customParameters": "Parâmetros Personalizados",
         "description": "Ajuste os parâmetros do benchmark para cenários de teste específicos."
       },
@@ -1588,61 +1527,8 @@
     "splash": {
       "brand": "TARS-AI"
     },
-    "screen1": {
-      "title": "Conheça seus pals.",
-      "titleAccent": "pals.",
-      "body": "Pequenos amigos inteligentes que vivem dentro do seu celular.\nVamos te ajudar a configurar - vai levar só um minuto.",
-      "cta": "Me Mostre Como Funciona",
-      "eyebrow": "Bem-vindo ao TARS-AI"
-    },
-    "screen2": {
-      "title": "A Qualquer Hora,\nEm Qualquer Lugar.",
-      "body": "Seus pals vivem dentro do seu celular.\nSem internet, sem sinal - eles funcionam em aviões, fora da rede, em vilarejos remotos.",
-      "highlight": "Sem internet, sem sinal",
-      "cta": "Próximo",
-      "eyebrow": "A ideia",
-      "titleAccent": "A Qualquer Hora,"
-    },
-    "screen3": {
-      "title": "Menores,\nmas seus.",
-      "titleAccent": "Menores,",
-      "body": "Os pals no seu celular são rápidos e privados - mas mais leves que a IA na nuvem. Pense em um companheiro de bolso, não em um oráculo onisciente.",
-      "highlight": "rápidos e privados",
-      "cta": "Entendi",
-      "eyebrow": "Um aviso"
-    },
-    "screen4": {
-      "title": "Nada sai do seu celular.",
-      "titleAccent": "sai",
-      "body": "Sem contas. Sem nuvem. Sem rastreamento. Suas conversas continuam suas.",
-      "highlight": "Sem contas. Sem nuvem. Sem rastreamento.",
-      "cta": "Começar",
-      "eyebrow": "Privacidade garantida"
-    },
-    "screen5": {
-      "title": "Para que é o seu pal?",
-      "body": "Escolha o que você gostaria de discutir - vamos combinar um pal que se encaixe no seu celular.",
-      "topic": {
-        "smartchat": "Chat Inteligente",
-        "coding": "Programação",
-        "education": "Educação",
-        "roleplay": "Interpretação",
-        "creative_writing": "Escrita Criativa",
-        "else": "Procurando outra coisa?"
-      },
-      "topicDescription": {
-        "smartchat": "Companheiro amigável para o dia a dia",
-        "coding": "Codifica, depura, explica",
-        "education": "Aprenda, explique, faça testes",
-        "roleplay": "Personagens, cenários",
-        "creative_writing": "Histórias, ideias, rascunhos",
-        "else": "Explore todos os pals depois no app"
-      }
-    },
+    "screen5": {},
     "screen6": {
-      "cta": "Baixar {{name}}",
-      "ctaTemplate": "Baixar {{name}} ({{size}})",
-      "useTemplate": "Usar {{name}}",
       "deviceRamSuffix": "GB de RAM",
       "deviceFreeSuffix": "GB livres",
       "recommended": "Recomendado",
@@ -1651,24 +1537,6 @@
         "quick": "Rápido",
         "balanced": "Equilibrado",
         "best": "Melhor"
-      },
-      "subtitleTemplate": "{{name}} pensa usando um pequeno modelo de IA no seu celular - escolha um que se encaixe.",
-      "pal": {
-        "pip": {
-          "body": "Encontramos o pal perfeito para você - um companheiro amigável para o dia a dia. Inteligente o suficiente para a maioria das coisas, leve o suficiente para qualquer celular."
-        },
-        "codie": {
-          "body": "Conheça o Codie — seu programador-parceiro local. Lê código, escreve código, explica partes complicadas sem nunca sair do seu celular."
-        },
-        "sage": {
-          "body": "Sage é paciente, curioso e te guia pelas ideias passo a passo. Um parceiro de estudos que você carrega no bolso."
-        },
-        "echo": {
-          "body": "Echo é um companheiro de interpretação versátil — mantém o personagem, pinta cenas, segue para onde sua história te levar."
-        },
-        "muse": {
-          "body": "Muse te ajuda a escrever. Sugere frases, encontra o ritmo e mantém seu tom intacto."
-        }
       }
     }
   },
