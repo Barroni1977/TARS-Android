@@ -7,7 +7,9 @@ export const createStyles = (theme: Theme) =>
     root: {
       flex: 1,
       // Figma `Color/Background/Muted` (#fafafa) — maps to `colors.surfaceVariant`.
-      backgroundColor: theme.colors.surfaceVariant,
+      backgroundColor: '#090F12',
+      borderColor: theme.colors.surfaceVariant,
+      borderWidth: 0,
       alignItems: 'center',
       justifyContent: 'center',
     },
