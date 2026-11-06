@@ -176,9 +176,7 @@ export const TarsBootScreen: React.FC<{onSkip?: () => void}> = React.memo(
             <View style={styles.terminal}>
               <View style={styles.terminalUpperLine}>
                 <Text style={styles.smallGreen}>TARS-AI</Text>
-                <Animated.View
-                  style={[styles.signalDot, {opacity: pulse}]}
-                />
+                <Animated.View style={[styles.signalDot, {opacity: pulse}]} />
               </View>
               <View style={styles.terminalColumns}>
                 <View style={styles.readoutColumn}>
