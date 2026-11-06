@@ -1,1 +1,1 @@
-Private AI on your phone. No cloud. No internet. Run LLMs offline, on-device.
+Local-first AI assistant with offline GGUF language models and TARS-inspired design.
