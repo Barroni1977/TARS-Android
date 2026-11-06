@@ -50,3 +50,19 @@ data-migration plan is required before deeper code or product-feature removal.
   layout on Galaxy S26 Ultra before release.
 - This **no-build** branch has no PR and should not produce an APK until
   explicitly requested.
+
+## Language and image audit notes (2026-11-06)
+
+All 16 supported non-English locales preserve their neutral translated keys.
+Outdated first-run marketing and profile-brand overrides were removed so the
+accurate English TARS-AI onboarding text is used until each language has a
+new verified translation. This is a deliberate temporary English fallback,
+not a claim that every onboarding screen has been fully translated.
+
+The original upstream icon generator is retained solely for source history
+and isolated test fixtures. It is blocked from overwriting TARS production
+assets. Current production startup and launcher assets remain untouched.
+
+Historical screenshot archives and legacy icon files need a reference
+inventory before deletion; native registration names and third-party licence
+credits must not be renamed without compatibility review.

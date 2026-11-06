@@ -382,14 +382,10 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "Modèles",
-      "palsTab": "Pals",
-      "noPal": "Pas d'assistant",
-      "disablePal": "Désactiver l'assistant actif",
       "noDescription": "Pas de description",
       "assistantType": "Assistant",
       "roleplayType": "Jeu de rôle",
       "confirmationTitle": "Confirmation",
-      "modelSwitchMessage": "Cet assistant a un modèle par défaut différent ({{modelName}}). Voulez-vous passer au modèle par défaut de l'assistant ?",
       "keepButton": "Garder",
       "switchButton": "Changer"
     },
@@ -476,11 +472,7 @@
       "confirmReset": "Confirmer la réinitialisation"
     },
     "assistantPalSheet": {
-      "title": {
-        "create": "Créer un assistant",
-        "edit": "Modifier un assistant"
-      },
-      "palName": "Nom de l'assistant",
+      "title": {},
       "palNamePlaceholder": "Nom",
       "defaultModel": "Modèle par défaut",
       "defaultModelPlaceholder": "Sélectionner un modèle",
@@ -493,16 +485,11 @@
     "modelNotAvailable": {
       "noModelsDownloaded": "Vous n'avez encore téléchargé aucun modèle. Veuillez d'abord télécharger un modèle.",
       "downloadAModel": "Télécharger un modèle",
-      "defaultModelNotDownloaded": "Le modèle par défaut n'est pas encore téléchargé. Veuillez d'abord le télécharger.",
       "cancelDownload": "Annuler le téléchargement",
       "download": "Télécharger"
     },
     "roleplayPalSheet": {
-      "title": {
-        "create": "Créer un assistant de jeu de rôle",
-        "edit": "Modifier un assistant de jeu de rôle"
-      },
-      "palName": "Nom de l'assistant",
+      "title": {},
       "palNamePlaceholder": "Nom",
       "defaultModel": "Modèle par défaut",
       "defaultModelPlaceholder": "Sélectionner un modèle",
@@ -539,8 +526,7 @@
         "placeholder": "Sélectionner un modèle"
       },
       "generatingPrompt": {
-        "label": "Invite de génération",
-        "placeholder": "Entrez l'invite pour la génération"
+        "label": "Invite de génération"
       },
       "buttons": {
         "loadingModel": "Chargement du modèle...",
@@ -560,7 +546,6 @@
       "menuItems": {
         "chat": "Discussion",
         "models": "Modèles",
-        "pals": "Pals",
         "benchmark": "Benchmark",
         "settings": "Paramètres",
         "appInfo": "Info application",
@@ -608,7 +593,6 @@
   "screenTitles": {
     "chat": "Discussion",
     "models": "Modèles",
-    "pals": "Assistants (expérimental)",
     "benchmark": "Benchmark",
     "settings": "Paramètres",
     "appInfo": "Info application",
@@ -653,7 +637,6 @@
     "dialogs": {
       "advancedSettings": {
         "title": "Paramètres avancés",
-        "testProfile": "Profil de test",
         "customParameters": "Paramètres personnalisés",
         "description": "Affinez les paramètres de benchmark pour des scénarios de test spécifiques."
       },

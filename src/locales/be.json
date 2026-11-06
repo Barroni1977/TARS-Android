@@ -282,39 +282,12 @@
       },
       "deviceRamSuffix": "ГБ RAM"
     },
-    "screen5": {
-      "topic": {
-        "smartchat": "Разумны чат",
-        "coding": "Праграмаванне",
-        "education": "Адукацыя",
-        "roleplay": "Ролевыя гульні",
-        "creative_writing": "Творчае пісьмо",
-        "else": "Шукаеце нешта іншае?"
-      },
-      "topicDescription": {
-        "smartchat": "Прыязны штодзённы кампаньён",
-        "coding": "Код, адладка, тлумачэнні",
-        "education": "Вучоба, тлумачэнні, тэсты",
-        "roleplay": "Персанажы, сцэнарыі",
-        "creative_writing": "Гісторыі, ідэі, чарнавікі"
-      }
-    },
-    "screen2": {
-      "cta": "Далей",
-      "eyebrow": "Ідэя"
-    },
+    "screen5": {},
     "back": "Назад",
     "skip": "Прапусціць",
     "skipForNow": "Пакуль прапусціць",
     "splash": {
       "brand": "TARS-AI"
-    },
-    "screen3": {
-      "cta": "Зразумела",
-      "eyebrow": "Перасцярога"
-    },
-    "screen4": {
-      "cta": "Пачнём"
     }
   },
   "errors": {

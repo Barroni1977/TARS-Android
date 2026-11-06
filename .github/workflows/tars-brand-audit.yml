@@ -33,11 +33,6 @@ jobs:
       - name: Install JavaScript dependencies only
         run: yarn install --frozen-lockfile
 
-      - name: Prettier reference output for onboarding review (no Git writes)
-        run: |
-          yarn prettier --write scripts/audit-tars-branding.js scripts/__tests__/tars-onboarding-branding.test.js src/screens/OnboardingScreens/components/TarsOnboardingHero.tsx src/screens/OnboardingScreens/components/TopicChipGrid/TopicChipGrid.tsx
-          node -e 'const fs=require("fs");for(const p of ["scripts/audit-tars-branding.js","scripts/__tests__/tars-onboarding-branding.test.js","src/screens/OnboardingScreens/components/TarsOnboardingHero.tsx","src/screens/OnboardingScreens/components/TopicChipGrid/TopicChipGrid.tsx"]){console.log("TARS_FMT "+p+" "+JSON.stringify(fs.readFileSync(p,"utf8")));}'
-
       - name: Five-pass TARS branding audit
         run: node scripts/audit-tars-branding.js
 
@@ -59,6 +54,8 @@ jobs:
       - name: Audit legacy asset usage in source
         if: always()
         run: |
-          echo "Legacy static assets referenced by active source:"
-          grep -REn "pocketpal-dark-v2|screen-3-cards|splash-mark|PocketPal-512x512" src --include='*.js' --include='*.ts' --include='*.tsx' || true
-          echo "The above findings are an inspection report, not an instruction to delete runtime imports."
+          echo "Legacy image/source references in tracked files:"
+          git grep -n -i -E 'pocketpal-dark|pocketpal-light|pocketpal[.]gif|screen-3-cards|splash-mark|Screen1Hero|SplashMark|PocketPal-512x512|Token_in_pocketpal|Pals-AI_generates_system_prompt' -- . || true
+          echo "Possible PocketPal brand strings in source (internal and legal refs require review):"
+          git grep -n -E 'PocketPal|pocketpal[.]dev|Meet your pals' -- src | head -n 120 || true
+          echo "Do not delete an image simply because it is present in repository history."

@@ -701,6 +701,15 @@ function staleAppIcons(root, outputs) {
 }
 
 function generate({root = REPO_ROOT, previewDir} = {}) {
+  // The upstream asset pipeline contains the original PocketPal mascot.
+  // Refuse to regenerate those icons in this TARS fork: doing so would
+  // silently restore old Android/iOS branding and overwrite approved art.
+  // Standalone parser tests create temporary fixture roots without this marker.
+  if (fs.existsSync(path.join(root, 'docs/TARS_ONBOARDING.md'))) {
+    fail(
+      'Legacy PocketPal icon generation is disabled for TARS-AI. Keep the approved TARS launcher resources until a TARS-native generator replaces this one.',
+    );
+  }
   if (previewDir) {
     assertOutsideRepo(root, previewDir);
   }
