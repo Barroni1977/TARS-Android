@@ -552,17 +552,17 @@
     "versionCopiedTitle": "Version copied",
     "versionCopiedDescription": "Version information has been copied to clipboard",
     "tour": "Tour",
-    "tourDescription": "Replay the welcome screens to see what TARS-AI offers.",
+    "tourDescription": "Replay the TARS-AI activation screens.",
     "showIntroButton": "Show intro again",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Data & connectivity",
+    "termsOfService": "Original open-source project",
     "openSourceNotices": "Open-source notices",
     "phononNoticesCredit": "Phonon voice model and voices by Gradium, licensed under Apache-2.0. Built on Pocket TTS and the Mimi codec by Kyutai."
   },
   "feedback": {
     "title": "Send Feedback",
-    "description": "Tell the upstream project team what you think of TARS-AI. Feedback is submitted online.",
-    "shareThoughtsButton": "Sharing your thoughts",
+    "description": "Report issues to the TARS-AI project on GitHub. This opens your browser.",
+    "shareThoughtsButton": "Report a TARS-AI issue",
     "useCase": {
       "label": "What are you using TARS-AI for?",
       "placeholder": "e.g., summarization, roleplay, etc."
