@@ -115,10 +115,8 @@
     "useHfTokenDescription": "فعال کنید تا از توکن برای درخواست‌های API استفاده شود. اگر توکن مشکل احراز هویت ایجاد می‌کند غیرفعال کنید.",
     "cacheStorageTitle": "کش و فضای ذخیره‌سازی",
     "clearPalCaches": "پاک کردن کش میانبرها",
-    "clearPalCachesDescription": "داده‌های کش‌شده برای سرعت‌بخشی به میانبرها پاک می‌شود. این کار روی پَل‌ها یا تاریخچه چت تأثیری ندارد.",
     "clearCachesButton": "پاک کردن کش",
     "clearCachesConfirmTitle": "کش میانبرها پاک شود؟",
-    "clearCachesConfirmMessage": "تمام داده‌های کش‌شده جلسات پاک می‌شود ({{fileCount}} فایل، {{size}}). میانبرها ممکن است در اولین استفاده بعد از پاک‌سازی کندتر باشند. این کار روی پَل‌ها یا تاریخچه چت تأثیری ندارد.",
     "clearCachesSuccess": "{{count}} فایل کش با موفقیت پاک شد.",
     "clearCachesError": "پاک کردن کش ناموفق بود. لطفاً دوباره تلاش کنید.",
     "noCachesToClear": "کشی برای پاک کردن وجود ندارد.",
@@ -167,7 +165,6 @@
     "serverTypeHelp": "به‌صورت خودکار تشخیص داده می‌شود؛ اگر درست نیست تغییرش بدهید.",
     "internetSearch": {
       "title": "جستجوی اینترنتی",
-      "description": "بگذارید پَل‌ها با ابزارهای خودشان در وب جستجو کنند. کلید API خودتان را بیاورید — TARS-AI هرگز کلیدهای شما را نگه نمی‌دارد و درخواست‌هایتان را هدایت نمی‌کند.",
       "providerLabel": "ارائه‌دهنده جستجو",
       "providerGated": "به‌زودی",
       "keyLabel": "کلید API",
@@ -183,7 +180,6 @@
       "resultCountLabel": "تعداد نتایج در هر جستجو",
       "resultCountDescription": "نتایج کمتر فضای بیشتری در context مدل باقی می‌گذارد.",
       "consentTitle": "جستجوها از دستگاه شما خارج می‌شوند",
-      "consentDescription": "وقتی یک پَل در وب جستجو می‌کند، درخواست شما از طریق اینترنت به ارائه‌دهنده انتخاب‌شده ارسال می‌شود. وقتی یک پَل صفحه‌ای را می‌خواند، اگر ارائه‌دهنده انتخاب‌شده خواننده اختصاصی نداشته باشد، ممکن است به‌جای آن آدرس و محتوای صفحه به یک سرویس خواننده پیش‌فرض (r.jina.ai) ارسال شود. کلیدها و درخواست‌ها هرگز به TARS-AI ارسال نمی‌شوند.",
       "consentAccept": "متوجه شدم",
       "consentRequired": "برای تنظیم کلید و فعال‌سازی جستجو، توضیحات بالا را بپذیرید.",
       "consentGivenTitle": "جستجوی وب فعال است",
@@ -632,8 +628,7 @@
       "activateModelDescription": "مدل را انتخاب و دانلود کنید. بعد از دانلود، روی بارگذاری کنار مدل بزنید و گفتگو را شروع کنید.",
       "activateModelButton": "انتخاب مدل",
       "loading": "در حال بارگذاری...",
-      "gettingReadyTitle": "{{name}} در حال آماده‌شدن است",
-      "gettingReadyDescription": "همین که پَل شما آماده گفتگو شد به شما خبر می‌دهیم. روی نوار بالای صفحه بزنید تا روند کار را ببینید."
+      "gettingReadyTitle": "{{name}} در حال آماده‌شدن است"
     },
     "chatInput": {
       "inputPlaceholder": "پیام",
@@ -719,7 +714,6 @@
         "title": "انجام شد",
         "message": "این تنظیمات روی تمام جلسات آینده اعمال خواهد شد"
       },
-      "palSettings": "تنظیمات پَل",
       "settingsSource": "منبع تنظیمات"
     },
     "palGenerationSettingsSheet": {
@@ -729,10 +723,8 @@
       "pleaseCorrect": "لطفاً موارد زیر را اصلاح کنید:",
       "ok": "باشه",
       "error": "خطا",
-      "failedToSave": "ذخیره تنظیمات پَل ممکن نشد",
       "resetToGlobal": "بازنشانی به پیش‌فرض کلی",
       "resetToSystem": "بازنشانی به پیش‌فرض سیستم",
-      "clearPalSettings": "پاک‌سازی تنظیمات پَل",
       "customSettingsFor": "تنظیمات سفارشی برای {{palName}}",
       "inheritedSettingsFor": "تنظیمات ارثی برای {{palName}}"
     },
@@ -744,15 +736,11 @@
     },
     "chatPalModelPickerSheet": {
       "modelsTab": "مدل‌ها",
-      "palsTab": "پَل‌ها",
-      "noPal": "بدون پَل",
-      "disablePal": "غیرفعال‌سازی پَل فعال",
       "noDescription": "بدون توضیحات",
       "assistantType": "دستیار",
       "roleplayType": "نقش‌آفرینی",
       "videoType": "ویدیو",
       "confirmationTitle": "تأیید",
-      "modelSwitchMessage": "این پَل مدل پیش‌فرض متفاوتی دارد ({{modelName}}). می‌خواهید به مدل پیش‌فرض پَل تغییر دهید؟",
       "keepButton": "نگه‌دار",
       "switchButton": "تغییر بده"
     },
@@ -853,13 +841,8 @@
       "confirmReset": "تأیید بازنشانی"
     },
     "palSheet": {
-      "title": {
-        "edit": "ویرایش پَل",
-        "newPal": "پَل جدید",
-        "newVideoPal": "پَل ویدیویی جدید"
-      },
+      "title": {},
       "description": "توضیحات",
-      "descriptionPlaceholder": "یک توضیح کوتاه درباره پَل خود بنویسید",
       "parameters": "پارامترها",
       "generationSettings": "تنظیمات تولید",
       "configureGenerationSettings": "پیکربندی تنظیمات تولید",
@@ -886,7 +869,6 @@
       "greeting": {
         "sectionLabel": "خوش‌آمدگویی",
         "textLabel": "پیام خوش‌آمدگویی",
-        "textPlaceholder": "این پَل در چت خالی چه بگوید؟",
         "suggestedPromptsLabel": "پرامپت‌های پیشنهادی",
         "addPromptButton": "افزودن پرامپت",
         "promptPlaceholder": "یک پرامپت کوتاه برای چیپ",
@@ -894,11 +876,7 @@
       }
     },
     "assistantPalSheet": {
-      "title": {
-        "create": "ایجاد پَل دستیار",
-        "edit": "ویرایش پَل دستیار"
-      },
-      "palName": "نام پَل",
+      "title": {},
       "palNamePlaceholder": "نام",
       "defaultModel": "مدل پیش‌فرض",
       "defaultModelPlaceholder": "انتخاب مدل",
@@ -911,18 +889,13 @@
     "modelNotAvailable": {
       "noModelsDownloaded": "هنوز هیچ مدلی دانلود نکرده‌اید. لطفاً ابتدا یک مدل دانلود کنید.",
       "downloadAModel": "دانلود یک مدل",
-      "defaultModelNotDownloaded": "این پَل یک مدل خاص پیشنهاد می‌دهد که باید دانلود شود، یا می‌توانید مدل دیگری انتخاب کنید.",
       "modelNotDownloadedShort": "مدل دانلود نشده",
       "recommendedModel": "مدل پیشنهادی",
       "cancelDownload": "لغو دانلود",
       "download": "دانلود"
     },
     "roleplayPalSheet": {
-      "title": {
-        "create": "ایجاد پَل نقش‌آفرینی",
-        "edit": "ویرایش پَل نقش‌آفرینی"
-      },
-      "palName": "نام پَل",
+      "title": {},
       "palNamePlaceholder": "نام",
       "defaultModel": "مدل پیش‌فرض",
       "defaultModelPlaceholder": "انتخاب مدل",
@@ -948,12 +921,7 @@
       "create": "ایجاد"
     },
     "lookiePalSheet": {
-      "title": {
-        "create": "ایجاد پَل Lookie",
-        "edit": "ویرایش پَل Lookie"
-      },
-      "palName": "نام پَل",
-      "palNamePlaceholder": "یک نام برای پَل Lookie خود وارد کنید",
+      "title": {},
       "visionModel": "مدل بینایی",
       "visionModelPlaceholder": "یک مدل بینایی انتخاب کنید",
       "requiredModelsSection": "مدل‌های مورد نیاز",
@@ -973,8 +941,7 @@
         "placeholder": "انتخاب مدل"
       },
       "generatingPrompt": {
-        "label": "هدف و زمینه",
-        "placeholder": "نقش، هدف یا سناریوی این پَل را توضیح دهید..."
+        "label": "هدف و زمینه"
       },
       "buttons": {
         "loadingModel": "در حال بارگذاری مدل...",
@@ -997,7 +964,6 @@
       "menuItems": {
         "chat": "چت",
         "models": "مدل‌ها",
-        "pals": "پَل‌ها",
         "benchmark": "بنچمارک",
         "settings": "تنظیمات",
         "appInfo": "درباره برنامه",
@@ -1054,12 +1020,7 @@
         "reportContent": "گزارش محتوا"
       }
     },
-    "palHeaderRight": {
-      "exportAllPals": "خروجی از همه پَل‌ها",
-      "importPals": "وارد کردن پَل‌ها",
-      "importSuccess": "{{count}} پَل با موفقیت وارد شد.",
-      "importError": "وارد کردن پَل‌ها انجام نشد. لطفاً فرمت فایل را بررسی کنید."
-    },
+    "palHeaderRight": {},
     "bubble": {
       "msPerToken": "{{value}}ms/توکن",
       "tokensPerSec": "{{value}} توکن/ثانیه",
@@ -1091,7 +1052,6 @@
   },
   "palsScreen": {
     "sectionTitles": {
-      "myPalsLocal": "پَل‌های من (محلی)",
       "myLibrary": "کتابخانه من (palshub.ai)",
       "discoverPals": "کشف پَل‌ها (palshub.ai)"
     },
@@ -1108,26 +1068,18 @@
     "assistant": "دستیار",
     "roleplay": "نقش‌آفرینی",
     "video": "ویدیو",
-    "deletePal": "حذف پَل",
-    "deletePalMessage": "آیا مطمئنید می‌خواهید این پَل را حذف کنید؟",
     "missingModel": "مدل موجود نیست",
-    "missingModelMessage": "مدل پیش‌فرض «{{modelName}}» برای این پَل در دسترس نیست. لطفاً آن را در صفحه ویرایش دانلود کنید یا مدل دیگری انتخاب کنید.",
     "search": "جستجو",
-    "profile": "پروفایل",
     "signIn": "ورود",
-    "addPal": "افزودن پَل",
     "signInToAccessLibrary": "برای دسترسی به کتابخانه‌تان از palshub.ai وارد شوید",
     "signOut": "خروج",
     "signOutConfirmation": "آیا مطمئنید می‌خواهید خارج شوید؟",
     "signOutError": "خروج با مشکل مواجه شد. لطفاً دوباره تلاش کنید.",
     "account": "حساب کاربری",
     "signInToPalsHub": "ورود به PalsHub",
-    "signInDescription": "به کتابخانه‌تان دسترسی پیدا کنید، پَل‌های خصوصی بسازید و بین دستگاه‌ها همگام‌سازی کنید",
-    "searchAllPals": "جستجو در همه پَل‌ها...",
     "deletePalConfirmation": "آیا مطمئنید می‌خواهید «{{palName}}» را حذف کنید؟",
     "filters": {
       "all": "همه",
-      "myPals": "پَل‌های من",
       "local": "محلی",
       "video": "ویدیو",
       "free": "رایگان",
@@ -1159,10 +1111,7 @@
       "systemPrompt": "پرامپت سیستم",
       "downloaded": "دانلود شد",
       "success": "موفق",
-      "palAddedToCollection": "پَل به مجموعه شما اضافه شد!",
       "error": "خطا",
-      "failedToLoadDetails": "بارگذاری جزئیات پَل با مشکل مواجه شد",
-      "failedToDownload": "دانلود پَل با مشکل مواجه شد",
       "notAvailable": "ندارد"
     },
     "purchase": {
@@ -1173,16 +1122,13 @@
       "unlocking": "در حال فعال‌سازی",
       "retry": "تلاش مجدد",
       "supportCode": "کد پشتیبانی: {{code}}",
-      "noLongerAvailable": "این پَل دیگر در دسترس نیست. می‌توانید {{refundLink}}.",
       "refundLink": "از Apple بازگشت وجه بخواهید",
       "notCompleted": "این خرید کامل نشد. Google مبلغ را به شما بازمی‌گرداند.",
-      "withdrawnRefunding": "این پَل از عرضه خارج شد. برای بازگشت وجه با پشتیبانی تماس بگیرید.",
       "invalid": "تأیید این خرید ممکن نشد.",
       "heldInvalid": "فعال‌سازی این خرید ممکن نشد. با همین کد با پشتیبانی تماس بگیرید.",
       "recommendedModel": "مدل پیشنهادی",
       "sampleExchange": "نمونه گفتگو",
       "signInLine": "قبلاً خریده‌اید؟ وارد شوید",
-      "licenseNotice": "در حال خرید مجوز استفاده از این پَل هستید.",
       "termsOfSale": "شرایط فروش",
       "appleMediaTerms": "شرایط خدمات رسانه‌ای Apple",
       "linkPrompt": "وارد شوید تا در دستگاه‌های دیگرتان هم از آن استفاده کنید",
@@ -1201,9 +1147,7 @@
       "updateCancel": "لغو",
       "modelStep": {
         "download": "دانلود · {{size}}",
-        "startChat": "شروع چت",
-        "needsMemory": "این پَل برای کوچک‌ترین مدلش به دستگاهی با حداقل {{size}} حافظه نیاز دارد.",
-        "noModelFits": "این دستگاه حافظه کافی برای این پَل ندارد."
+        "startChat": "شروع چت"
       }
     }
   },
@@ -1253,14 +1197,12 @@
       "howToUse": "نحوه استفاده:",
       "step1": "• پرامپت را ویرایش کنید (اختیاری) تا تحلیل را هدایت کنید",
       "step2": "• دکمه دوربین را بزنید تا تحلیل زنده ویدیو شروع شود",
-      "step3": "• فرکانس تصویربرداری را هنگام فعال بودن دوربین تنظیم کنید",
-      "step4": "• به پَل دیگری بروید برای چت متنی معمولی"
+      "step3": "• فرکانس تصویربرداری را هنگام فعال بودن دوربین تنظیم کنید"
     }
   },
   "screenTitles": {
     "chat": "چت",
     "models": "مدل‌ها",
-    "pals": "پَل‌ها (آزمایشی)",
     "benchmark": "بنچمارک",
     "settings": "تنظیمات",
     "appInfo": "درباره برنامه",
@@ -1314,7 +1256,6 @@
     "increaseContextReloading": "در حال بارگذاری مجدد مدل با context بزرگ‌تر…",
     "increaseContextSuccess": "context به {{target}} توکن افزایش یافت.",
     "increaseContextFailure": "افزایش اندازه context ممکن نشد. تنظیم قبلی شما بازگردانده شد.",
-    "palLoadHint": "این پَل معمولاً به فضای بیشتری از اندازه context فعلی نیاز دارد.",
     "generatingPreview": "در حال تولید پیش‌نمایش… ({{tokens}} توکن)",
     "generatingPreviewPending": "در حال تولید پیش‌نمایش…",
     "toolUsedChip": "از {{name}} استفاده شد",
@@ -1364,7 +1305,6 @@
     "dialogs": {
       "advancedSettings": {
         "title": "تنظیمات پیشرفته",
-        "testProfile": "پروفایل تست",
         "customParameters": "پارامترهای سفارشی",
         "description": "پارامترهای بنچمارک را برای سناریوهای تست خاص تنظیم کنید."
       },
@@ -1588,61 +1528,8 @@
     "splash": {
       "brand": "TARS-AI"
     },
-    "screen1": {
-      "title": "با پَل‌هایت آشنا شو.",
-      "titleAccent": "پَل‌هایت.",
-      "body": "دوستان کوچک و باهوشی که داخل گوشی تو زندگی می‌کنند.\nبیا با هم آماده‌ات کنیم - فقط یک دقیقه طول می‌کشد.",
-      "cta": "بگرد و نشانم بده",
-      "eyebrow": "به TARS-AI خوش آمدی"
-    },
-    "screen2": {
-      "title": "هر زمان،\nهر جا.",
-      "body": "پَل‌هایت داخل گوشی تو زندگی می‌کنند.\nبدون اینترنت، بدون آنتن - توی هواپیما، دور از شبکه و در روستاهای دورافتاده هم کار می‌کنند.",
-      "highlight": "بدون اینترنت، بدون آنتن",
-      "cta": "بعدی",
-      "eyebrow": "ایده",
-      "titleAccent": "هر زمان،"
-    },
-    "screen3": {
-      "title": "کوچک‌تر،\nاما مال خودت.",
-      "titleAccent": "کوچک‌تر،",
-      "body": "پَل‌های روی گوشی‌ات سریع و خصوصی‌اند - اما سبک‌تر از هوش مصنوعی ابری. مثل یک همراه جیبی، نه یک پیشگوی همه‌چیزدان.",
-      "highlight": "سریع و خصوصی",
-      "cta": "متوجه شدم",
-      "eyebrow": "یک یادآوری"
-    },
-    "screen4": {
-      "title": "هیچ‌چیز از گوشی‌ات بیرون نمی‌رود.",
-      "titleAccent": "بیرون نمی‌رود",
-      "body": "بدون حساب کاربری. بدون فضای ابری. بدون ردیابی. گفتگوهایت مال خودت می‌مانند.",
-      "highlight": "بدون حساب کاربری. بدون فضای ابری. بدون ردیابی.",
-      "cta": "شروع کنیم",
-      "eyebrow": "تضمین حریم خصوصی"
-    },
-    "screen5": {
-      "title": "پَلت را برای چه می‌خواهی؟",
-      "body": "انتخاب کن دوست داری درباره چه چیزی صحبت کنی - ما پَلی متناسب با گوشی‌ات پیدا می‌کنیم.",
-      "topic": {
-        "smartchat": "گفتگوی هوشمند",
-        "coding": "برنامه‌نویسی",
-        "education": "آموزش",
-        "roleplay": "نقش‌آفرینی",
-        "creative_writing": "نوشتن خلاقانه",
-        "else": "دنبال چیز دیگری هستی؟"
-      },
-      "topicDescription": {
-        "smartchat": "همراه صمیمی روزمره",
-        "coding": "کدنویسی، رفع اشکال، توضیح",
-        "education": "یادگیری، توضیح، آزمون",
-        "roleplay": "شخصیت‌ها، سناریوها",
-        "creative_writing": "داستان‌ها، ایده‌ها، پیش‌نویس‌ها",
-        "else": "بعداً همه پَل‌ها را در برنامه ببین"
-      }
-    },
+    "screen5": {},
     "screen6": {
-      "cta": "دانلود {{name}}",
-      "ctaTemplate": "دانلود {{name}} ({{size}})",
-      "useTemplate": "استفاده از {{name}}",
       "deviceRamSuffix": "گیگابایت RAM",
       "deviceFreeSuffix": "گیگابایت آزاد",
       "recommended": "پیشنهادی",
@@ -1651,24 +1538,6 @@
         "quick": "سریع",
         "balanced": "متعادل",
         "best": "بهترین"
-      },
-      "subtitleTemplate": "{{name}} با یک مدل هوش مصنوعی کوچک روی گوشی‌ات فکر می‌کند - یکی را که مناسب است انتخاب کن.",
-      "pal": {
-        "pip": {
-          "body": "یک پَل عالی برایت پیدا کردیم - یک همراه صمیمی روزمره. به اندازه کافی باهوش برای بیشتر کارها، و به اندازه کافی سبک برای هر گوشی."
-        },
-        "codie": {
-          "body": "با Codie آشنا شو — هم‌برنامه‌نویس محلی تو. کد می‌خواند، کد می‌نویسد و بخش‌های پیچیده را توضیح می‌دهد، بدون اینکه هرگز از گوشی‌ات بیرون برود."
-        },
-        "sage": {
-          "body": "Sage صبور و کنجکاو است و ایده‌ها را قدم‌به‌قدم برایت توضیح می‌دهد. یک همدرس که توی جیبت داری."
-        },
-        "echo": {
-          "body": "Echo یک همراه همه‌فن‌حریف برای نقش‌آفرینی است — در نقش می‌ماند، صحنه‌ها را می‌سازد و هر جا داستانت برود همراهت می‌آید."
-        },
-        "muse": {
-          "body": "Muse در نوشتن کمکت می‌کند. عبارت‌ها را پیشنهاد می‌دهد، ریتم را پیدا می‌کند و لحن تو را حفظ می‌کند."
-        }
       }
     }
   },
