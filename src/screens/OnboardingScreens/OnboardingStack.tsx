@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {ROUTES} from '../../utils/navigationConstants';
@@ -28,6 +28,7 @@ export const OnboardingStack: React.FC = () => {
   const [chromeStep, setChromeStep] = useState<OnboardingChromeStep>('splash');
   return (
     <View style={{flex: 1}}>
+      <StatusBar barStyle="light-content" backgroundColor="#090F12" />
       <Stack.Navigator
         screenOptions={{headerShown: false, gestureEnabled: false}}
         initialRouteName={ROUTES.ONBOARDING.SPLASH}
